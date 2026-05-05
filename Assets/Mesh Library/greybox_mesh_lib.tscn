@@ -58,6 +58,24 @@ uv1_triplanar = true
 material = SubResource("StandardMaterial3D_bpli8")
 size = Vector3(0.5, 0.5, 0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_es28n"]
+albedo_texture = ExtResource("5_ikvnt")
+uv1_triplanar = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_ouc2t"]
+material = SubResource("StandardMaterial3D_es28n")
+left_to_right = 1.0
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ik6s6"]
+albedo_texture = ExtResource("5_ikvnt")
+uv1_triplanar = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_lha3b"]
+material = SubResource("StandardMaterial3D_ik6s6")
+left_to_right = 1.0
+size = Vector3(1, 0.5, 0.5)
+
 [node name="Greybox Mesh Lib" type="Node3D" unique_id=63662626]
 
 [node name="Red Cube" type="MeshInstance3D" parent="." unique_id=1724638245]
@@ -107,3 +125,23 @@ mesh = SubResource("BoxMesh_72u82")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Light Cube/StaticBody3D" unique_id=299825108]
 shape = SubResource("BoxShape3D_u48ln")
+
+[node name="Slope 45" type="MeshInstance3D" parent="." unique_id=1324068008]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_ouc2t")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Slope 45" unique_id=949660324]
+
+[node name="CollisionShape3D" type="CollisionPolygon3D" parent="Slope 45/StaticBody3D" unique_id=137110019]
+depth = 0.5
+polygon = PackedVector2Array(0.25136617, 0.2542407, 0.24403684, -0.24855322, -0.25582525, -0.2470873)
+
+[node name="Slope 30" type="MeshInstance3D" parent="." unique_id=1922236400]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.2014214e-09, -3.2014214e-09, 0.25)
+mesh = SubResource("PrismMesh_lha3b")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Slope 30" unique_id=1696565825]
+
+[node name="CollisionShape3D" type="CollisionPolygon3D" parent="Slope 30/StaticBody3D" unique_id=599559447]
+depth = 0.5
+polygon = PackedVector2Array(0.4985478, 0.24899524, 0.4985478, -0.24793515, -0.49677888, -0.25673035)
