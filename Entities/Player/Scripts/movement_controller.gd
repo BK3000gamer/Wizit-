@@ -8,14 +8,18 @@ extends Node
 @export var JumpTimeToPeak: float
 @export var JumpTimeToDescent: float
 @export var Speed: float
-@export var Acceleration: float
-@export var Deceleration: float
+@export var GroundAcceleration: float
+@export var GroundDeceleration: float
+@export var AirAcceleration: float
+@export var AirDeceleration: float
 @export var AirStrafeCurve: Curve
 @export var AirStrafeMultiplier: float
 
 var JumpVelocity: float
 var JumpGravity: float
 var FallGravity: float
+var Acceleration: float
+var Deceleration: float
 var Direction: Vector3
 var wishVel: Vector3
 var samplePoint: float
@@ -37,7 +41,12 @@ func process_input(_event: InputEvent) -> void:
 func process_physics(delta: float) -> void:
 	Direction = parent.InputDir.rotated(Vector3.UP, parent.get_rotation().y).normalized()
 	
-	if !parent.is_on_floor():
+	if parent.is_on_floor():
+		Acceleration = GroundAcceleration
+		Deceleration = GroundDeceleration
+	else:
+		Acceleration = AirAcceleration
+		Deceleration = AirDeceleration
 		samplePoint = (rad_to_deg(getHorizontalAngle(parent.velocity, wishVel)) - minStrafeAngle) / maxStrafeAngle
 		wishVel *= 1.0 + (AirStrafeCurve.sample(samplePoint) * AirStrafeMultiplier)
 	

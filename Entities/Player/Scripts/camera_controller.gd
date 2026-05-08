@@ -15,3 +15,4 @@ func process_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouseCaptured:
 		parent.rotate_y(-event.relative.x * sensitivity * 0.001)
 		rotate_x(-event.relative.y * sensitivity * 0.001)
+		rotation.x = clamp(rotation.x, deg_to_rad(-90), deg_to_rad(90))

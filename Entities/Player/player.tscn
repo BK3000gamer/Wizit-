@@ -66,9 +66,11 @@ script = ExtResource("2_3uyv8")
 JumpHeight = 0.999999999999968
 JumpTimeToPeak = 0.2999999999999904
 JumpTimeToDescent = 0.249999999999992
-Speed = 9.99999999999968
-Acceleration = 6.999999999999776
-Deceleration = 7.999999999999744
+Speed = 6.999999999999776
+GroundAcceleration = 6.999999999999776
+GroundDeceleration = 7.999999999999744
+AirAcceleration = 2.999999999999904
+AirDeceleration = 0.0999999999999968
 AirStrafeCurve = SubResource("Curve_lub02")
 AirStrafeMultiplier = 0.999999999999968
 
