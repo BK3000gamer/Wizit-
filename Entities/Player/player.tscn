@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://bjavikfx6umb1"]
+
+[ext_resource type="Script" uid="uid://cyktgo5ocitpv" path="res://Entities/Player/Scripts/player.gd" id="1_lu8i8"]
+[ext_resource type="Script" uid="uid://gm78qn5s226n" path="res://Entities/Player/Scripts/state_machine.gd" id="1_mv1ah"]
+[ext_resource type="Script" uid="uid://cf7kjpeihxnt6" path="res://Entities/Player/Scripts/movement_controller.gd" id="2_3uyv8"]
+[ext_resource type="Script" uid="uid://dhba151dvyxeo" path="res://Entities/Player/Scripts/idle.gd" id="3_4wf4l"]
+[ext_resource type="Script" uid="uid://7jwxixvj3udl" path="res://Commons/State Machine/state.gd" id="4_01a4e"]
+[ext_resource type="Script" uid="uid://dy64y0e88du5c" path="res://Entities/Player/Scripts/run.gd" id="4_7a1se"]
+[ext_resource type="Script" uid="uid://bqem5ijih5ito" path="res://Entities/Player/Scripts/camera_controller.gd" id="4_tekja"]
+[ext_resource type="Script" uid="uid://bpjoehaqado04" path="res://Entities/Player/Scripts/jump.gd" id="5_7a1se"]
+[ext_resource type="Script" uid="uid://cbb3otpgv8pbg" path="res://Entities/Player/Scripts/fall.gd" id="6_lub02"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mv1ah"]
+radius = 0.3
+height = 1.5
+
+[node name="Player" type="CharacterBody3D" unique_id=247065812]
+script = ExtResource("1_lu8i8")
+
+[node name="State Machine" type="Node" parent="." unique_id=1262524417 node_paths=PackedStringArray("StartingState")]
+script = ExtResource("1_mv1ah")
+StartingState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="State Machine" unique_id=1754327795 node_paths=PackedStringArray("RunState", "JumpState", "FallState", "MovementController")]
+script = ExtResource("3_4wf4l")
+RunState = NodePath("../Run")
+JumpState = NodePath("../Jump")
+FallState = NodePath("../Fall")
+MovementController = NodePath("../../Movement Controller")
+metadata/_custom_type_script = "uid://7jwxixvj3udl"
+
+[node name="Run" type="Node" parent="State Machine" unique_id=2096674906 node_paths=PackedStringArray("IdleState", "JumpState", "FallState", "SlideState", "MovementController")]
+script = ExtResource("4_7a1se")
+IdleState = NodePath("../Idle")
+JumpState = NodePath("../Jump")
+FallState = NodePath("../Fall")
+SlideState = NodePath("../Slide")
+MovementController = NodePath("../../Movement Controller")
+metadata/_custom_type_script = "uid://7jwxixvj3udl"
+
+[node name="Jump" type="Node" parent="State Machine" unique_id=1308030925 node_paths=PackedStringArray("IdleState", "RunState", "FallState", "MovementController")]
+script = ExtResource("5_7a1se")
+IdleState = NodePath("../Idle")
+RunState = NodePath("../Run")
+FallState = NodePath("../Fall")
+MovementController = NodePath("../../Movement Controller")
+metadata/_custom_type_script = "uid://7jwxixvj3udl"
+
+[node name="Fall" type="Node" parent="State Machine" unique_id=1613075438 node_paths=PackedStringArray("IdleState", "RunState", "MovementController")]
+script = ExtResource("6_lub02")
+IdleState = NodePath("../Idle")
+RunState = NodePath("../Run")
+MovementController = NodePath("../../Movement Controller")
+metadata/_custom_type_script = "uid://7jwxixvj3udl"
+
+[node name="Slide" type="Node" parent="State Machine" unique_id=210119606]
+script = ExtResource("4_01a4e")
+metadata/_custom_type_script = "uid://7jwxixvj3udl"
+
+[node name="Movement Controller" type="Node" parent="." unique_id=595677260]
+script = ExtResource("2_3uyv8")
+JumpHeight = 7.999999999999744
+JumpTimeToPeak = 0.7999999999999744
+JumpTimeToDescent = 0.499999999999984
+Speed = 9.99999999999968
+Acceleration = 6.999999999999776
+Deceleration = 7.999999999999744
+
+[node name="Camera Controller" type="Node3D" parent="." unique_id=755558440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("4_tekja")
+sensitivity = 0.499999999999984
+
+[node name="Camera3D" type="Camera3D" parent="Camera Controller" unique_id=1502147585]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1039857336]
+shape = SubResource("CapsuleShape3D_mv1ah")
