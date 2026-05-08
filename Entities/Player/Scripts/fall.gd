@@ -4,6 +4,10 @@ extends State
 @export var IdleState: State
 @export var RunState: State
 
+func enter() -> void:
+	MovementController.Acceleration = 3
+	MovementController.Deceleration = 0.1
+
 func process_physics(_delta: float) -> State:
 	if parent.is_on_floor():
 		if parent.InputDir == Vector3.ZERO:

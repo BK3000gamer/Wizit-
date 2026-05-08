@@ -10,6 +10,10 @@
 [ext_resource type="Script" uid="uid://bpjoehaqado04" path="res://Entities/Player/Scripts/jump.gd" id="5_7a1se"]
 [ext_resource type="Script" uid="uid://cbb3otpgv8pbg" path="res://Entities/Player/Scripts/fall.gd" id="6_lub02"]
 
+[sub_resource type="Curve" id="Curve_lub02"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mv1ah"]
 radius = 0.3
 height = 1.5
@@ -59,12 +63,14 @@ metadata/_custom_type_script = "uid://7jwxixvj3udl"
 
 [node name="Movement Controller" type="Node" parent="." unique_id=595677260]
 script = ExtResource("2_3uyv8")
-JumpHeight = 7.999999999999744
-JumpTimeToPeak = 0.7999999999999744
-JumpTimeToDescent = 0.499999999999984
+JumpHeight = 0.999999999999968
+JumpTimeToPeak = 0.2999999999999904
+JumpTimeToDescent = 0.249999999999992
 Speed = 9.99999999999968
 Acceleration = 6.999999999999776
 Deceleration = 7.999999999999744
+AirStrafeCurve = SubResource("Curve_lub02")
+AirStrafeMultiplier = 0.999999999999968
 
 [node name="Camera Controller" type="Node3D" parent="." unique_id=755558440]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

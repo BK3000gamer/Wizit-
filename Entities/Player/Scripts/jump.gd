@@ -7,6 +7,8 @@ extends State
 
 func enter() -> void:
 	MovementController.jump()
+	MovementController.Acceleration = 3
+	MovementController.Deceleration = 0.1
 
 func process_physics(_delta: float) -> State:
 	if parent.velocity.y < 0.0:

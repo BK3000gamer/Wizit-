@@ -5,6 +5,10 @@ extends State
 @export var JumpState: State
 @export var FallState: State
 
+func enter() -> void:
+	MovementController.Acceleration = 7.0
+	MovementController.Deceleration = 8.0
+
 func process_input(event: InputEvent) -> State:
 	if event.is_action_pressed("jump") and parent.is_on_floor():
 		return JumpState
