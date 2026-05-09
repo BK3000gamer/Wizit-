@@ -63,14 +63,14 @@ metadata/_custom_type_script = "uid://7jwxixvj3udl"
 
 [node name="Movement Controller" type="Node" parent="." unique_id=595677260]
 script = ExtResource("2_3uyv8")
-JumpHeight = 0.999999999999968
+JumpHeight = 1.0999999999999648
 JumpTimeToPeak = 0.2999999999999904
 JumpTimeToDescent = 0.249999999999992
 Speed = 6.999999999999776
-GroundAcceleration = 6.999999999999776
-GroundDeceleration = 7.999999999999744
-AirAcceleration = 2.999999999999904
-AirDeceleration = 0.0999999999999968
+MaxAirSpeed = 9.99999999999968
+Acceleration = 6.999999999999776
+Deceleration = 7.999999999999744
+AirAcceleration = 0.749999999999976
 AirStrafeCurve = SubResource("Curve_lub02")
 AirStrafeMultiplier = 0.999999999999968
 
