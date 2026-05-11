@@ -14,6 +14,10 @@ extends Node
 @export var AirAcceleration: float
 @export var AirStrafeCurve: Curve
 @export var AirStrafeMultiplier: float
+@export var SlideBoost: float
+@export var SlideCurve: Curve
+@export var SlopeCurve: Curve
+@export var SlideDecayMultiplier: float
 
 var JumpVelocity: float
 var JumpGravity: float
@@ -25,6 +29,7 @@ const minStrafeAngle := 0.0
 const maxStrafeAngle := 180.0
 var land_buffer: int = 0
 const LAND_BUFFER_FRAMES: int = 2
+var SlideTime := 0.0
 
 func _ready() -> void:
 	JumpVelocity = (2.0 * JumpHeight) / JumpTimeToPeak
@@ -36,7 +41,7 @@ func _get_gravity() -> float:
 
 func process_input(_event: InputEvent) -> void:
 	var dir = Input.get_vector("left","right","forward","backward")
-	parent.InputDir = Vector3(dir.x, 0, dir.y)
+	parent.InputDir = Vector3(dir.x, 0.0, dir.y)
 
 func process_physics(delta: float) -> void:
 	Direction = parent.InputDir.rotated(Vector3.UP, parent.get_rotation().y).normalized()
@@ -50,7 +55,6 @@ func process_physics(delta: float) -> void:
 		var baseWish := Direction * Speed
 		samplePoint = (rad_to_deg(getHorizontalAngle(parent.velocity, baseWish)) - minStrafeAngle) / maxStrafeAngle
 	
-	move(delta)
 	parent.velocity.y += _get_gravity() * delta
 	parent.move_and_slide()
 
@@ -96,3 +100,21 @@ func _accelerate_air(wishDir: Vector3, wishSpeed: float, delta: float) -> void:
 		horizontal = horizontal.normalized() * MaxAirSpeed
 		parent.velocity.x = horizontal.x
 		parent.velocity.z = horizontal.y
+
+func slide_boost() -> void:
+	SlideTime = 0.0
+	var SlideDirection = Vector3(0.0, 0.0, -1.0).rotated(Vector3.UP, parent.get_rotation().y).normalized()
+	parent.velocity = SlideDirection * SlideBoost
+
+func slide_decay(delta) -> void:
+	SlideTime += delta * 8.0
+	
+	var groundNormal = parent.get_floor_normal()
+	var floorAngle = parent.get_floor_angle()
+	var slopeDir = sign(Vector3.DOWN.slide(groundNormal).dot(parent.velocity))
+	var slope = (floorAngle / parent.floor_max_angle) * slopeDir
+	var slopeNormalized = remap(slope, -1.0, 1.0, 0.0, 1.0)
+	
+	var SlideDeceleration = SlideCurve.sample(SlideTime) * SlopeCurve.sample(slopeNormalized) * SlideDecayMultiplier
+	parent.velocity.x = lerp(parent.velocity.x, 0.0, SlideDeceleration * delta)
+	parent.velocity.z = lerp(parent.velocity.z, 0.0, SlideDeceleration * delta)

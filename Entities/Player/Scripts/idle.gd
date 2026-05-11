@@ -11,7 +11,9 @@ func process_input(event: InputEvent) -> State:
 	
 	return null
 
-func process_physics(_delta: float) -> State:
+func process_physics(delta: float) -> State:
+	MovementController.move(delta)
+	
 	if parent.InputDir != Vector3.ZERO:
 		return RunState
 	

@@ -8,7 +8,9 @@ extends State
 func enter() -> void:
 	MovementController.jump()
 
-func process_physics(_delta: float) -> State:
+func process_physics(delta: float) -> State:
+	MovementController.move(delta)
+	
 	if parent.velocity.y < 0.0:
 		return FallState
 	

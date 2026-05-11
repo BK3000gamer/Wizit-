@@ -4,7 +4,9 @@ extends State
 @export var IdleState: State
 @export var RunState: State
 
-func process_physics(_delta: float) -> State:
+func process_physics(delta: float) -> State:
+	MovementController.move(delta)
+	
 	if parent.is_on_floor():
 		if parent.InputDir == Vector3.ZERO:
 			return IdleState
