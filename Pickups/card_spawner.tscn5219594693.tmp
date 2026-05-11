@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://clk2v12qauaoq"]
+
+[ext_resource type="Script" uid="uid://c0uqudg3kaiug" path="res://Pickups/card_spawner.gd" id="1_figby"]
+
+[node name="CardSpawner" type="Node3D" unique_id=48530971]
+script = ExtResource("1_figby")

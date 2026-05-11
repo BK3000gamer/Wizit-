@@ -38,6 +38,7 @@ folder_colors={
 "res://Assets/Textures/Red/": "red",
 "res://Entities/": "red",
 "res://Levels/": "blue",
+"res://Pickups/": "green",
 "res://UI/": "green"
 }
 

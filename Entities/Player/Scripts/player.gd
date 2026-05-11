@@ -1,6 +1,13 @@
 extends CharacterBody3D
 class_name Player
 
+#Card Abilities
+var card_id: Array[String] = \
+["Dash", "Speed Boost", "Stomp", "Updraft"]
+
+#Inventory
+var current_cards: Array[String] = []
+
 var InputDir := Vector3.ZERO
 var CurrentState: String
 var PreviousState: String
@@ -20,3 +27,15 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	StateMachine.process_physics(delta)
 	MovementController.process_physics(delta)
+	
+
+#Card Pickup
+func pickup_card() -> void:
+	if current_cards.size() >=9:
+		print("Inventory is Full")
+		return
+
+	var given_card: String = card_id.pick_random()
+	current_cards.append(given_card)
+	print("Inventory: ", current_cards)
+	

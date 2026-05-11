@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bhakpy683ikgx"]
+
+[ext_resource type="Script" uid="uid://ceuf6qkjglm0r" path="res://Pickups/pickup_item.gd" id="1_uxik1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uxik1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n2yev"]
+
+[node name="PickupItem" type="Area3D" unique_id=505550995]
+script = ExtResource("1_uxik1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1919363038]
+shape = SubResource("BoxShape3D_uxik1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2077970843]
+mesh = SubResource("BoxMesh_n2yev")
