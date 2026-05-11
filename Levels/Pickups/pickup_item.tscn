@@ -1,10 +1,17 @@
 [gd_scene format=3 uid="uid://bhakpy683ikgx"]
 
 [ext_resource type="Script" uid="uid://ceuf6qkjglm0r" path="res://Levels/Pickups/pickup_item.gd" id="1_uxik1"]
+[ext_resource type="Texture2D" uid="uid://dgy1eg8floh5x" path="res://icon.svg" id="2_w46j2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uxik1"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_n2yev"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ocy2k"]
+cull_mode = 2
+albedo_texture = ExtResource("2_w46j2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ho1dc"]
+material = SubResource("StandardMaterial3D_ocy2k")
+size = Vector2(0.7, 1)
 
 [node name="PickupItem" type="Area3D" unique_id=505550995]
 script = ExtResource("1_uxik1")
@@ -12,5 +19,9 @@ script = ExtResource("1_uxik1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1919363038]
 shape = SubResource("BoxShape3D_uxik1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2077970843]
-mesh = SubResource("BoxMesh_n2yev")
+[node name="Card" type="Node3D" parent="." unique_id=1778915840]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Card" unique_id=2077970843]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ho1dc")
+skeleton = NodePath("../..")

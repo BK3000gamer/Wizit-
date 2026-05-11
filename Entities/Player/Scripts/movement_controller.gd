@@ -20,6 +20,7 @@ extends Node
 @export var SlideDecayMultiplier: float
 @export var DashBoost: float
 @export var UpdraftBoost: float
+@export var StompGravity: float
 
 var JumpVelocity: float
 var JumpGravity: float
@@ -105,13 +106,13 @@ func _accelerate_air(wishDir: Vector3, wishSpeed: float, delta: float) -> void:
 
 func slide_boost() -> void:
 	SlideTime = 0.0
-	var SlideDirection = Vector3(0.0, 0.0, -1.0).rotated(Vector3.UP, parent.get_rotation().y).normalized()
+	var SlideDirection = Vector3.FORWARD.rotated(Vector3.UP, parent.get_rotation().y).normalized()
 	parent.velocity = SlideDirection * SlideBoost
 
 func slide_decay(delta) -> void:
 	SlideTime += delta * 8.0
 	
-	var groundNormal = parent.get_floor_normal()
+	var groundNormal = parent.get_floor_normal().normalized()
 	var floorAngle = parent.get_floor_angle()
 	var slopeDir = sign(Vector3.DOWN.slide(groundNormal).dot(parent.velocity))
 	var slope = (floorAngle / parent.floor_max_angle) * slopeDir
@@ -122,8 +123,11 @@ func slide_decay(delta) -> void:
 	parent.velocity.z = lerp(parent.velocity.z, 0.0, SlideDeceleration * delta)
 
 func dash() -> void:
-	var DashDirection = Vector3(0.0, 0.0, -1.0).rotated(Vector3.UP, parent.get_rotation().y).normalized()
+	var DashDirection = Vector3.FORWARD.rotated(Vector3.UP, parent.get_rotation().y).normalized()
 	parent.velocity = DashDirection * DashBoost
 
 func updraft() -> void:
 	parent.velocity.y = UpdraftBoost
+
+func stomp() -> void:
+	parent.velocity.y = -StompGravity

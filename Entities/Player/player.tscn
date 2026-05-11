@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://cnnxf14tys8bn" path="res://Entities/Player/slide.gd" id="7_lub02"]
 [ext_resource type="Script" uid="uid://cx8dlyrkdqdd6" path="res://Entities/Player/Scripts/dash.gd" id="8_x1y6q"]
 [ext_resource type="Script" uid="uid://bt7446bew3oui" path="res://Entities/Player/updraft.gd" id="9_ap3xn"]
+[ext_resource type="Script" uid="uid://w7ig2betf7xt" path="res://Entities/Player/stomp.gd" id="10_iplt1"]
+[ext_resource type="Script" uid="uid://chsba32hsrfyk" path="res://Entities/Player/stun.gd" id="11_owvpp"]
 
 [sub_resource type="Curve" id="Curve_lub02"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0]
@@ -56,26 +58,28 @@ UpdraftState = NodePath("../Updraft")
 MovementController = NodePath("../../Movement Controller")
 metadata/_custom_type_script = "uid://7jwxixvj3udl"
 
-[node name="Jump" type="Node" parent="State Machine" unique_id=1308030925 node_paths=PackedStringArray("IdleState", "RunState", "FallState", "DashState", "UpdraftState", "MovementController")]
+[node name="Jump" type="Node" parent="State Machine" unique_id=1308030925 node_paths=PackedStringArray("IdleState", "RunState", "FallState", "DashState", "UpdraftState", "StompState", "MovementController")]
 script = ExtResource("5_7a1se")
 IdleState = NodePath("../Idle")
 RunState = NodePath("../Run")
 FallState = NodePath("../Fall")
 DashState = NodePath("../Dash")
 UpdraftState = NodePath("../Updraft")
+StompState = NodePath("../Stomp")
 MovementController = NodePath("../../Movement Controller")
 metadata/_custom_type_script = "uid://7jwxixvj3udl"
 
-[node name="Fall" type="Node" parent="State Machine" unique_id=1613075438 node_paths=PackedStringArray("IdleState", "RunState", "DashState", "UpdraftState", "MovementController")]
+[node name="Fall" type="Node" parent="State Machine" unique_id=1613075438 node_paths=PackedStringArray("IdleState", "RunState", "DashState", "UpdraftState", "StompState", "MovementController")]
 script = ExtResource("6_lub02")
 IdleState = NodePath("../Idle")
 RunState = NodePath("../Run")
 DashState = NodePath("../Dash")
 UpdraftState = NodePath("../Updraft")
+StompState = NodePath("../Stomp")
 MovementController = NodePath("../../Movement Controller")
 metadata/_custom_type_script = "uid://7jwxixvj3udl"
 
-[node name="Slide" type="Node" parent="State Machine" unique_id=210119606 node_paths=PackedStringArray("IdleState", "RunState", "JumpState", "FallState", "DashState", "UpdraftState", "MovementController")]
+[node name="Slide" type="Node" parent="State Machine" unique_id=210119606 node_paths=PackedStringArray("IdleState", "RunState", "JumpState", "FallState", "DashState", "UpdraftState", "StompState", "MovementController")]
 script = ExtResource("7_lub02")
 IdleState = NodePath("../Idle")
 RunState = NodePath("../Run")
@@ -83,25 +87,47 @@ JumpState = NodePath("../Jump")
 FallState = NodePath("../Fall")
 DashState = NodePath("../Dash")
 UpdraftState = NodePath("../Updraft")
+StompState = NodePath("../Stomp")
 MovementController = NodePath("../../Movement Controller")
 metadata/_custom_type_script = "uid://7jwxixvj3udl"
 
-[node name="Dash" type="Node" parent="State Machine" unique_id=1397329499 node_paths=PackedStringArray("IdleState", "RunState", "FallState", "UpdraftState", "MovementController")]
+[node name="Dash" type="Node" parent="State Machine" unique_id=1397329499 node_paths=PackedStringArray("IdleState", "RunState", "FallState", "UpdraftState", "StompState", "MovementController")]
 script = ExtResource("8_x1y6q")
 IdleState = NodePath("../Idle")
 RunState = NodePath("../Run")
 FallState = NodePath("../Fall")
 UpdraftState = NodePath("../Updraft")
+StompState = NodePath("../Stomp")
 MovementController = NodePath("../../Movement Controller")
 metadata/_custom_type_script = "uid://7jwxixvj3udl"
 
-[node name="Updraft" type="Node" parent="State Machine" unique_id=1679401574 node_paths=PackedStringArray("IdleState", "RunState", "FallState", "DashState", "MovementController")]
+[node name="Updraft" type="Node" parent="State Machine" unique_id=1679401574 node_paths=PackedStringArray("IdleState", "RunState", "FallState", "DashState", "StompState", "MovementController")]
 script = ExtResource("9_ap3xn")
 IdleState = NodePath("../Idle")
 RunState = NodePath("../Run")
 FallState = NodePath("../Fall")
 DashState = NodePath("../Dash")
+StompState = NodePath("../Stomp")
 MovementController = NodePath("../../Movement Controller")
+metadata/_custom_type_script = "uid://7jwxixvj3udl"
+
+[node name="Stomp" type="Node" parent="State Machine" unique_id=1317584500 node_paths=PackedStringArray("IdleState", "RunState", "DashState", "UpdraftState", "StunState", "MovementController")]
+script = ExtResource("10_iplt1")
+IdleState = NodePath("../Idle")
+RunState = NodePath("../Run")
+DashState = NodePath("../Dash")
+UpdraftState = NodePath("../Updraft")
+StunState = NodePath("../Stun")
+MovementController = NodePath("../../Movement Controller")
+metadata/_custom_type_script = "uid://7jwxixvj3udl"
+
+[node name="Stun" type="Node" parent="State Machine" unique_id=1291189036 node_paths=PackedStringArray("IdleState", "RunState", "JumpState", "DashState", "UpdraftState")]
+script = ExtResource("11_owvpp")
+IdleState = NodePath("../Idle")
+RunState = NodePath("../Run")
+JumpState = NodePath("../Jump")
+DashState = NodePath("../Dash")
+UpdraftState = NodePath("../Updraft")
 metadata/_custom_type_script = "uid://7jwxixvj3udl"
 
 [node name="Movement Controller" type="Node" parent="." unique_id=595677260]
@@ -122,6 +148,7 @@ SlopeCurve = SubResource("Curve_ap3xn")
 SlideDecayMultiplier = 3.499999999999888
 DashBoost = 19.99999999999936
 UpdraftBoost = 17.999999999999424
+StompGravity = 24.9999999999992
 
 [node name="Camera Controller" type="Node3D" parent="." unique_id=755558440]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2014214e-09, 0.5, -3.2014214e-09)

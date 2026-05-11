@@ -5,6 +5,7 @@ extends State
 @export var RunState: State
 @export var FallState: State
 @export var DashState: State
+@export var StompState: State
 
 func enter() -> void:
 	MovementController.updraft()
@@ -12,6 +13,9 @@ func enter() -> void:
 func process_input(event: InputEvent) -> State:
 	if event.is_action_pressed("dash"):
 		return DashState
+	
+	if event.is_action_pressed("stomp"):
+		return StompState
 	
 	return null
 
