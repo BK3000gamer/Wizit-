@@ -28,14 +28,14 @@ func enter() -> void:
 func exit() -> void:
 	parent.velocity = Vector3.ZERO
 
-func process_input(event: InputEvent) -> State:
-	if event.is_action_pressed("updraft"):
-		updrafted = true
+#func process_input(event: InputEvent) -> State:
+	#if event.is_action_pressed("updraft"):
+		#updrafted = true
 	
-	if event.is_action_pressed("stomp"):
-		stomped = true
+	#if event.is_action_pressed("stomp"):
+		#stomped = true
 	
-	return null
+	#return null
 
 func process_physics(_delta: float) -> State:
 	parent.velocity.y = 0.0

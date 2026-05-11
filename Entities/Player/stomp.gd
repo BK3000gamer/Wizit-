@@ -23,14 +23,14 @@ func enter() -> void:
 	timer.timeout.connect(timer_timeout)
 	timer.start()
 
-func process_input(event: InputEvent) -> State:
-	if event.is_action_pressed("dash"):
-		dashed = true
+#func process_input(event: InputEvent) -> State:
+	#if event.is_action_pressed("dash"):
+		#dashed = true
 	
-	if event.is_action_pressed("updraft"):
-		updrafted = true
+	#if event.is_action_pressed("updraft"):
+		#updrafted = true
 	
-	return null
+	#return null
 
 func process_physics(_delta: float) -> State:
 	MovementController.stomp()

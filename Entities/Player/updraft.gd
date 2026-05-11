@@ -10,14 +10,14 @@ extends State
 func enter() -> void:
 	MovementController.updraft()
 
-func process_input(event: InputEvent) -> State:
-	if event.is_action_pressed("dash"):
-		return DashState
+##func process_input(event: InputEvent) -> State:
+	#if event.is_action_pressed("dash"):
+		#return DashState
 	
-	if event.is_action_pressed("stomp"):
-		return StompState
+	#if event.is_action_pressed("stomp"):
+		#return StompState
 	
-	return null
+	#return null
 
 func process_physics(delta: float) -> State:
 	MovementController.move(delta)

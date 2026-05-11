@@ -23,6 +23,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	StateMachine.process_input(event)
 	MovementController.process_input(event)
 	CameraController.process_input(event)
+	if event is InputEventKey and event.pressed and not event.echo:
+		var input_index = event.keycode - KEY_1
+		
+		if input_index >= 0 and input_index < 9:
+			stimulate_ability(input_index)
 
 func _physics_process(delta: float) -> void:
 	StateMachine.process_physics(delta)
@@ -38,4 +43,26 @@ func pickup_card() -> void:
 	var given_card: String = card_id.pick_random()
 	current_cards.append(given_card)
 	print("Inventory: ", current_cards)
+
+func stimulate_ability(slot: int) -> void:
+	if slot >= current_cards.size():
+		return 
+		
+	var targeted_ability: String = current_cards[slot]
+	var ability_triggered: bool = false
+	
+	match targeted_ability:
+		"Dash", "Stomp", "Updraft":
+			ability_triggered = \
+			 StateMachine.transition(targeted_ability)
+		
+		#Non State Transition Abilities
+		"Speed Boost":
+			ability_triggered = true
+	# Remove Card
+	if ability_triggered:
+		current_cards.remove_at(slot)
+		print("Used ", targeted_ability," Inventory: ", current_cards)
+	else:
+		print("Nothing Happened")
 	
