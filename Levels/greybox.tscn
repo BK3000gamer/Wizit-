@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://r8qtbai7imip"]
 
 [ext_resource type="MeshLibrary" uid="uid://cqpriuvaowihh" path="res://Assets/Mesh Library/greybox.tres" id="1_is8vk"]
-[ext_resource type="PackedScene" uid="uid://clk2v12qauaoq" path="res://Pickups/card_spawner.tscn" id="2_thfis"]
-[ext_resource type="PackedScene" uid="uid://bhakpy683ikgx" path="res://Pickups/pickup_item.tscn" id="3_78ud1"]
+[ext_resource type="PackedScene" uid="uid://clk2v12qauaoq" path="res://Levels/Pickups/card_spawner.tscn" id="2_thfis"]
+[ext_resource type="PackedScene" uid="uid://bhakpy683ikgx" path="res://Levels/Pickups/pickup_item.tscn" id="3_78ud1"]
 
 [node name="Greybox" type="Node3D" unique_id=507335327]
 

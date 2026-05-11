@@ -3,14 +3,22 @@ extends State
 @export_category("Connected States")
 @export var IdleState: State
 @export var RunState: State
+@export var JumpState: State
 @export var FallState: State
 @export var DashState: State
 @export var UpdraftState: State
 
 func enter() -> void:
-	MovementController.jump()
+	MovementController.slide_boost()
+	parent.floor_snap_length = 0.5
+
+func exit() -> void:
+	parent.floor_snap_length = 0.0
 
 func process_input(event: InputEvent) -> State:
+	if event.is_action_pressed("jump") and parent.is_on_floor():
+		return JumpState
+	
 	if event.is_action_pressed("dash"):
 		return DashState
 	
@@ -20,15 +28,15 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	MovementController.move(delta)
+	MovementController.slide_decay(delta)
 	
-	if parent.velocity.y < 0.0:
+	if parent.InputDir == Vector3.ZERO:
+		return IdleState
+	
+	if parent.velocity.length() < 3.0:
+		return RunState
+	
+	if !parent.is_on_floor():
 		return FallState
-	
-	if parent.is_on_floor():
-		if parent.InputDir == Vector3.ZERO:
-			return IdleState
-		else:
-			return RunState
 	
 	return null

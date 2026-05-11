@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bhakpy683ikgx"]
 
-[ext_resource type="Script" uid="uid://ceuf6qkjglm0r" path="res://Pickups/pickup_item.gd" id="1_uxik1"]
+[ext_resource type="Script" uid="uid://ceuf6qkjglm0r" path="res://Levels/Pickups/pickup_item.gd" id="1_uxik1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uxik1"]
 

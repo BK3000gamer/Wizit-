@@ -18,6 +18,8 @@ extends Node
 @export var SlideCurve: Curve
 @export var SlopeCurve: Curve
 @export var SlideDecayMultiplier: float
+@export var DashBoost: float
+@export var UpdraftBoost: float
 
 var JumpVelocity: float
 var JumpGravity: float
@@ -118,3 +120,10 @@ func slide_decay(delta) -> void:
 	var SlideDeceleration = SlideCurve.sample(SlideTime) * SlopeCurve.sample(slopeNormalized) * SlideDecayMultiplier
 	parent.velocity.x = lerp(parent.velocity.x, 0.0, SlideDeceleration * delta)
 	parent.velocity.z = lerp(parent.velocity.z, 0.0, SlideDeceleration * delta)
+
+func dash() -> void:
+	var DashDirection = Vector3(0.0, 0.0, -1.0).rotated(Vector3.UP, parent.get_rotation().y).normalized()
+	parent.velocity = DashDirection * DashBoost
+
+func updraft() -> void:
+	parent.velocity.y = UpdraftBoost
