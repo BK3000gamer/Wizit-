@@ -1,11 +1,19 @@
 [gd_scene format=3 uid="uid://0f6t5nrhymaf"]
 
+[ext_resource type="Script" uid="uid://bdt5egm2s4s5k" path="res://NetCode/arena_playerspawner.gd" id="1_p4erq"]
 [ext_resource type="PackedScene" uid="uid://bjavikfx6umb1" path="res://Entities/Player/player.tscn" id="1_uvd1l"]
 [ext_resource type="PackedScene" uid="uid://r8qtbai7imip" path="res://Levels/greybox.tscn" id="2_uvd1l"]
 
 [node name="Test" type="Node3D" unique_id=1869092489]
-
-[node name="Player" parent="." unique_id=247065812 instance=ExtResource("1_uvd1l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_p4erq")
+player_scene = ExtResource("1_uvd1l")
 
 [node name="Greybox" parent="." unique_id=507335327 instance=ExtResource("2_uvd1l")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1232631801]
+_spawnable_scenes = PackedStringArray("uid://bjavikfx6umb1")
+spawn_path = NodePath("../Players")
+spawn_limit = 5
+
+[node name="Players" type="Node3D" parent="." unique_id=559151620]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1160064, 0)

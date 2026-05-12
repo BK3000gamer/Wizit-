@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bt7446bew3oui" path="res://Entities/Player/Scripts/updraft.gd" id="9_ap3xn"]
 [ext_resource type="Script" uid="uid://w7ig2betf7xt" path="res://Entities/Player/Scripts/stomp.gd" id="10_iplt1"]
 [ext_resource type="Script" uid="uid://chsba32hsrfyk" path="res://Entities/Player/Scripts/stun.gd" id="11_owvpp"]
+[ext_resource type="Texture2D" uid="uid://dgy1eg8floh5x" path="res://icon.svg" id="14_xr8lj"]
 
 [sub_resource type="Curve" id="Curve_lub02"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0]
@@ -29,6 +30,14 @@ point_count = 3
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mv1ah"]
 radius = 0.3
 height = 1.5
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_owvpp"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D" unique_id=247065812]
 script = ExtResource("1_lu8i8")
@@ -161,3 +170,10 @@ sensitivity = 0.499999999999984
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1039857336]
 shape = SubResource("CapsuleShape3D_mv1ah")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=138476879]
+replication_interval = 0.033
+replication_config = SubResource("SceneReplicationConfig_owvpp")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=185347575]
+texture = ExtResource("14_xr8lj")
