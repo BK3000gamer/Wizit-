@@ -7,6 +7,7 @@ var card_id: Array[String] = \
 
 #Inventory
 var current_cards: Array[String] = []
+var active_slot: int = 0
 
 var InputDir := Vector3.ZERO
 var CurrentState: String
@@ -27,7 +28,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		var input_index = event.keycode - KEY_1
 		
 		if input_index >= 0 and input_index < 9:
-			stimulate_ability(input_index)
+			active_slot = input_index
+		
+			if active_slot < current_cards.size():
+				print("Equipped: ", current_cards[active_slot], " (Slot ", active_slot + 1, ")")
+			else:
+				print("Equipped: Empty Slot (Slot ", active_slot + 1, ")")
+	
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		use_equipped_card()
 
 func _physics_process(delta: float) -> void:
 	StateMachine.process_physics(delta)
@@ -43,26 +52,27 @@ func pickup_card() -> void:
 	current_cards.append(given_card)
 	print("Inventory: ", current_cards)
 
-func stimulate_ability(slot: int) -> void:
-	if slot >= current_cards.size():
-		return 
-		
-	var targeted_ability: String = current_cards[slot]
+func use_equipped_card() -> void:
+	if active_slot >= current_cards.size():
+		print("Slot is Empty")
+		return
+	var targeted_ability: String = current_cards[active_slot]
 	var ability_triggered: bool = false
-	
 	match targeted_ability:
 		"Dash", "Stomp", "Updraft":
 			ability_triggered = \
 			StateMachine.transition(targeted_ability)
-		
-		#Non State Transition Abilities
+			
+			#Non State Transition Abilities
 		"Speed Boost":
 			ability_triggered = true
 			MovementController.speed_boost()
 	# Remove Card
 	if ability_triggered:
-		current_cards.remove_at(slot)
+		current_cards.remove_at(active_slot)
 		print("Used ", targeted_ability," Inventory: ", current_cards)
+		if active_slot >= current_cards.size() and current_cards.size() > 0:
+			active_slot = current_cards.size() - 1
 	else:
 		print("Nothing Happened")
 	
