@@ -2,7 +2,7 @@ extends Node3D
 class_name CardSpawner
 
 @export var card_powerups: PackedScene
-@export var spawn_interval: float = 3.0
+@export var spawn_interval: float = 5.0
 
 @onready var spawnpoints_container := $CardSpawnPoints
 var spawn_markers: Array[Node] = []

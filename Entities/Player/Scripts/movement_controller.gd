@@ -7,8 +7,10 @@ extends Node
 @export var JumpHeight: float
 @export var JumpTimeToPeak: float
 @export var JumpTimeToDescent: float
-@export var Speed: float
-@export var MaxAirSpeed: float 
+@export var BaseSpeed: float
+@export var BaseAirSpeed: float 
+@export var BoostedSpeed: float
+@export var BoostedAirSpeed: float 
 @export var Acceleration: float
 @export var Deceleration: float
 @export var AirAcceleration: float
@@ -25,6 +27,8 @@ extends Node
 var JumpVelocity: float
 var JumpGravity: float
 var FallGravity: float
+var Speed: float
+var AirSpeed: float
 var Direction: Vector3
 var wishVel: Vector3
 var samplePoint: float
@@ -38,6 +42,8 @@ func _ready() -> void:
 	JumpVelocity = (2.0 * JumpHeight) / JumpTimeToPeak
 	JumpGravity = (-2.0 * JumpHeight) / pow(JumpTimeToPeak, 2)
 	FallGravity = (-2.0 * JumpHeight) / pow(JumpTimeToDescent, 2)
+	Speed = BaseSpeed
+	AirSpeed = BaseAirSpeed
 
 func _get_gravity() -> float:
 	return JumpGravity if parent.velocity.y > 0.0 else FallGravity
@@ -99,8 +105,8 @@ func _accelerate_air(wishDir: Vector3, wishSpeed: float, delta: float) -> void:
 		parent.velocity.z += accelSpeed * wishDir.z
 	
 	var horizontal := Vector2(parent.velocity.x, parent.velocity.z)
-	if horizontal.length() > MaxAirSpeed:
-		horizontal = horizontal.normalized() * MaxAirSpeed
+	if horizontal.length() > AirSpeed:
+		horizontal = horizontal.normalized() * AirSpeed
 		parent.velocity.x = horizontal.x
 		parent.velocity.z = horizontal.y
 
@@ -131,3 +137,17 @@ func updraft() -> void:
 
 func stomp() -> void:
 	parent.velocity.y = -StompGravity
+
+func speed_boost() -> void:
+	Speed = BoostedSpeed
+	AirSpeed = BoostedAirSpeed
+	var timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = 10.0
+	timer.one_shot = true
+	timer.timeout.connect(timeout)
+	timer.start()
+
+func timeout():
+	Speed = BaseSpeed
+	AirSpeed = BaseAirSpeed

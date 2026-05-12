@@ -32,7 +32,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	StateMachine.process_physics(delta)
 	MovementController.process_physics(delta)
-	
 
 #Card Pickup
 func pickup_card() -> void:
@@ -54,11 +53,12 @@ func stimulate_ability(slot: int) -> void:
 	match targeted_ability:
 		"Dash", "Stomp", "Updraft":
 			ability_triggered = \
-			 StateMachine.transition(targeted_ability)
+			StateMachine.transition(targeted_ability)
 		
 		#Non State Transition Abilities
 		"Speed Boost":
 			ability_triggered = true
+			MovementController.speed_boost()
 	# Remove Card
 	if ability_triggered:
 		current_cards.remove_at(slot)

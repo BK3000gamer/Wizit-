@@ -8,11 +8,11 @@
 [ext_resource type="Script" uid="uid://bqem5ijih5ito" path="res://Entities/Player/Scripts/camera_controller.gd" id="4_tekja"]
 [ext_resource type="Script" uid="uid://bpjoehaqado04" path="res://Entities/Player/Scripts/jump.gd" id="5_7a1se"]
 [ext_resource type="Script" uid="uid://cbb3otpgv8pbg" path="res://Entities/Player/Scripts/fall.gd" id="6_lub02"]
-[ext_resource type="Script" path="res://Entities/Player/slide.gd" id="7_lub02"]
+[ext_resource type="Script" uid="uid://cnnxf14tys8bn" path="res://Entities/Player/Scripts/slide.gd" id="7_lub02"]
 [ext_resource type="Script" uid="uid://cx8dlyrkdqdd6" path="res://Entities/Player/Scripts/dash.gd" id="8_x1y6q"]
-[ext_resource type="Script" uid="uid://bt7446bew3oui" path="res://Entities/Player/updraft.gd" id="9_ap3xn"]
-[ext_resource type="Script" uid="uid://w7ig2betf7xt" path="res://Entities/Player/stomp.gd" id="10_iplt1"]
-[ext_resource type="Script" path="res://Entities/Player/stun.gd" id="11_owvpp"]
+[ext_resource type="Script" uid="uid://bt7446bew3oui" path="res://Entities/Player/Scripts/updraft.gd" id="9_ap3xn"]
+[ext_resource type="Script" uid="uid://w7ig2betf7xt" path="res://Entities/Player/Scripts/stomp.gd" id="10_iplt1"]
+[ext_resource type="Script" uid="uid://chsba32hsrfyk" path="res://Entities/Player/Scripts/stun.gd" id="11_owvpp"]
 
 [sub_resource type="Curve" id="Curve_lub02"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0]
@@ -135,8 +135,10 @@ script = ExtResource("2_3uyv8")
 JumpHeight = 1.0999999999999648
 JumpTimeToPeak = 0.2999999999999904
 JumpTimeToDescent = 0.249999999999992
-Speed = 6.999999999999776
-MaxAirSpeed = 8.999999999999712
+BaseSpeed = 6.999999999999776
+BaseAirSpeed = 8.999999999999712
+BoostedSpeed = 8.999999999999712
+BoostedAirSpeed = 10.999999999999648
 Acceleration = 6.999999999999776
 Deceleration = 7.999999999999744
 AirAcceleration = 2.49999999999992
