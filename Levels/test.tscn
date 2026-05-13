@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bjavikfx6umb1" path="res://Entities/Player/player.tscn" id="1_uvd1l"]
 [ext_resource type="PackedScene" uid="uid://r8qtbai7imip" path="res://Levels/greybox.tscn" id="2_uvd1l"]
+[ext_resource type="PackedScene" uid="uid://cotdvt1x5nwnn" path="res://UI/inventory_ui.tscn" id="3_p4erq"]
 
 [node name="Test" type="Node3D" unique_id=1869092489]
 
@@ -9,3 +10,5 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Greybox" parent="." unique_id=507335327 instance=ExtResource("2_uvd1l")]
+
+[node name="Inventory UI" parent="." unique_id=1179422355 instance=ExtResource("3_p4erq")]
