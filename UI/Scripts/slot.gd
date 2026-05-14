@@ -7,7 +7,12 @@ extends Node2D
 var player: Player
 
 func _ready() -> void:
-	player = get_parent().get_parent().get_node_or_null("Player")
+	await get_tree().process_frame
+	
+	player = get_tree().get_first_node_in_group("local_player")
+	
+	if player == null:
+		push_error("UI could not locate local player")
 
 func  _process(_delta: float) -> void:
 	if this_slot + 1 > player.current_cards.size():

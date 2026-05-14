@@ -22,7 +22,10 @@ func _ready() -> void:
 	
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
-
+	
+	if is_multiplayer_authority():
+		add_to_group("local_player")
+		
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): 
 		return

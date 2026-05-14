@@ -12,6 +12,7 @@ player_scene = ExtResource("1_uvd1l")
 [node name="Greybox" parent="." unique_id=507335327 instance=ExtResource("2_uvd1l")]
 
 [node name="Inventory UI" parent="." unique_id=1179422355 instance=ExtResource("3_p4erq")]
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1232631801]
 _spawnable_scenes = PackedStringArray("uid://bjavikfx6umb1")
 spawn_path = NodePath("../Players")
