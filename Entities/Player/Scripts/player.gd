@@ -22,10 +22,9 @@ func _ready() -> void:
 	
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
-	
 	if is_multiplayer_authority():
 		add_to_group("local_player")
-		
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): 
 		return
@@ -38,12 +37,23 @@ func _unhandled_input(event: InputEvent) -> void:
 		if input_index >= 0 and input_index < 9:
 			active_slot = input_index
 		
-			if active_slot < current_cards.size():
-				print("Equipped: ", current_cards[active_slot], " (Slot ", active_slot + 1, ")")
-			else:
-				print("Equipped: Empty Slot (Slot ", active_slot + 1, ")")
+		if event.is_action_pressed("slot_up"):
+			if active_slot < 8:
+				active_slot += 1
+			elif active_slot == 8:
+				active_slot = 0
+		elif event.is_action_pressed("slot_down"):
+			if active_slot > 0:
+				active_slot -= 1
+			elif active_slot == 0:
+				active_slot = 8
+			
+		if active_slot < current_cards.size():
+			print("Equipped: ", current_cards[active_slot], " (Slot ", active_slot + 1, ")")
+		else:
+			print("Equipped: Empty Slot (Slot ", active_slot + 1, ")")
 	
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+	if event.is_action_pressed("use"):
 		use_equipped_card()
 
 func _physics_process(delta: float) -> void:
