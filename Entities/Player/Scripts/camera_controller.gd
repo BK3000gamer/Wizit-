@@ -4,12 +4,16 @@ extends Node3D
 
 @export var sensitivity: float
 
-var camera: Camera3D
+@onready var camera: Camera3D = $Camera3D
 var mouseCaptured := true
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	camera = get_tree().current_scene.get_viewport().get_camera_3d()
+	
+	if parent.is_multiplayer_authority():
+		camera.make_current()
+	else:
+		camera.current = false
 
 func process_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouseCaptured:

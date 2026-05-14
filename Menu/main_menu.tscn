@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cl2q5qkhmfpn1"]
+
+[ext_resource type="Script" uid="uid://cgje1p0offj6" path="res://Menu/main_menu.gd" id="1_sla5p"]
+
+[node name="MainMenu" type="Control" unique_id=2007836536]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sla5p")
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1568942443]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -96.0
+offset_right = 13.5
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+placeholder_text = "Enter Steam Lobby ID:"
+
+[node name="HostArena" type="Button" parent="." unique_id=663165788]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -234.0
+offset_right = 48.0
+offset_bottom = -203.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "Host Arena"
+
+[node name="JoinArena" type="Button" parent="." unique_id=963479951]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = 101.0
+offset_right = 44.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "Join Arena
+"
+
+[connection signal="pressed" from="HostArena" to="." method="_on_host_arena_pressed"]
+[connection signal="pressed" from="JoinArena" to="." method="_on_join_arena_pressed"]

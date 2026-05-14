@@ -19,8 +19,13 @@ var PreviousState: String
 
 func _ready() -> void:
 	StateMachine.init(self)
+	
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not is_multiplayer_authority(): 
+		return
 	StateMachine.process_input(event)
 	MovementController.process_input(event)
 	CameraController.process_input(event)
@@ -39,9 +44,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		use_equipped_card()
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority(): 
+		return
+	
 	StateMachine.process_physics(delta)
 	MovementController.process_physics(delta)
-
 #Card Pickup
 func pickup_card() -> void:
 	if current_cards.size() >=9:
