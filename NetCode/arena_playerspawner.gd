@@ -14,6 +14,8 @@ func _ready() -> void:
 func _spawn_player(peer_id: int) -> void:
 	var new_player = player_scene.instantiate()
 	new_player.name = str(peer_id) 
+	
+	new_player.set_multiplayer_authority(peer_id)
 	players_container.add_child(new_player)
 	
 
