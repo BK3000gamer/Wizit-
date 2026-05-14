@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cotdvt1x5nwnn"]
+
+[ext_resource type="PackedScene" uid="uid://c42mrvv5tedsp" path="res://UI/slot.tscn" id="1_4hlgy"]
+
+[node name="Inventory UI" type="CanvasLayer" unique_id=1179422355]
+
+[node name="Slot1" parent="." unique_id=18109451 instance=ExtResource("1_4hlgy")]
+position = Vector2(1867, 250)
+rotation = -1.5707964
+
+[node name="Slot2" parent="." unique_id=1844457918 instance=ExtResource("1_4hlgy")]
+position = Vector2(1867, 340)
+rotation = -1.5707964
+this_slot = 1
+
+[node name="Slot3" parent="." unique_id=2015449621 instance=ExtResource("1_4hlgy")]
+position = Vector2(1867, 430)
+rotation = -1.5707964
+this_slot = 2
+
+[node name="Slot4" parent="." unique_id=1720982786 instance=ExtResource("1_4hlgy")]
+position = Vector2(1867, 520)
+rotation = -1.5707964
+this_slot = 3
+
+[node name="Slot5" parent="." unique_id=1238694197 instance=ExtResource("1_4hlgy")]
+position = Vector2(1867, 610)
+rotation = -1.5707964
+this_slot = 4
+
+[node name="Slot6" parent="." unique_id=2073162594 instance=ExtResource("1_4hlgy")]
+position = Vector2(1867, 700)
+rotation = -1.5707964
+this_slot = 5
+
+[node name="Slot7" parent="." unique_id=407675127 instance=ExtResource("1_4hlgy")]
+position = Vector2(1867, 790)
+rotation = -1.5707964
+this_slot = 6
+
+[node name="Slot8" parent="." unique_id=859743269 instance=ExtResource("1_4hlgy")]
+position = Vector2(1867, 880)
+rotation = -1.5707964
+this_slot = 7
+
+[node name="Slot9" parent="." unique_id=2049743535 instance=ExtResource("1_4hlgy")]
+position = Vector2(1867, 970)
+rotation = -1.5707964
+this_slot = 8
