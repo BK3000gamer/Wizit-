@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://0f6t5nrhymaf"]
 
 [ext_resource type="Script" uid="uid://bdt5egm2s4s5k" path="res://NetCode/arena_playerspawner.gd" id="1_p4erq"]
-[ext_resource type="PackedScene" uid="uid://bjavikfx6umb1" path="res://Entities/Player/player.tscn" id="1_uvd1l"]
+[ext_resource type="PackedScene" uid="uid://cs7vfo27u6n8i" path="res://Entities/Player/player.tscn" id="1_uvd1l"]
 [ext_resource type="PackedScene" uid="uid://r8qtbai7imip" path="res://Levels/greybox.tscn" id="2_uvd1l"]
 [ext_resource type="PackedScene" uid="uid://cotdvt1x5nwnn" path="res://UI/inventory_ui.tscn" id="3_p4erq"]
 
@@ -14,7 +14,7 @@ player_scene = ExtResource("1_uvd1l")
 [node name="Inventory UI" parent="." unique_id=1179422355 instance=ExtResource("3_p4erq")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1232631801]
-_spawnable_scenes = PackedStringArray("uid://bjavikfx6umb1")
+_spawnable_scenes = PackedStringArray("uid://cs7vfo27u6n8i")
 spawn_path = NodePath("../Players")
 spawn_limit = 5
 

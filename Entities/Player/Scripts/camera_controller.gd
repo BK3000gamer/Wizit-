@@ -13,7 +13,9 @@ func _ready() -> void:
 	if parent.is_multiplayer_authority():
 		camera.make_current()
 	else:
-		camera.current = false
+		camera.queue_free()
+		
+		set_process_input(false)
 
 func process_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouseCaptured:

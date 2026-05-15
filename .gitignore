@@ -1,3 +1,27 @@
 # Godot 4+ specific ignores
 .godot/
+*.translation
+
+/exports/
+/builds/
+/export_presets.cfg
+*.exe
+*.pck
+*.apk
+*.zip
+*.tar.gz
+
 /android/
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+.vscode/
+.idea/
+*.sln
+*.csproj

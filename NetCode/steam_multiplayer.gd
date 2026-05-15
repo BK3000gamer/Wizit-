@@ -16,6 +16,8 @@ func _ready() -> void:
 	
 	Steam.join_requested.connect(_on_steam_overlay_join_requested)
 	Steam.lobby_match_list.connect(_on_lobby_match_list)
+	
+	multiplayer.server_disconnected.connect(_on_host_disconnected)
 
 func _process(_delta: float) -> void:
 	Steam.run_callbacks()
@@ -98,3 +100,8 @@ func leave_match() -> void:
 		current_lobby_id = 0
 	
 	multiplayer.multiplayer_peer = null
+	
+func _on_host_disconnected() -> void:
+	leave_match() 
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE 
+	get_tree().change_scene_to_file("res://Menu/main_menu.tscn")
