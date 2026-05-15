@@ -11,22 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sla5p")
 
-[node name="LineEdit" type="LineEdit" parent="." unique_id=1568942443]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -55.0
-offset_top = -96.0
-offset_right = 13.5
-offset_bottom = -65.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-placeholder_text = "Enter Steam Lobby ID:"
-
 [node name="HostArena" type="Button" parent="." unique_id=663165788]
 layout_mode = 1
 anchors_preset = 8
@@ -36,11 +20,10 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -47.0
 offset_top = -234.0
-offset_right = 48.0
-offset_bottom = -203.0
+offset_right = 53.0
+offset_bottom = -134.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2, 2)
 text = "Host Arena"
 
 [node name="JoinArena" type="Button" parent="." unique_id=963479951]
@@ -52,13 +35,110 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -44.0
 offset_top = 101.0
-offset_right = 44.0
-offset_bottom = 132.0
+offset_right = 56.0
+offset_bottom = 201.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2, 2)
 text = "Join Arena
 "
 
-[connection signal="pressed" from="HostArena" to="." method="_on_host_arena_pressed"]
-[connection signal="pressed" from="JoinArena" to="." method="_on_join_arena_pressed"]
+[node name="LobbyUI" type="Panel" parent="." unique_id=1146855690]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.00012
+offset_top = -317.0
+offset_right = 319.99988
+offset_bottom = 283.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.103, 1)
+
+[node name="PlayerList" type="Label" parent="LobbyUI" unique_id=265918929]
+layout_mode = 1
+offset_right = 600.0
+offset_bottom = 600.0
+scale = Vector2(0.987, 1)
+
+[node name="StartMatch" type="Button" parent="LobbyUI" unique_id=625387563]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.493103
+offset_top = 326.99994
+offset_right = 46.506897
+offset_bottom = 357.99994
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.065)
+text = "Start Match
+"
+
+[node name="LobbyBackButton" type="Button" parent="LobbyUI" unique_id=320397308]
+layout_mode = 1
+offset_left = -75.24923
+offset_top = -2.9999952
+offset_right = -25.24923
+offset_bottom = 47.000004
+scale = Vector2(1.045, 1)
+text = "<-"
+
+[node name="ServerBrowser" type="Panel" parent="." unique_id=902478693]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -327.00006
+offset_top = -430.0
+offset_right = 473.0
+offset_bottom = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.935, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ServerBrowser" unique_id=861785680]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 851.0
+offset_bottom = 801.0
+scale = Vector2(0.95, 1)
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="ServerList" type="VBoxContainer" parent="ServerBrowser/ScrollContainer" unique_id=1463054428]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Refresh" type="Button" parent="ServerBrowser" unique_id=29784004]
+layout_mode = 0
+offset_left = 854.5455
+offset_top = 23.0
+offset_right = 954.5455
+offset_bottom = 73.0
+scale = Vector2(1, 1.145)
+text = "Refresh"
+
+[node name="BrowserBackButton" type="Button" parent="ServerBrowser" unique_id=1894897777]
+layout_mode = 0
+offset_left = -96.25663
+offset_top = 9.000001
+offset_right = -46.25663
+offset_bottom = 59.0
+scale = Vector2(1.656, 1)
+text = "<-"
+
+[connection signal="pressed" from="HostArena" to="." method="on_host_arena_pressed"]
+[connection signal="pressed" from="JoinArena" to="." method="on_join_arena_pressed"]
+[connection signal="pressed" from="LobbyUI/StartMatch" to="." method="on_start_match_pressed"]
+[connection signal="pressed" from="LobbyUI/LobbyBackButton" to="." method="on_lobby_back_pressed"]
+[connection signal="pressed" from="ServerBrowser/Refresh" to="." method="on_refresh_servers_pressed"]
+[connection signal="pressed" from="ServerBrowser/BrowserBackButton" to="." method="on_browser_back_pressed"]
