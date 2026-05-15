@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyniebd6yahu5"]
+[gd_scene format=3 uid="uid://cyniebd6yahu5"]
 
 [ext_resource type="Script" uid="uid://1oo0gvamoxgp" path="res://addons/godotsteam/editor/steamworks_panel.gd" id="1_qn6cd"]
 [ext_resource type="Script" uid="uid://b4nvgu7h84u53" path="res://addons/godotsteam/editor/updates/updates.gd" id="2_qn6cd"]
