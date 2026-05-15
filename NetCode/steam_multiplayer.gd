@@ -1,5 +1,7 @@
 extends Node
 
+signal arena_list_updated(lobbies: Array)
+
 var peer = SteamMultiplayerPeer.new()
 var current_lobby_id: int = 0
 
@@ -13,11 +15,15 @@ func _ready() -> void:
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	
 	Steam.join_requested.connect(_on_steam_overlay_join_requested)
+	Steam.lobby_match_list.connect(_on_lobby_match_list)
 
 func _process(_delta: float) -> void:
 	Steam.run_callbacks()
 
 func launch_arena_server() -> void:
+	multiplayer.multiplayer_peer = null
+	peer = SteamMultiplayerPeer.new()
+	
 	var error = peer.create_host(0)
 	if error != OK:
 		push_error("Failed to initialize Steam Host: ", error)
@@ -25,7 +31,7 @@ func launch_arena_server() -> void:
 		
 	multiplayer.multiplayer_peer = peer
 	
-	Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, 4)
+	Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, 5)
 
 func _on_lobby_created(connect_status: int, lobby_id: int) -> void:
 	if connect_status == 1:
@@ -33,9 +39,13 @@ func _on_lobby_created(connect_status: int, lobby_id: int) -> void:
 		print("Host successful! Session ID: ", lobby_id)
 		
 		Steam.setLobbyData(lobby_id, "name", Steam.getPersonaName() + "'s Arena")
+		Steam.setLobbyData(lobby_id, "game_id", "WIZ!")
 		Steam.setLobbyJoinable(lobby_id, true)
+		
+		
 
 func enter_arena(lobby_id: int) -> void:
+	multiplayer.multiplayer_peer = null
 	Steam.joinLobby(lobby_id)
 
 func _on_lobby_joined(lobby_id: int, permissions: int, locked: bool, response: int) -> void:
@@ -52,8 +62,6 @@ func _on_lobby_joined(lobby_id: int, permissions: int, locked: bool, response: i
 			
 		multiplayer.multiplayer_peer = peer
 		print("Successfully joined the arena!")
-		
-		get_tree().change_scene_to_file("res://Levels/test.tscn")
 	else:
 		push_error("Rejected the join request. Error Code: ", response)
 
@@ -61,3 +69,32 @@ func _on_steam_overlay_join_requested(lobby_id: int, friend_id: int) -> void:
 	print("Overlay requested join to lobby: ", lobby_id)
 	
 	enter_arena(lobby_id)
+	
+@rpc("call_local", "authority", "reliable")
+func sync_start_match() -> void:
+	print("Host Beginning Match")
+	get_tree().change_scene_to_file("res://Levels/test.tscn")
+	
+func search_for_arenas() -> void:
+	print("Searching Steam for WIZ!")
+	Steam.addRequestLobbyListStringFilter("game_id", "WIZ!", Steam.LOBBY_COMPARISON_EQUAL)
+	Steam.requestLobbyList()
+
+func _on_lobby_match_list(lobbies: Array) -> void:
+	print("Steam found ", lobbies.size(), " active arenas.")
+	
+	for lobby_id in lobbies:
+		var host_name = Steam.getLobbyData(lobby_id, "name")
+		
+		var current_players = Steam.getNumLobbyMembers(lobby_id)
+	
+		print("Found: ", host_name, " | Players: ", current_players, "/5 | ID: ", lobby_id)
+	
+	arena_list_updated.emit(lobbies)
+
+func leave_match() -> void:
+	if current_lobby_id != 0:
+		Steam.leaveLobby(current_lobby_id)
+		current_lobby_id = 0
+	
+	multiplayer.multiplayer_peer = null
