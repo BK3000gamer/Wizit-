@@ -22,7 +22,7 @@ func  _process(_delta: float) -> void:
 	
 	if this_slot == player.active_slot:
 		sprite.position.y = -40
-		sprite.scale = Vector2(0.77, 1.1)
+		sprite.scale = Vector2(0.875, 1.25)
 	else:
 		sprite.position.y = 0
 		sprite.scale = Vector2(0.7, 1.0)

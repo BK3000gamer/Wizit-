@@ -5,8 +5,6 @@ extends State
 @export var IdleState: State
 @export var RunState: State
 @export var FallState: State
-@export var UpdraftState: State
-@export var StompState: State
 
 var timeout: bool = false
 var updrafted: bool = false
@@ -28,31 +26,16 @@ func enter() -> void:
 func exit() -> void:
 	parent.velocity = Vector3.ZERO
 
-#func process_input(event: InputEvent) -> State:
-	#if event.is_action_pressed("updraft"):
-		#updrafted = true
-	
-	#if event.is_action_pressed("stomp"):
-		#stomped = true
-	
-	#return null
-
 func process_physics(_delta: float) -> State:
 	parent.velocity.y = 0.0
 	
 	if timeout:
-		if updrafted:
-			return UpdraftState
-		
 		if parent.is_on_floor():
 			if parent.InputDir == Vector3.ZERO:
 				return IdleState
 			else:
 				return RunState
 		else:
-			if stomped:
-				return StompState
-			
 			return FallState
 	
 	return null

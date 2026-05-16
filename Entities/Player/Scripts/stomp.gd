@@ -3,8 +3,6 @@ extends State
 @export_category("Connected States")
 @export var IdleState: State
 @export var RunState: State
-@export var DashState: State
-@export var UpdraftState: State
 @export var StunState: State
 
 var timeout: bool = false
@@ -23,27 +21,12 @@ func enter() -> void:
 	timer.timeout.connect(timer_timeout)
 	timer.start()
 
-#func process_input(event: InputEvent) -> State:
-	#if event.is_action_pressed("dash"):
-		#dashed = true
-	
-	#if event.is_action_pressed("updraft"):
-		#updrafted = true
-	
-	#return null
-
 func process_physics(_delta: float) -> State:
 	MovementController.stomp()
 	
 	if parent.is_on_floor():
 		if timeout:
 			return StunState
-		
-		if dashed:
-			return DashState
-		
-		if updrafted:
-			return UpdraftState
 		
 		if parent.InputDir == Vector3.ZERO:
 			return IdleState

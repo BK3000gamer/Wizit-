@@ -4,18 +4,10 @@ extends State
 @export var RunState: State
 @export var JumpState: State
 @export var FallState: State
-@export var DashState: State
-@export var UpdraftState: State
 
 func process_input(event: InputEvent) -> State:
 	if event.is_action_pressed("jump") and parent.is_on_floor():
 		return JumpState
-	
-	if event.is_action_pressed("dash"):
-		return DashState
-	
-	if event.is_action_pressed("updraft"):
-		return UpdraftState
 	
 	return null
 

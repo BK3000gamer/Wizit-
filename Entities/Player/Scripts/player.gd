@@ -22,8 +22,12 @@ func _ready() -> void:
 	
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
+	var Model := $Wizard
 	if is_multiplayer_authority():
 		add_to_group("local_player")
+		Model.visible = false
+	else:
+		Model.visible = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): 
@@ -55,6 +59,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("use"):
 		use_equipped_card()
+
+func _process(delta: float) -> void:
+	CurrentState = StateMachine.CurrentState.name
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): 

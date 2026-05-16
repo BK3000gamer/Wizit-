@@ -5,9 +5,6 @@ extends State
 @export var RunState: State
 @export var JumpState: State
 @export var FallState: State
-@export var DashState: State
-@export var UpdraftState: State
-@export var StompState: State
 
 func enter() -> void:
 	MovementController.slide_boost()
@@ -19,15 +16,6 @@ func exit() -> void:
 func process_input(event: InputEvent) -> State:
 	if event.is_action_pressed("jump") and parent.is_on_floor():
 		return JumpState
-	
-	if event.is_action_pressed("dash"):
-		return DashState
-	
-	if event.is_action_pressed("updraft"):
-		return UpdraftState
-	
-	if event.is_action_pressed("stomp") and !parent.is_on_floor():
-		return StompState
 	
 	return null
 
