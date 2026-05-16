@@ -13,13 +13,11 @@ var current_lobby_id: int = 0
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	lobby_ui.hide()
-	server_browser.hide() 
-	
-	multiplayer.peer_connected.connect(on_player_connected)
-	multiplayer.peer_disconnected.connect(on_player_disconnected)
+	server_browser.hide()
 	
 	SteamNetworkManager.arena_list_updated.connect(on_arenas_found)
-
+	SteamNetworkManager.roster_updated.connect(refresh_roster_ui)
+	
 func on_host_arena_pressed() -> void:
 	host_button.disabled = true
 	join_button.disabled = true
@@ -29,7 +27,6 @@ func on_host_arena_pressed() -> void:
 	SteamNetworkManager.launch_arena_server()
 	enter_lobby(true)
 	
-	on_player_connected(multiplayer.get_unique_id())
 func on_join_arena_pressed() -> void:
 	host_button.hide()
 	join_button.hide()
@@ -45,8 +42,7 @@ func on_refresh_servers_pressed() -> void:
 	server_list.add_child(loading_label)
 	
 	SteamNetworkManager.search_for_arenas()
-
-# NEW: The Dynamic Button Builder
+	
 func on_arenas_found(lobbies: Array) -> void:
 	for child in server_list.get_children():
 		child.queue_free()
@@ -65,7 +61,6 @@ func on_arenas_found(lobbies: Array) -> void:
 		join_btn.text = host_name + " | Players: " + str(current_players) + "/5"
 		join_btn.custom_minimum_size = Vector2(0, 40) 
 		
-		# Bind the button to this specific server
 		join_btn.pressed.connect(func(): connect_to_server(lobby_id))
 		server_list.add_child(join_btn)
 
@@ -84,11 +79,16 @@ func enter_lobby(is_host: bool) -> void:
 	else:
 		start_button.hide()
 
-func on_player_connected(peer_id: int) -> void:
-	player_list.text += "Player: " + str(peer_id) + " has joined\n"
+func refresh_roster_ui() -> void:
+	player_list.text = ""
+	
+	for peer_id in SteamNetworkManager.player_roster:
+		var actual_name = SteamNetworkManager.player_roster[peer_id]
+		if peer_id == 1:
+			player_list.text += "[HOST] " + actual_name + "\n"
+		else:
+			player_list.text += actual_name + "\n"
 
-func on_player_disconnected(peer_id: int) -> void:
-	player_list.text += "Player: " + str(peer_id) + " has left\n"
 
 func on_start_match_pressed() -> void:
 	if multiplayer.is_server():
