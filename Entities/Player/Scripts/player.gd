@@ -17,8 +17,11 @@ var PreviousState: String
 @onready var MovementController := $"Movement Controller"
 @onready var CameraController := $"Camera Controller"
 
+@export var sync_position: Vector3
+
 func _ready() -> void:
 	StateMachine.init(self)
+	hide()
 	
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
@@ -64,11 +67,12 @@ func _process(delta: float) -> void:
 	CurrentState = StateMachine.CurrentState.name
 
 func _physics_process(delta: float) -> void:
-	if not is_multiplayer_authority(): 
-		return
-	
-	StateMachine.process_physics(delta)
-	MovementController.process_physics(delta)
+	if is_multiplayer_authority():
+		StateMachine.process_physics(delta)
+		MovementController.process_physics(delta)
+		sync_position = global_position 
+	else:
+		global_position = global_position.lerp(sync_position, 15 * delta)
 #Card Pickup
 func pickup_card() -> void:
 	if current_cards.size() >=9:
@@ -102,4 +106,11 @@ func use_equipped_card() -> void:
 			active_slot = current_cards.size() - 1
 	else:
 		print("Nothing Happened")
+		
+@rpc("any_peer", "call_local", "reliable")
+func apply_spawn_point(target_point: Vector3) -> void:
+	if multiplayer.get_remote_sender_id() == 1 or multiplayer.is_server():
+		global_position = target_point
+		sync_position = target_point
+		show()
 	
