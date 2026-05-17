@@ -1,6 +1,9 @@
 extends Node
 
+var player_roster: Dictionary = {}
+
 signal arena_list_updated(lobbies: Array)
+signal roster_updated
 
 var peer = SteamMultiplayerPeer.new()
 var current_lobby_id: int = 0
@@ -17,6 +20,7 @@ func _ready() -> void:
 	Steam.join_requested.connect(_on_steam_overlay_join_requested)
 	Steam.lobby_match_list.connect(_on_lobby_match_list)
 	
+	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.server_disconnected.connect(_on_host_disconnected)
 
 func _process(_delta: float) -> void:
@@ -34,6 +38,10 @@ func launch_arena_server() -> void:
 	multiplayer.multiplayer_peer = peer
 	
 	Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, 5)
+	
+	player_roster.clear()
+	player_roster[1] = Steam.getPersonaName()
+	roster_updated.emit()
 
 func _on_lobby_created(connect_status: int, lobby_id: int) -> void:
 	if connect_status == 1:
@@ -100,8 +108,31 @@ func leave_match() -> void:
 		current_lobby_id = 0
 	
 	multiplayer.multiplayer_peer = null
+
+func _on_connected_to_server() -> void:
+	var my_name = Steam.getPersonaName()
+	var my_peer_id = multiplayer.get_unique_id()
+	
+	rpc_id(1, "register_player", my_peer_id, my_name)
+
+@rpc("any_peer", "call_local", "reliable")
+func register_player(new_peer_id: int, steam_name: String) -> void:
+	if multiplayer.is_server():
+		player_roster[new_peer_id] = steam_name
+		
+		rpc("sync_roster", player_roster)
+
+@rpc("authority", "call_local", "reliable")
+func sync_roster(full_roster: Dictionary) -> void:
+	player_roster = full_roster
+	roster_updated.emit()
 	
 func _on_host_disconnected() -> void:
 	leave_match() 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE 
 	get_tree().change_scene_to_file("res://Menu/main_menu.tscn")
+
+func _on_peer_disconnected(peer_id: int) -> void:
+	if multiplayer.is_server():
+		player_roster.erase(peer_id)
+		rpc("sync_roster", player_roster)
