@@ -141,13 +141,19 @@ func stomp() -> void:
 func speed_boost() -> void:
 	Speed = BoostedSpeed
 	AirSpeed = BoostedAirSpeed
+	JumpVelocity = (2.0 * (JumpHeight + 0.5)) / JumpTimeToPeak
+	JumpGravity = (-2.0 * (JumpHeight + 0.5)) / pow(JumpTimeToPeak, 2)
+	FallGravity = (-2.0 * (JumpHeight + 0.5)) / pow(JumpTimeToDescent, 2)
 	var timer = Timer.new()
 	add_child(timer)
-	timer.wait_time = 10.0
+	timer.wait_time = 5.0
 	timer.one_shot = true
 	timer.timeout.connect(timeout)
 	timer.start()
 
 func timeout():
+	JumpVelocity = (2.0 * JumpHeight) / JumpTimeToPeak
+	JumpGravity = (-2.0 * JumpHeight) / pow(JumpTimeToPeak, 2)
+	FallGravity = (-2.0 * JumpHeight) / pow(JumpTimeToDescent, 2)
 	Speed = BaseSpeed
 	AirSpeed = BaseAirSpeed

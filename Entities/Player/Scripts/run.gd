@@ -16,7 +16,7 @@ func process_input(event: InputEvent) -> State:
 	if event.is_action_pressed("jump") and parent.is_on_floor():
 		return JumpState
 	
-	if event.is_action_pressed("slide") and parent.is_on_floor() and parent.velocity.length() > 5.0:
+	if event.is_action_pressed("slide") and parent.is_on_floor() and parent.velocity.length() > 3.0:
 		return SlideState
 	
 	return null
