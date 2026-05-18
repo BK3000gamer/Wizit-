@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfk7a5mkhmliv"
-path="res://.godot/imported/steam.svg-143201eb3927bc13de1745d613c0a1b7.ctex"
+uid="uid://dmqvbkymekjiv"
+path="res://.godot/imported/Textures_StoneTile.png-53912971c90fd1b9c8f7964deb0ea927.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Addons/godotsteam/editor/ui/steam.svg"
-dest_files=["res://.godot/imported/steam.svg-143201eb3927bc13de1745d613c0a1b7.ctex"]
+source_file="res://Assets/Textures/Textures_StoneTile.png"
+dest_files=["res://.godot/imported/Textures_StoneTile.png-53912971c90fd1b9c8f7964deb0ea927.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
