@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://853oj73j15n5"]
+[gd_scene format=3 uid="uid://853oj73j15n5"]
 
 [ext_resource type="Texture2D" uid="uid://010jx1pgbih6" path="res://Assets/Textures/Red/texture_04.png" id="1_es28n"]
 [ext_resource type="Texture2D" uid="uid://c5o1itpiu6pmf" path="res://Assets/Textures/Purple/texture_04.png" id="2_ouc2t"]
@@ -6,9 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://c0w7cch56vbwc" path="res://Assets/Textures/Green/texture_04.png" id="4_lha3b"]
 [ext_resource type="Texture2D" uid="uid://dwhjxh6gd34kh" path="res://Assets/Textures/Dark/texture_03.png" id="5_ikvnt"]
 [ext_resource type="Texture2D" uid="uid://cfo3bhajiitco" path="res://Assets/Textures/Light/texture_04.png" id="6_wvw5a"]
-[ext_resource type="Shader" uid="uid://c2ber8jo2yt2d" path="res://Addons/flexible_toon_shader/flexible_toon.gdshader" id="7_2oak3"]
-[ext_resource type="Texture2D" uid="uid://cvteuju7e4bgf" path="res://Assets/Textures/Textures_Woodplanks.png" id="8_2oak3"]
-[ext_resource type="Material" uid="uid://bb43ngplsfis2" path="res://Addons/flexible_toon_shader/FlexibleToonMaterial.tres" id="9_lha3b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l57ii"]
 albedo_texture = ExtResource("1_es28n")
@@ -78,90 +75,6 @@ uv1_triplanar = true
 material = SubResource("StandardMaterial3D_ik6s6")
 left_to_right = 1.0
 size = Vector3(1, 0.5, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3e4l"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_fsqef"]
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"format": 34896613377,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAwACAAEAAAAEAAEAAwAFAAIABQAAAAIABgAEAAAABQAGAAAABwABAAQABwADAAEABgAHAAQABQADAAcABQAHAAYA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("/////wAAAAAAAP////8AAAAA//8AAAAAAAAAAP//AAD///////8AAAAAAAAAAAAA//8AAAAAAAD//wAA//8AAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_2pj57"]
-resource_name = "0_5x0_5_Cube_Cube"
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"attribute_data": PackedByteArray("///+//9//3/+//9//3///////v//f/9/////f/9//v////7//3//f////3//f/7////+//9//3/+//9//3/+/////v//f/9/////f/9//v////7//3//f////3//f/7/"),
-"format": 34896613399,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_w3e4l"),
-"primitive": 3,
-"uv_scale": Vector4(2, 2.0000002, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("/////wAAVNUAAP////9U1QAA//8AAFTV////////VNX//wAA//8AgAAA/////wCA////////AIAAAAAA//8AgAAAAAD///+/AAD//wAA/78AAP//////vwAAAAAAAP+/AAAAAAAAVNX//wAA//9U1f//AAAAAFTVAAAAAP//VNX//wAAAAD/v/////////+//////wAA/7///wAA////vwAAAAAAAP///////wAA//8AAP//AAD/////AAAAAP//VNWqKlTVqipU1aoqVNWqKv9/////f////3////9/////f////3////9/////f///VFVUVVRVVFVUVVRVVFVUVf9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_fsqef")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lha3b"]
-render_priority = 0
-shader = ExtResource("7_2oak3")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("8_2oak3")
-shader_parameter/clamp_diffuse_to_max = false
-shader_parameter/cuts = 3
-shader_parameter/wrap = 0.0
-shader_parameter/steepness = 1.0
-shader_parameter/use_attenuation = true
-shader_parameter/use_specular = false
-shader_parameter/specular_strength = 1.0
-shader_parameter/specular_shininess = 16.0
-shader_parameter/use_rim = false
-shader_parameter/rim_width = 8.0
-shader_parameter/rim_color = Color(1, 1, 1, 1)
-shader_parameter/use_ramp = false
-shader_parameter/use_borders = false
-shader_parameter/border_width = 0.01
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikvnt"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_wvw5a"]
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"format": 34896613377,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAwACAAEAAAAEAAEAAwAFAAIABQAAAAIABgAEAAAABQAGAAAABwABAAQABwADAAEABgAHAAQABQADAAcABQAHAAYA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("/////wAAAAAAAP////8AAAAA//8AAAAAAAAAAP//AAD///////8AAAAAAAAAAAAA//8AAAAAAAD//wAA//8AAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_l57ii"]
-resource_name = "0_5x0_5_Cube_Cube"
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"attribute_data": PackedByteArray("///+//9//3/+//9//3///////v//f/9/////f/9//v////7//3//f////3//f/7////+//9//3/+//9//3/+/////v//f/9/////f/9//v////7//3//f////3//f/7/"),
-"format": 34896613399,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_ikvnt"),
-"primitive": 3,
-"uv_scale": Vector4(2, 2.0000002, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("/////wAAVNUAAP////9U1QAA//8AAFTV////////VNX//wAA//8AgAAA/////wCA////////AIAAAAAA//8AgAAAAAD///+/AAD//wAA/78AAP//////vwAAAAAAAP+/AAAAAAAAVNX//wAA//9U1f//AAAAAFTVAAAAAP//VNX//wAAAAD/v/////////+//////wAA/7///wAA////vwAAAAAAAP///////wAA//8AAP//AAD/////AAAAAP//VNWqKlTVqipU1aoqVNWqKv9/////f////3////9/////f////3////9/////f///VFVUVVRVVFVUVVRVVFVUVf9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_wvw5a")
 
 [node name="Greybox Mesh Lib" type="Node3D" unique_id=63662626]
 
@@ -234,19 +147,3 @@ mesh = SubResource("PrismMesh_lha3b")
 depth = 0.5
 polygon = PackedVector2Array(0.5, 0.25, 0.5, -0.25, -0.5, -0.25)
 margin = 0.01
-
-[node name="Wooden Plank" type="Node3D" parent="." unique_id=1477146781]
-
-[node name="Wooden Plank" type="MeshInstance3D" parent="Wooden Plank" unique_id=333969502]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("ArrayMesh_2pj57")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("ShaderMaterial_lha3b")
-
-[node name="Stone Brick" type="Node3D" parent="." unique_id=1523472276]
-
-[node name="Stone Brick" type="MeshInstance3D" parent="Stone Brick" unique_id=693602282]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("ArrayMesh_l57ii")
-skeleton = NodePath("")
-surface_material_override/0 = ExtResource("9_lha3b")
