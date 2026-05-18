@@ -10,7 +10,6 @@ var current_cards: Array[String] = []
 var active_slot: int = 0
 
 var InputDir := Vector3.ZERO
-var CurrentState: String
 var PreviousState: String
 
 @onready var StateMachine := $"State Machine"
@@ -18,6 +17,12 @@ var PreviousState: String
 @onready var CameraController := $"Camera Controller"
 
 @export var sync_position: Vector3
+
+@export var CurrentState: String :
+	set(new_state):
+		CurrentState = new_state
+		if StateMachine and not is_multiplayer_authority():
+			$AnimationTree.get("parameters/playback").travel(CurrentState)
 
 func _ready() -> void:
 	StateMachine.init(self)

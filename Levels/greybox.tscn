@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://r8qtbai7imip"]
 
 [ext_resource type="MeshLibrary" uid="uid://cqpriuvaowihh" path="res://Assets/Mesh Library/greybox.tres" id="1_is8vk"]
-[ext_resource type="PackedScene" uid="uid://ckl3l5jyh17fq" path="res://Levels/Pickups/card_spawner.tscn" id="2_thfis"]
+[ext_resource type="PackedScene" uid="uid://clk2v12qauaoq" path="res://Levels/Pickups/card_spawner.tscn" id="2_thfis"]
 [ext_resource type="PackedScene" uid="uid://bhakpy683ikgx" path="res://Levels/Pickups/pickup_item.tscn" id="3_78ud1"]
 
 [node name="Greybox" type="Node3D" unique_id=507335327]
@@ -25,7 +25,6 @@ data = {
 metadata/_editor_floor_ = Vector3(-32, 0, 10)
 
 [node name="Floor 3" type="GridMap" parent="." unique_id=908534222]
-visible = false
 mesh_library = ExtResource("1_is8vk")
 cell_size = Vector3(0.5, 0.5, 0.5)
 data = {
@@ -35,7 +34,6 @@ metadata/_editor_floor_ = Vector3(16, 0, 27)
 
 [node name="Floor 4" type="GridMap" parent="." unique_id=1646535874]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
-visible = false
 mesh_library = ExtResource("1_is8vk")
 cell_size = Vector3(0.5, 0.5, 0.5)
 data = {
@@ -45,7 +43,6 @@ metadata/_editor_floor_ = Vector3(-11, 0, 27)
 
 [node name="Floor 5" type="GridMap" parent="." unique_id=893186028]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
-visible = false
 mesh_library = ExtResource("1_is8vk")
 cell_size = Vector3(0.5, 0.5, 0.5)
 data = {
@@ -55,7 +52,6 @@ metadata/_editor_floor_ = Vector3(31, 3, 31)
 
 [node name="Roof" type="GridMap" parent="." unique_id=1877277589]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.5, 0)
-visible = false
 mesh_library = ExtResource("1_is8vk")
 cell_size = Vector3(0.5, 0.5, 0.5)
 data = {
