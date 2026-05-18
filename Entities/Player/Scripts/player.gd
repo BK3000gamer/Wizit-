@@ -21,6 +21,8 @@ var PreviousState: String
 @export var CurrentState: String :
 	set(new_state):
 		CurrentState = new_state
+		if not is_inside_tree():
+			return
 		if StateMachine and not is_multiplayer_authority():
 			$ "3D Animation Tree".get("parameters/playback").travel(CurrentState)
 
