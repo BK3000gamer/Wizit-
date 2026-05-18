@@ -112,6 +112,11 @@ slot_down={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Environment"
+3d_physics/layer_2="Tag Detection"
+
 [steam]
 
 initialization/app_id=0

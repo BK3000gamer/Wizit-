@@ -4,10 +4,17 @@ class_name CardPickup
 @onready var card := $Card
 var dir = 1.0
 var card_id: Array[String] = \
-["Dash", "Speed Boost", "Stomp", "Updraft"]
+["Dash", "Speed Boost", "Stomp", "Updraft", "Arcane"]
 var chosen_card: String
 
+var player: Player
+
 func _ready() -> void:
+	while player == null:
+		player = get_tree().get_first_node_in_group("local_player")
+		if player == null:
+			await get_tree().process_frame
+	
 	body_entered.connect(_on_body_entered)
 	chosen_card = card_id.pick_random()
 	var material = card.get_active_material(0)
@@ -26,6 +33,11 @@ func _ready() -> void:
 			material.albedo_color = Color("purple")
 		"Speed Boost":
 			material.albedo_color = Color("yellow")
+		"Arcane":
+			if player.WIZIT:
+				material.albedo_color = Color("red")
+			else:
+				material.albedo_color = Color("cyan")
 
 func _physics_process(delta: float) -> void:
 	#Spinny

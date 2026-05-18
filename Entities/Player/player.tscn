@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://bt7446bew3oui" path="res://Entities/Player/Scripts/updraft.gd" id="9_ap3xn"]
 [ext_resource type="Script" uid="uid://w7ig2betf7xt" path="res://Entities/Player/Scripts/stomp.gd" id="10_iplt1"]
 [ext_resource type="Script" uid="uid://chsba32hsrfyk" path="res://Entities/Player/Scripts/stun.gd" id="11_owvpp"]
+[ext_resource type="Script" path="res://Commons/State Machine/state.gd" id="12_v27kq"]
+[ext_resource type="Script" uid="uid://mdsydt425bub" path="res://Entities/Player/Scripts/hurtbox.gd" id="14_80ryp"]
 [ext_resource type="Script" uid="uid://23g4v88vlhf4" path="res://Entities/Player/Scripts/animation_controller.gd" id="14_a8wow"]
 [ext_resource type="Animation" uid="uid://ckwquwomb5yc5" path="res://Entities/Player/Animations/Run Backward.res" id="14_vskfa"]
 [ext_resource type="Animation" uid="uid://dm5xeji7vcg0f" path="res://Entities/Player/Animations/Run Forward.res" id="15_pjcup"]
@@ -40,6 +42,10 @@ point_count = 2
 [sub_resource type="Curve" id="Curve_ap3xn"]
 _data = [Vector2(0, 1), 0.0, 0.25414708, 0, 0, Vector2(0.5105263, 0.6966293), -1.779026, -1.779026, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u86q5"]
+radius = 0.4
+height = 1.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mv1ah"]
 radius = 0.25
@@ -787,6 +793,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/CollisionShape3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_avsg8"]
 resource_name = "Idle"
@@ -822,6 +840,18 @@ tracks/2/path = NodePath("CollisionShape3D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/CollisionShape3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -866,6 +896,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/CollisionShape3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_u86q5"]
 length = 0.001
@@ -905,6 +947,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector3(0, -0.25, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/CollisionShape3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_01ng6"]
 resource_name = "Run"
@@ -940,6 +994,18 @@ tracks/2/path = NodePath("CollisionShape3D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/CollisionShape3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -985,6 +1051,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-3.2014214e-09, -0.5, -3.2014214e-09)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/CollisionShape3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5707964, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u86q5"]
@@ -1162,6 +1240,9 @@ IdleState = NodePath("../Idle")
 RunState = NodePath("../Run")
 JumpState = NodePath("../Jump")
 
+[node name="Freeze" type="Node" parent="State Machine" unique_id=1826129951]
+script = ExtResource("12_v27kq")
+
 [node name="Movement Controller" type="Node" parent="." unique_id=595677260]
 script = ExtResource("2_3uyv8")
 JumpHeight = 1.0999999999999648
@@ -1186,6 +1267,16 @@ StompGravity = 24.9999999999992
 
 [node name="Animation Controller" type="Node" parent="." unique_id=2138900005]
 script = ExtResource("14_a8wow")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1102708142]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("14_80ryp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1987003450]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_u86q5")
+debug_color = Color(0.7, 0, 0, 0.41960785)
 
 [node name="Camera Controller" type="Node3D" parent="." unique_id=755558440]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -3.2014214e-09, 0.5, -3.2014214e-09)
