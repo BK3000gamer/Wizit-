@@ -22,7 +22,7 @@ var PreviousState: String
 	set(new_state):
 		CurrentState = new_state
 		if StateMachine and not is_multiplayer_authority():
-			$AnimationTree.get("parameters/playback").travel(CurrentState)
+			$ "3D Animation Tree".get("parameters/playback").travel(CurrentState)
 
 func _ready() -> void:
 	StateMachine.init(self)
