@@ -70,7 +70,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):
 		use_equipped_card()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	CurrentState = StateMachine.CurrentState.name
 
 func _physics_process(delta: float) -> void:
@@ -81,12 +81,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		global_position = global_position.lerp(sync_position, 15 * delta)
 #Card Pickup
-func pickup_card() -> void:
+func pickup_card(card: String) -> void:
 	if current_cards.size() >=9:
 		print("Inventory is Full")
 		return
 
-	var given_card: String = card_id.pick_random()
+	var given_card := card
 	current_cards.append(given_card)
 	print("Inventory: ", current_cards)
 
