@@ -13,8 +13,8 @@
 [ext_resource type="Script" uid="uid://bt7446bew3oui" path="res://Entities/Player/Scripts/updraft.gd" id="9_ap3xn"]
 [ext_resource type="Script" uid="uid://w7ig2betf7xt" path="res://Entities/Player/Scripts/stomp.gd" id="10_iplt1"]
 [ext_resource type="Script" uid="uid://chsba32hsrfyk" path="res://Entities/Player/Scripts/stun.gd" id="11_owvpp"]
-[ext_resource type="Script" path="res://Commons/State Machine/state.gd" id="12_v27kq"]
-[ext_resource type="Script" uid="uid://mdsydt425bub" path="res://Entities/Player/Scripts/hurtbox.gd" id="14_80ryp"]
+[ext_resource type="Script" uid="uid://c73oe4v10orwu" path="res://Entities/Player/Scripts/freeze.gd" id="12_v27kq"]
+[ext_resource type="Script" uid="uid://mdsydt425bub" path="res://Entities/Player/Scripts/hurt_box.gd" id="14_80ryp"]
 [ext_resource type="Script" uid="uid://23g4v88vlhf4" path="res://Entities/Player/Scripts/animation_controller.gd" id="14_a8wow"]
 [ext_resource type="Animation" uid="uid://ckwquwomb5yc5" path="res://Entities/Player/Animations/Run Backward.res" id="14_vskfa"]
 [ext_resource type="Animation" uid="uid://dm5xeji7vcg0f" path="res://Entities/Player/Animations/Run Forward.res" id="15_pjcup"]
@@ -23,6 +23,7 @@
 [ext_resource type="Animation" uid="uid://vre15q46ujlb" path="res://Entities/Player/Animations/Run Left.res" id="16_0poeq"]
 [ext_resource type="Animation" uid="uid://bkarw3jhlsec5" path="res://Entities/Player/Animations/Fall.res" id="16_80ryp"]
 [ext_resource type="Animation" uid="uid://bkugs0k0lj8em" path="res://Entities/Player/Animations/Run Backward Right.res" id="16_a8wow"]
+[ext_resource type="Script" uid="uid://cukf3c45ardy2" path="res://Entities/Player/Scripts/hit_detection.gd" id="17_kx1i7"]
 [ext_resource type="Animation" uid="uid://b3ew3ftc6ukyv" path="res://Entities/Player/Animations/Run Right.res" id="17_ppdlg"]
 [ext_resource type="Animation" uid="uid://r2deon4m2stt" path="res://Entities/Player/Animations/Jump.res" id="17_v27kq"]
 [ext_resource type="Animation" uid="uid://cidxvm06rkxlr" path="res://Entities/Player/Animations/Run Forward Left.res" id="18_avsg8"]
@@ -796,10 +797,22 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hurtbox/CollisionShape3D:rotation")
+tracks/3/path = NodePath("Hurt Box/CollisionShape3D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurt Box/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -848,10 +861,22 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hurtbox/CollisionShape3D:rotation")
+tracks/3/path = NodePath("Hurt Box/CollisionShape3D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurt Box/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -899,10 +924,22 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hurtbox/CollisionShape3D:rotation")
+tracks/3/path = NodePath("Hurt Box/CollisionShape3D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurt Box/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -950,7 +987,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hurtbox/CollisionShape3D:rotation")
+tracks/3/path = NodePath("Hurt Box/CollisionShape3D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -958,6 +995,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurt Box/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.25, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_01ng6"]
@@ -1002,10 +1051,22 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hurtbox/CollisionShape3D:rotation")
+tracks/3/path = NodePath("Hurt Box/CollisionShape3D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurt Box/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1055,7 +1116,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Hurtbox/CollisionShape3D:rotation")
+tracks/3/path = NodePath("Hurt Box/CollisionShape3D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1063,6 +1124,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1.5707964, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurt Box/CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.375, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u86q5"]
@@ -1240,8 +1313,12 @@ IdleState = NodePath("../Idle")
 RunState = NodePath("../Run")
 JumpState = NodePath("../Jump")
 
-[node name="Freeze" type="Node" parent="State Machine" unique_id=1826129951]
+[node name="Freeze" type="Node" parent="State Machine" unique_id=1893080911 node_paths=PackedStringArray("IdleState", "RunState", "JumpState", "MovementController")]
 script = ExtResource("12_v27kq")
+IdleState = NodePath("../Idle")
+RunState = NodePath("../Run")
+JumpState = NodePath("../Jump")
+MovementController = NodePath("../../Movement Controller")
 
 [node name="Movement Controller" type="Node" parent="." unique_id=595677260]
 script = ExtResource("2_3uyv8")
@@ -1268,13 +1345,13 @@ StompGravity = 24.9999999999992
 [node name="Animation Controller" type="Node" parent="." unique_id=2138900005]
 script = ExtResource("14_a8wow")
 
-[node name="Hurtbox" type="Area3D" parent="." unique_id=1102708142]
+[node name="Hurt Box" type="Area3D" parent="." unique_id=1102708142]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("14_80ryp")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1987003450]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurt Box" unique_id=1987003450]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, -0.25, 0)
 shape = SubResource("CapsuleShape3D_u86q5")
 debug_color = Color(0.7, 0, 0, 0.41960785)
 
@@ -1284,6 +1361,18 @@ script = ExtResource("4_tekja")
 sensitivity = 0.499999999999984
 
 [node name="Camera3D" type="Camera3D" parent="Camera Controller" unique_id=1502147585]
+
+[node name="Hit Detection" type="RayCast3D" parent="Camera Controller" unique_id=1666047269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2014214e-09, 0, 3.2014214e-09)
+target_position = Vector3(0, 0, -3)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.7019608, 0, 0, 0.41960785)
+script = ExtResource("17_kx1i7")
+
+[node name="Third Person Raycast" type="RayCast3D" parent="Camera Controller" unique_id=205639348]
+target_position = Vector3(0, 0, 3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1039857336]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)

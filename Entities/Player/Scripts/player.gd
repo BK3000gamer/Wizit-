@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 #WIZIT
-var WIZIT: bool = true
+var WIZIT: bool = false
 
 #Card Abilities
 var card_id: Array[String] = \
