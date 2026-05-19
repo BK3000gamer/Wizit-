@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://y1cfdwhkliyi"]
+
+[ext_resource type="Shader" uid="uid://us745c5q83qq" path="res://Assets/Shaders/x-ray.gdshader" id="1_f7ubb"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_f7ubb")
+shader_parameter/colour = Color(0, 0.6736736, 0.76845884, 1)

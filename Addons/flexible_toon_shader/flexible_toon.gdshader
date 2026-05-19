@@ -1,7 +1,6 @@
 shader_type spatial;
 
-//render_mode ambient_light_disabled;
-
+stencil_mode write, compare_always, 1;
 
 uniform vec4 albedo : source_color = vec4(1.0f);
 uniform sampler2D albedo_texture : source_color;
