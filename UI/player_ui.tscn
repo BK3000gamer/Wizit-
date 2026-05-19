@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://c43eupmxaekmd"]
+
+[ext_resource type="PackedScene" uid="uid://b3qpd7glaj03p" path="res://UI/slot.tscn" id="1_4hlgy"]
+[ext_resource type="Script" uid="uid://bbs63c5fpjlds" path="res://UI/Scripts/crosshair.gd" id="1_nplvd"]
+
+[node name="Player UI" type="CanvasLayer" unique_id=1179422355]
+
+[node name="Crosshair" type="Node2D" parent="." unique_id=159221850]
+position = Vector2(960, 540)
+script = ExtResource("1_nplvd")
+InnerLine = 1.999999999999936
+OuterLine = 6.999999999999776
+MovementInaccuracy = 29.99999999999904
+curve = -1.999999999999936
+colour = Color(0, 0.9000001, 1, 1)
+
+[node name="Inventory" type="Node2D" parent="." unique_id=2026855735]
+position = Vector2(960, 1016)
+
+[node name="Slot1" parent="Inventory" unique_id=18109451 instance=ExtResource("1_4hlgy")]
+position = Vector2(-360, 0)
+
+[node name="Slot2" parent="Inventory" unique_id=1844457918 instance=ExtResource("1_4hlgy")]
+position = Vector2(-270, 0)
+this_slot = 1
+
+[node name="Slot3" parent="Inventory" unique_id=2015449621 instance=ExtResource("1_4hlgy")]
+position = Vector2(-180, -1)
+this_slot = 2
+
+[node name="Slot4" parent="Inventory" unique_id=1720982786 instance=ExtResource("1_4hlgy")]
+position = Vector2(-90, 0)
+this_slot = 3
+
+[node name="Slot5" parent="Inventory" unique_id=1238694197 instance=ExtResource("1_4hlgy")]
+this_slot = 4
+
+[node name="Slot6" parent="Inventory" unique_id=2073162594 instance=ExtResource("1_4hlgy")]
+position = Vector2(90, 0)
+this_slot = 5
+
+[node name="Slot7" parent="Inventory" unique_id=407675127 instance=ExtResource("1_4hlgy")]
+position = Vector2(180, 0)
+this_slot = 6
+
+[node name="Slot8" parent="Inventory" unique_id=859743269 instance=ExtResource("1_4hlgy")]
+position = Vector2(270, 0)
+this_slot = 7
+
+[node name="Slot9" parent="Inventory" unique_id=2049743535 instance=ExtResource("1_4hlgy")]
+position = Vector2(360, -1)
+this_slot = 8

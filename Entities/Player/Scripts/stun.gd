@@ -1,6 +1,6 @@
 extends State
 
-@export var time: float = 0.25
+@export var time: float = 0.5
 
 @export_category("Connected States")
 @export var IdleState: State
