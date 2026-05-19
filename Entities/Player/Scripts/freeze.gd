@@ -14,6 +14,11 @@ var timeout: bool = false
 var jumped: bool = false
 
 func enter() -> void:
+	var material = $"../../Wizard/Armature/Skeleton3D/Arm".get_surface_override_material(0)
+	if parent.is_in_group("local_player"):
+		material.next_pass.set_shader_parameter("colour", Color.CYAN)
+	else:
+		material.next_pass.set_shader_parameter("colour", Color(0.0, 0.0, 0.0, 0.0))
 	CameraController.isInFirstPerson = false
 	Model.visible = true
 	
@@ -28,6 +33,8 @@ func enter() -> void:
 	timer.start()
 
 func exit() -> void:
+	var material = $"../../Wizard/Armature/Skeleton3D/Arm".get_surface_override_material(0)
+	material.next_pass.set_shader_parameter("colour", Color(0.0, 0.0, 0.0, 0.0))
 	CameraController.isInFirstPerson = true
 	Model.visible = false
 
@@ -38,7 +45,8 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(_delta: float) -> State:
-	parent.velocity = Vector3.ZERO
+	parent.velocity.x = 0.0
+	parent.velocity.z = 0.0
 	
 	if timeout:
 		if jumped:

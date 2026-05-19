@@ -28,7 +28,8 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(_delta: float) -> State:
-	parent.velocity = Vector3.ZERO
+	parent.velocity.x = 0.0
+	parent.velocity.z = 0.0
 	
 	if timeout:
 		if jumped:

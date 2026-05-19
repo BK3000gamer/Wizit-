@@ -20,12 +20,15 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if isInFirstPerson:
-		camera.position = Vector3.ZERO
+		var tween := get_tree().create_tween()
+		tween.tween_property(camera, "position", Vector3.ZERO, 0.25)
 	else:
 		if ThirdPersonRaycast.is_colliding():
-			camera.global_position = ThirdPersonRaycast.get_collision_point()
+			var tween := get_tree().create_tween()
+			tween.tween_property(camera, "global_position", ThirdPersonRaycast.get_collision_point(), 0.25)
 		else:
-			camera.position = Vector3(0.0, 0.0, 3.0)
+			var tween := get_tree().create_tween()
+			tween.tween_property(camera, "position", Vector3(0.0, 0.0, 3.0), 0.25)
 
 func process_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouseCaptured:
