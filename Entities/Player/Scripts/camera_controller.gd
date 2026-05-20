@@ -6,7 +6,7 @@ extends Node3D
 @onready var ThirdPersonRaycast := $"Third Person Raycast"
 @onready var parent := $".."
 var mouseCaptured := true
-var isInFirstPerson := false
+var isInFirstPerson := true
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

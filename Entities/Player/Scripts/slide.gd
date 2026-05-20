@@ -6,6 +6,8 @@ extends State
 @export var JumpState: State
 @export var FallState: State
 
+@onready var CameraController := $"../../Camera Controller"
+
 var airborne_frame_counter: int = 0
 var slide_timer: float = 0.0
 
@@ -14,9 +16,21 @@ func enter() -> void:
 	slide_timer = 0.0
 	parent.floor_snap_length = 0.5
 	parent.MovementController.slide_boost()
+	var tween := create_tween()
+	tween.tween_property(CameraController, "position", Vector3.ZERO, 0.3)
+	$"../../CollisionShape3D".shape.height = 0.5
+	$"../../CollisionShape3D".position = Vector3(0.0, -0.5, 0.0)
+	$"../../Hurt Box/CollisionShape3D".rotation_degrees = Vector3(90.0, 0.0, 0.0)
+	$"../../Hurt Box/CollisionShape3D".position = Vector3(0.0, -0.375, 0.0)
 
 func exit() -> void:
 	parent.floor_snap_length = 0.0
+	var tween := create_tween()
+	tween.tween_property(CameraController, "position", Vector3(0.0, 0.5, 0.0), 0.3)
+	$"../../CollisionShape3D".shape.height = 1.5
+	$"../../CollisionShape3D".position = Vector3(0.0, 0.0, 0.0)
+	$"../../Hurt Box/CollisionShape3D".rotation_degrees = Vector3.ZERO
+	$"../../Hurt Box/CollisionShape3D".position = Vector3.ZERO
 
 func process_input(event: InputEvent) -> State:
 	if event.is_action_pressed("jump") and parent.is_on_floor():
