@@ -1,0 +1,182 @@
+[gd_scene format=4 uid="uid://dviwqlmllwq5n"]
+
+[ext_resource type="Shader" uid="uid://c2ber8jo2yt2d" path="res://Addons/flexible_toon_shader/flexible_toon.gdshader" id="1_pym6w"]
+[ext_resource type="Texture2D" uid="uid://tnl5ucjv0pc" path="res://Assets/Textures/Textures_Placeholder_StoneTile.png" id="2_xpsf1"]
+[ext_resource type="Texture2D" uid="uid://c62qdsxwh4el0" path="res://Assets/Textures/Textures_Placeholder_StoneBrick.png" id="3_usa46"]
+[ext_resource type="Texture2D" uid="uid://iqs3237wb22x" path="res://Assets/Textures/Textures_Placeholder_CarpetCorner1.png" id="4_nkyt4"]
+[ext_resource type="Texture2D" uid="uid://dc1h8sop2yuji" path="res://Assets/Textures/Textures_Placeholder_WoodCrate.png" id="5_qlk7u"]
+[ext_resource type="Texture2D" uid="uid://c2j4i7h45dnm2" path="res://Assets/Textures/Textures_Woodplanks.png" id="6_cs5p2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3e4l"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fsqef"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAwACAAEAAAAEAAEAAwAFAAIABQAAAAIABgAEAAAABQAGAAAABwABAAQABwADAAEABgAHAAQABQADAAcABQAHAAYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/////wAAAAAAAP////8AAAAA//8AAAAAAAAAAP//AAD///////8AAAAAAAAAAAAA//8AAAAAAAD//wAA//8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2pj57"]
+resource_name = "0_5x0_5_Cube_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("///+//9//3/+//9//3///////v//f/9/////f/9//v////7//3//f////3//f/7////+//9//3/+//9//3/+/////v//f/9/////f/9//v////7//3//f////3//f/7/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_w3e4l"),
+"primitive": 3,
+"uv_scale": Vector4(2, 2.0000002, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/////wAAVNUAAP////9U1QAA//8AAFTV////////VNX//wAA//8AgAAA/////wCA////////AIAAAAAA//8AgAAAAAD///+/AAD//wAA/78AAP//////vwAAAAAAAP+/AAAAAAAAVNX//wAA//9U1f//AAAAAFTVAAAAAP//VNX//wAAAAD/v/////////+//////wAA/7///wAA////vwAAAAAAAP///////wAA//8AAP//AAD/////AAAAAP//VNWqKlTVqipU1aoqVNWqKv9/////f////3////9/////f////3////9/////f///VFVUVVRVVFVUVVRVVFVUVf9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_fsqef")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mi8p"]
+render_priority = 0
+shader = ExtResource("1_pym6w")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_xpsf1")
+shader_parameter/clamp_diffuse_to_max = false
+shader_parameter/cuts = 2
+shader_parameter/wrap = 0.0
+shader_parameter/steepness = 1.0
+shader_parameter/use_attenuation = true
+shader_parameter/use_specular = false
+shader_parameter/specular_strength = 1.0
+shader_parameter/specular_shininess = 16.0
+shader_parameter/use_rim = false
+shader_parameter/rim_width = 8.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/use_ramp = false
+shader_parameter/use_borders = false
+shader_parameter/border_width = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_st6tr"]
+render_priority = 0
+shader = ExtResource("1_pym6w")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_usa46")
+shader_parameter/clamp_diffuse_to_max = false
+shader_parameter/cuts = 2
+shader_parameter/wrap = 0.0
+shader_parameter/steepness = 1.0
+shader_parameter/use_attenuation = true
+shader_parameter/use_specular = false
+shader_parameter/specular_strength = 1.0
+shader_parameter/specular_shininess = 16.0
+shader_parameter/use_rim = false
+shader_parameter/rim_width = 8.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/use_ramp = false
+shader_parameter/use_borders = false
+shader_parameter/border_width = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gyju2"]
+render_priority = 0
+shader = ExtResource("1_pym6w")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("4_nkyt4")
+shader_parameter/clamp_diffuse_to_max = false
+shader_parameter/cuts = 2
+shader_parameter/wrap = 0.0
+shader_parameter/steepness = 1.0
+shader_parameter/use_attenuation = true
+shader_parameter/use_specular = false
+shader_parameter/specular_strength = 1.0
+shader_parameter/specular_shininess = 16.0
+shader_parameter/use_rim = false
+shader_parameter/rim_width = 8.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/use_ramp = false
+shader_parameter/use_borders = false
+shader_parameter/border_width = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_61nqm"]
+render_priority = 0
+shader = ExtResource("1_pym6w")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("5_qlk7u")
+shader_parameter/clamp_diffuse_to_max = false
+shader_parameter/cuts = 2
+shader_parameter/wrap = 0.0
+shader_parameter/steepness = 1.0
+shader_parameter/use_attenuation = true
+shader_parameter/use_specular = false
+shader_parameter/specular_strength = 1.0
+shader_parameter/specular_shininess = 16.0
+shader_parameter/use_rim = false
+shader_parameter/rim_width = 8.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/use_ramp = false
+shader_parameter/use_borders = false
+shader_parameter/border_width = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o51pd"]
+render_priority = 0
+shader = ExtResource("1_pym6w")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("6_cs5p2")
+shader_parameter/clamp_diffuse_to_max = false
+shader_parameter/cuts = 2
+shader_parameter/wrap = 0.0
+shader_parameter/steepness = 1.0
+shader_parameter/use_attenuation = true
+shader_parameter/use_specular = false
+shader_parameter/specular_strength = 1.0
+shader_parameter/specular_shininess = 16.0
+shader_parameter/use_rim = false
+shader_parameter/rim_width = 8.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/use_ramp = false
+shader_parameter/use_borders = false
+shader_parameter/border_width = 0.01
+
+[node name="Texture_library" type="Node3D" unique_id=530591152]
+
+[node name="Stone Tile" type="Node3D" parent="." unique_id=1916193301]
+
+[node name="Stone Tile" type="MeshInstance3D" parent="Stone Tile" unique_id=1907950132]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("ArrayMesh_2pj57")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_7mi8p")
+
+[node name="Stone Brick" type="Node3D" parent="." unique_id=1329909762]
+
+[node name="Stone Brick" type="MeshInstance3D" parent="Stone Brick" unique_id=573439843]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("ArrayMesh_2pj57")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_st6tr")
+
+[node name="Carpet Corner 1" type="Node3D" parent="." unique_id=1715173516]
+
+[node name="Carpet Corner 1" type="MeshInstance3D" parent="Carpet Corner 1" unique_id=1742532545]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("ArrayMesh_2pj57")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gyju2")
+
+[node name="Wood Crate" type="Node3D" parent="." unique_id=1123450542]
+
+[node name="Wood Crate" type="MeshInstance3D" parent="Wood Crate" unique_id=1888372704]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("ArrayMesh_2pj57")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_61nqm")
+
+[node name="Wood Planks" type="Node3D" parent="." unique_id=1343308977]
+
+[node name="Wood Planks" type="MeshInstance3D" parent="Wood Planks" unique_id=1035229216]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("ArrayMesh_2pj57")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_o51pd")
