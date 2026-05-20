@@ -16,9 +16,9 @@ var jumped: bool = false
 func enter() -> void:
 	var material = $"../../Wizard/Armature/Skeleton3D/Arm".get_surface_override_material(0)
 	if parent.is_in_group("local_player"):
-		material.next_pass.set_shader_parameter("colour", Color.CYAN)
-	else:
 		material.next_pass.set_shader_parameter("colour", Color(0.0, 0.0, 0.0, 0.0))
+	else:
+		material.next_pass.set_shader_parameter("colour", Color.CYAN)
 	CameraController.isInFirstPerson = false
 	Model.visible = true
 	

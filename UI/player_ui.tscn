@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c43eupmxaekmd"]
 
 [ext_resource type="PackedScene" uid="uid://b3qpd7glaj03p" path="res://UI/slot.tscn" id="1_4hlgy"]
-[ext_resource type="Script" path="res://UI/Scripts/crosshair.gd" id="1_nplvd"]
-[ext_resource type="Script" path="res://UI/Scripts/timer.gd" id="3_kwigr"]
+[ext_resource type="Script" uid="uid://bbs63c5fpjlds" path="res://UI/Scripts/crosshair.gd" id="1_nplvd"]
+[ext_resource type="Script" uid="uid://dodnn7n3dkcl5" path="res://UI/Scripts/timer.gd" id="3_kwigr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kwigr"]
 font_size = 40

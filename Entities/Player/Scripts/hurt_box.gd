@@ -20,7 +20,7 @@ func _process(_delta: float) -> void:
 
 func tagged(tagged_by_wizit: bool) -> void:
 	if player.WIZIT:
-		pass
+		return
 	else:
 		if player.CurrentState == "Freeze":
 			if tagged_by_wizit:
@@ -30,5 +30,3 @@ func tagged(tagged_by_wizit: bool) -> void:
 		else:
 			if tagged_by_wizit:
 				player.WIZIT = true
-				FreezeState.time = 3.0
-				player.StateMachine.transition("Freeze")

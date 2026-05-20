@@ -30,9 +30,11 @@ func _enter_tree() -> void:
 	$PlayerInput.set_multiplayer_authority(my_peer_id)
 	$InputSynchronizer.set_multiplayer_authority(my_peer_id)
 	
-	$Wizard.visible = true
 	if my_peer_id == multiplayer.get_unique_id():
 		add_to_group("local_player")
+		$Wizard.visible = false
+	else:
+		$Wizard.visible = true
 
 	if multiplayer.is_server():
 		collision_layer = 1
