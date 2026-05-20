@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cydui7iej36e5"
-path.s3tc="res://.godot/imported/cup_texture.png-0f0e0d77c1abdf030ae3aa15760e6a89.s3tc.ctex"
+uid="uid://dc1h8sop2yuji"
+path="res://.godot/imported/Textures_Placeholder_WoodCrate.png-ce973624918848faf6733c661d332a71.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Addons/flexible_toon_shader/example/cup_texture.png"
-dest_files=["res://.godot/imported/cup_texture.png-0f0e0d77c1abdf030ae3aa15760e6a89.s3tc.ctex"]
+source_file="res://Assets/Textures/Textures_Placeholder_WoodCrate.png"
+dest_files=["res://.godot/imported/Textures_Placeholder_WoodCrate.png-ce973624918848faf6733c661d332a71.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -24,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
