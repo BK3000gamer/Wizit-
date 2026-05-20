@@ -78,7 +78,7 @@ height = 1.5
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mv1ah"]
 resource_local_to_scene = true
 radius = 0.25
-height = 0.5
+height = 1.5
 
 [sub_resource type="Skin" id="Skin_5d48g"]
 resource_name = "Skin"
@@ -1179,7 +1179,7 @@ collision_mask = 2
 script = ExtResource("14_80ryp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurt Box" unique_id=1987003450]
-transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.9999999, 0, 0.9999999, -4.3711385e-08, 0, -0.375, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_u86q5")
 debug_color = Color(0.7, 0, 0, 0.41960785)
 
@@ -1203,7 +1203,6 @@ script = ExtResource("17_kx1i7")
 target_position = Vector3(0, 0, 3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1039857336]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2014214e-09, -0.5, -3.2014214e-09)
 shape = SubResource("CapsuleShape3D_mv1ah")
 
 [node name="Wizard" type="Node3D" parent="." unique_id=2120730835]
