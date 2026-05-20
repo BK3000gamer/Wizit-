@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	m = int(time / 60)
 	s = time - m * 60
 	
-	if pickup_timer == 10:
+	if pickup_timer == 20:
 		pickup_timer = 0
 		player.pickup_card(distribute_cards())
 	

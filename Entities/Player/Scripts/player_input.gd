@@ -21,11 +21,19 @@ func _unhandled_input(event: InputEvent) -> void:
 	if root and root.CameraController:
 		root.CameraController.process_input(event)
 	# Inventory Scroll 
-	if event.is_action_pressed("slot_up"):
-		active_slot = active_slot + 1 if active_slot < 8 else 0
-	elif event.is_action_pressed("slot_down"):
-		active_slot = active_slot - 1 if active_slot > 0 else 8
-		
+	
+	if event:
+		if event.is_action_pressed("slot_up"):
+			active_slot = active_slot + 1 if active_slot < 8 else 0
+		elif event.is_action_pressed("slot_down"):
+			active_slot = active_slot - 1 if active_slot > 0 else 8
+		if event is InputEventKey and event.pressed and not event.echo:
+			var input_index = event.keycode - KEY_1
+			
+			if input_index >= 0 and input_index < 9:
+				active_slot = input_index
+		root.active_slot = active_slot
+	
 	if event.is_action_pressed("jump"):
 		rpc_id(1, "transmit_action", "Jump")
 	if event.is_action_pressed("use"):

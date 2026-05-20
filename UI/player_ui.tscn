@@ -12,6 +12,11 @@ font_size = 40
 [node name="Crosshair" type="Node2D" parent="." unique_id=159221850]
 position = Vector2(960, 540)
 script = ExtResource("1_nplvd")
+InnerPoint = 2.999999999999904
+OuterPoint = 6.999999999999776
+MovementOffset = 29.99999999999904
+curve = -1.999999999999936
+colour = Color(0, 1, 1, 1)
 
 [node name="Inventory" type="Node2D" parent="." unique_id=2026855735]
 position = Vector2(960, 1016)

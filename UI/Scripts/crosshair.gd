@@ -1,9 +1,9 @@
 extends Node2D
 
 @export_category("Crosshair Setting")
-@export var InnerLine: float
-@export var OuterLine: float
-@export var MovementInaccuracy: float
+@export var InnerPoint: float
+@export var OuterPoint: float
+@export var MovementOffset: float
 @export var curve: float
 @export var colour: Color
 
@@ -18,16 +18,16 @@ func _ready() -> void:
 		if player == null:
 			await get_tree().process_frame
 	
-	inner = InnerLine
-	outer = OuterLine
+	inner = InnerPoint
+	outer = OuterPoint
 
 func _physics_process(delta: float) -> void:
 	if player and player.is_on_floor():
-		inner = lerpf(inner, InnerLine, ease(delta * 30.0, curve))
-		outer = lerpf(outer, OuterLine, ease(delta * 30.0, curve))
+		inner = lerpf(inner, InnerPoint, ease(delta * 30.0, curve))
+		outer = lerpf(outer, OuterPoint, ease(delta * 30.0, curve))
 	else:
-		inner = lerpf(inner, InnerLine + MovementInaccuracy, ease(delta * 30.0, curve))
-		outer = lerpf(outer, OuterLine + MovementInaccuracy, ease(delta * 30.0, curve))
+		inner = lerpf(inner, InnerPoint + MovementOffset, ease(delta * 30.0, curve))
+		outer = lerpf(outer, OuterPoint + MovementOffset, ease(delta * 30.0, curve))
 
 func _process(_delta: float) -> void:
 	queue_redraw()

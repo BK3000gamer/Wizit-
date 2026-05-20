@@ -18,9 +18,7 @@ func  _process(_delta: float) -> void:
 		return
 		
 	if this_slot + 1 > player.current_cards.size():
-		sprite.visible = false
-	else:
-		sprite.visible = true
+		sprite.modulate = Color(1.0, 1.0, 1.0, 0.25)
 	
 	if this_slot == player.active_slot:
 		sprite.position.y = -40
