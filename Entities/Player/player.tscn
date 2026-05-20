@@ -23,18 +23,41 @@
 [ext_resource type="Animation" uid="uid://vre15q46ujlb" path="res://Entities/Player/Animations/Run Left.res" id="16_0poeq"]
 [ext_resource type="Animation" uid="uid://bkarw3jhlsec5" path="res://Entities/Player/Animations/Fall.res" id="16_80ryp"]
 [ext_resource type="Animation" uid="uid://bkugs0k0lj8em" path="res://Entities/Player/Animations/Run Backward Right.res" id="16_a8wow"]
-[ext_resource type="Script" uid="uid://cukf3c45ardy2" path="res://Entities/Player/Scripts/hit_detection.gd" id="17_kx1i7"]
+[ext_resource type="Script" path="res://Entities/Player/Scripts/hit_detection.gd" id="17_kx1i7"]
 [ext_resource type="Animation" uid="uid://b3ew3ftc6ukyv" path="res://Entities/Player/Animations/Run Right.res" id="17_ppdlg"]
 [ext_resource type="Animation" uid="uid://r2deon4m2stt" path="res://Entities/Player/Animations/Jump.res" id="17_v27kq"]
 [ext_resource type="ArrayMesh" uid="uid://ctv2t7b5xwjy5" path="res://Entities/Player/Model/Wizard_Cylinder_003.res" id="18_53w1c"]
 [ext_resource type="Animation" uid="uid://cidxvm06rkxlr" path="res://Entities/Player/Animations/Run Forward Left.res" id="18_avsg8"]
-[ext_resource type="Shader" uid="uid://c2ber8jo2yt2d" path="res://Addons/flexible_toon_shader/flexible_toon.gdshader" id="18_w51ui"]
+[ext_resource type="Shader" uid="uid://c2ber8jo2yt2d" path="res://addons/flexible_toon_shader/flexible_toon.gdshader" id="18_w51ui"]
 [ext_resource type="Animation" uid="uid://bv3gtr0q4n25u" path="res://Entities/Player/Animations/Run Forward Right.res" id="19_dv6dp"]
 [ext_resource type="Material" uid="uid://y1cfdwhkliyi" path="res://Assets/Shaders/x-ray.tres" id="21_c0fwy"]
 [ext_resource type="ArrayMesh" uid="uid://8jk4syattvtv" path="res://Entities/Player/Model/Wizard_Cylinder.res" id="21_siu7b"]
 [ext_resource type="Animation" uid="uid://oxvnv08av46c" path="res://Entities/Player/Animations/Slide.res" id="26_kx1i7"]
 [ext_resource type="Animation" uid="uid://yl8q6gvae3jx" path="res://Entities/Player/Animations/Stomp.res" id="27_w51ui"]
 [ext_resource type="Animation" uid="uid://culj3f1vl72u2" path="res://Entities/Player/Animations/Stomp Landing.res" id="28_slvv8"]
+[ext_resource type="Script" uid="uid://bh80qhf8r88go" path="res://Entities/Player/Scripts/player_input.gd" id="36_siu7b"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_c0fwy"]
+properties/0/path = NodePath("PlayerInput:direction")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("PlayerInput:look_angle")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("PlayerInput:is_sliding")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_owvpp"]
+properties/0/path = NodePath(".:sync_position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:sync_rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:CurrentState")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [sub_resource type="Curve" id="Curve_lub02"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0]
@@ -53,19 +76,9 @@ radius = 0.4
 height = 1.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mv1ah"]
+resource_local_to_scene = true
 radius = 0.25
 height = 1.5
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_owvpp"]
-properties/0/path = NodePath(".:rotation")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:sync_position")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath(".:CurrentState")
-properties/2/spawn = true
-properties/2/replication_mode = 1
 
 [sub_resource type="Skin" id="Skin_5d48g"]
 resource_name = "Skin"
@@ -898,7 +911,7 @@ advance_expression = "CurrentState == \"Jump\""
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_avsg8"]
 states/Dash/node = SubResource("AnimationNodeAnimation_l3oqu")
-states/Dash/position = Vector2(640.1868, -157)
+states/Dash/position = Vector2(640.1868, -157.31999)
 states/End/position = Vector2(1086, 41)
 states/Fall/node = SubResource("AnimationNodeAnimation_80ryp")
 states/Fall/position = Vector2(704.1868, 253)
@@ -907,7 +920,7 @@ states/Idle/position = Vector2(358.18683, 41)
 states/Jump/node = SubResource("AnimationNodeAnimation_w51ui")
 states/Jump/position = Vector2(422.18683, 265)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_v7p16")
-states/Run/position = Vector2(597, 36)
+states/Run/position = Vector2(598.6, 41.02528)
 states/Slide/node = SubResource("AnimationNodeAnimation_slvv8")
 states/Slide/position = Vector2(944.1868, 143)
 states/Stomp/node = SubResource("AnimationNodeAnimation_siu7b")
@@ -915,7 +928,7 @@ states/Stomp/position = Vector2(881.1868, -157)
 "states/Stomp Landing/node" = SubResource("AnimationNodeAnimation_53w1c")
 "states/Stomp Landing/position" = Vector2(1150.1868, -95)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_fe32i"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_rkx17"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_d17g3"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_23o0h"), "Run", "Slide", SubResource("AnimationNodeStateMachineTransition_pagiw"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_fyltw"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_1birn"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_58aja"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_mr25g"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_vjwoo"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_bs7lp"), "Fall", "Run", SubResource("AnimationNodeStateMachineTransition_d3nw5"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_lqb8y"), "Slide", "Run", SubResource("AnimationNodeStateMachineTransition_718ys"), "Slide", "Idle", SubResource("AnimationNodeStateMachineTransition_8ogvp"), "Slide", "Jump", SubResource("AnimationNodeStateMachineTransition_keg2n"), "Slide", "Fall", SubResource("AnimationNodeStateMachineTransition_6bh03"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_v3uw3"), "Run", "Dash", SubResource("AnimationNodeStateMachineTransition_od5bw"), "Jump", "Dash", SubResource("AnimationNodeStateMachineTransition_fq4wi"), "Fall", "Dash", SubResource("AnimationNodeStateMachineTransition_u86q5"), "Slide", "Dash", SubResource("AnimationNodeStateMachineTransition_80ryp"), "Idle", "Stomp", SubResource("AnimationNodeStateMachineTransition_y1ns3"), "Jump", "Stomp", SubResource("AnimationNodeStateMachineTransition_ujhkw"), "Fall", "Stomp", SubResource("AnimationNodeStateMachineTransition_wqp1d"), "Stomp", "Stomp Landing", SubResource("AnimationNodeStateMachineTransition_vmpux"), "Dash", "Idle", SubResource("AnimationNodeStateMachineTransition_v27kq"), "Dash", "Run", SubResource("AnimationNodeStateMachineTransition_xf0r2"), "Dash", "Jump", SubResource("AnimationNodeStateMachineTransition_8ioaw"), "Dash", "Fall", SubResource("AnimationNodeStateMachineTransition_bmqjx"), "Run", "Stomp", SubResource("AnimationNodeStateMachineTransition_c2hx0"), "Slide", "Stomp", SubResource("AnimationNodeStateMachineTransition_ouk3m"), "Stomp Landing", "Idle", SubResource("AnimationNodeStateMachineTransition_vmo6k"), "Stomp Landing", "Run", SubResource("AnimationNodeStateMachineTransition_b2ufw"), "Stomp Landing", "Jump", SubResource("AnimationNodeStateMachineTransition_o5ua7")]
-graph_offset = Vector2(153.47658, -203.00003)
+graph_offset = Vector2(204.33344, 13.73909)
 
 [sub_resource type="Animation" id="Animation_a8wow"]
 resource_name = "Fall"
@@ -1403,14 +1416,23 @@ states/Run/position = Vector2(552, 5)
 states/Slide/node = SubResource("AnimationNodeAnimation_v27kq")
 states/Slide/position = Vector2(808, 132)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_kx1i7"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_w51ui"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_slvv8"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_l3oqu"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_53w1c"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_siu7b"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_c0fwy"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_gds62"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_qv8uv"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_1ii4q"), "Fall", "Run", SubResource("AnimationNodeStateMachineTransition_520x1"), "Slide", "Fall", SubResource("AnimationNodeStateMachineTransition_mycwr"), "Slide", "Jump", SubResource("AnimationNodeStateMachineTransition_0bw0x"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_avsg8"), "Slide", "Run", SubResource("AnimationNodeStateMachineTransition_dv6dp"), "Slide", "Idle", SubResource("AnimationNodeStateMachineTransition_01ng6"), "Run", "Slide", SubResource("AnimationNodeStateMachineTransition_ui1ln")]
-graph_offset = Vector2(91, -94)
+graph_offset = Vector2(91, -54.06689)
 
 [node name="Player" type="CharacterBody3D" unique_id=247065812]
 script = ExtResource("1_lu8i8")
 
-[node name="State Machine" type="Node" parent="." unique_id=1262524417 node_paths=PackedStringArray("StartingState")]
+[node name="PlayerInput" type="Node" parent="." unique_id=234413146]
+script = ExtResource("36_siu7b")
+
+[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1982473084]
+replication_config = SubResource("SceneReplicationConfig_c0fwy")
+
+[node name="StateSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=138476879]
+replication_interval = 0.033
+replication_config = SubResource("SceneReplicationConfig_owvpp")
+
+[node name="State Machine" type="Node" parent="." unique_id=1262524417]
 script = ExtResource("1_mv1ah")
-StartingState = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="State Machine" unique_id=1754327795 node_paths=PackedStringArray("RunState", "JumpState", "FallState", "MovementController")]
 script = ExtResource("3_4wf4l")
@@ -1496,7 +1518,7 @@ Deceleration = 9.99999999999968
 AirAcceleration = 2.49999999999992
 AirStrafeCurve = SubResource("Curve_lub02")
 AirStrafeMultiplier = 0.999999999999968
-SlideBoost = 14.99999999999952
+SlideBoost = 15.0
 SlideCurve = SubResource("Curve_x1y6q")
 SlopeCurve = SubResource("Curve_ap3xn")
 SlideDecayMultiplier = 3.499999999999888
@@ -1539,10 +1561,6 @@ target_position = Vector3(0, 0, 3)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1039857336]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("CapsuleShape3D_mv1ah")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=138476879]
-replication_interval = 0.033
-replication_config = SubResource("SceneReplicationConfig_owvpp")
 
 [node name="Wizard" type="Node3D" parent="." unique_id=2120730835]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, -0.75, 0)

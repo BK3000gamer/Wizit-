@@ -133,6 +133,9 @@ func _on_host_disconnected() -> void:
 	get_tree().change_scene_to_file("res://Menu/main_menu.tscn")
 
 func _on_peer_disconnected(peer_id: int) -> void:
+	if not player_roster.has(peer_id):
+		return
+		
 	if multiplayer.is_server():
 		player_roster.erase(peer_id)
 		rpc("sync_roster", player_roster)

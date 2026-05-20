@@ -37,6 +37,7 @@ const maxStrafeAngle := 180.0
 var land_buffer: int = 0
 const LAND_BUFFER_FRAMES: int = 2
 var SlideTime := 0.0
+var slide_cooldown: float = 0.0
 
 func _ready() -> void:
 	JumpVelocity = (2.0 * JumpHeight) / JumpTimeToPeak
@@ -53,6 +54,8 @@ func process_input(_event: InputEvent) -> void:
 	parent.InputDir = Vector3(dir.x, 0.0, dir.y)
 
 func process_physics(delta: float) -> void:
+	if slide_cooldown > 0.0:
+		slide_cooldown -= delta
 	Direction = parent.InputDir.rotated(Vector3.UP, parent.get_rotation().y).normalized()
 	
 	if parent.is_on_floor():
@@ -64,8 +67,11 @@ func process_physics(delta: float) -> void:
 		var baseWish := Direction * Speed
 		samplePoint = (rad_to_deg(getHorizontalAngle(parent.velocity, baseWish)) - minStrafeAngle) / maxStrafeAngle
 	
-	parent.velocity.y += _get_gravity() * delta
-	parent.move_and_slide()
+	##var special_states = ["Slide", "Dash", "Freeze"]
+	##if parent.CurrentState in special_states:
+		##return
+		
+	##move(delta)
 
 func move(delta: float) -> void:
 	var boost := 1.0 + (AirStrafeCurve.sample(samplePoint) * AirStrafeMultiplier)
@@ -111,6 +117,7 @@ func _accelerate_air(wishDir: Vector3, wishSpeed: float, delta: float) -> void:
 		parent.velocity.z = horizontal.y
 
 func slide_boost() -> void:
+	slide_cooldown = 1.5
 	SlideTime = 0.0
 	var SlideDirection = Vector3.FORWARD.rotated(Vector3.UP, parent.get_rotation().y).normalized()
 	parent.velocity = SlideDirection * SlideBoost
@@ -118,13 +125,18 @@ func slide_boost() -> void:
 func slide_decay(delta) -> void:
 	SlideTime += delta * 8.0
 	
-	var groundNormal = parent.get_floor_normal().normalized()
-	var floorAngle = parent.get_floor_angle()
-	var slopeDir = sign(Vector3.DOWN.slide(groundNormal).dot(parent.velocity))
-	var slope = (floorAngle / parent.floor_max_angle) * slopeDir
-	var slopeNormalized = remap(slope, -1.0, 1.0, 0.0, 1.0)
+	var groundNormal = parent.get_floor_normal()
+	var slope = 0.0
 	
+	if groundNormal != Vector3.ZERO:
+		groundNormal = groundNormal.normalized()
+		var floorAngle = parent.get_floor_angle()
+		var slopeDir = sign(Vector3.DOWN.slide(groundNormal).dot(parent.velocity))
+		slope = (floorAngle / parent.floor_max_angle) * slopeDir
+	
+	var slopeNormalized = remap(slope, -1.0, 1.0, 0.0, 1.0)
 	var SlideDeceleration = SlideCurve.sample(SlideTime) * SlopeCurve.sample(slopeNormalized) * SlideDecayMultiplier
+	
 	parent.velocity.x = lerp(parent.velocity.x, 0.0, SlideDeceleration * delta)
 	parent.velocity.z = lerp(parent.velocity.z, 0.0, SlideDeceleration * delta)
 

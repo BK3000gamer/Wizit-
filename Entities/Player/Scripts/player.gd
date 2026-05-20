@@ -1,110 +1,106 @@
 extends CharacterBody3D
 class_name Player
 
-#WIZIT
 var WIZIT: bool = false
-
-#Card Abilities
-var card_id: Array[String] = \
-["Dash", "Speed Boost", "Stomp", "Updraft"]
-
-#Inventory
+var card_id: Array[String] = ["Dash", "Speed Boost", "Stomp", "Updraft"]
 var current_cards: Array[String] = []
 var active_slot: int = 0
-
 var InputDir := Vector3.ZERO
 var PreviousState: String
 
+@onready var InputNode := $PlayerInput
 @onready var StateMachine := $"State Machine"
 @onready var MovementController := $"Movement Controller"
 @onready var CameraController := $"Camera Controller"
+@onready var AnimPlayer := $"Wizard/3D Animation Player"
 
 @export var sync_position: Vector3
-
-@export var CurrentState: String :
-	set(new_state):
-		CurrentState = new_state
-		if not is_inside_tree():
-			return
-		if StateMachine and not is_multiplayer_authority():
-			$ "3D Animation Tree".get("parameters/playback").travel(CurrentState)
+@export var sync_rotation: float
+@export var CurrentState: String 
 
 func _ready() -> void:
 	StateMachine.init(self)
-	hide()
 	
 func _enter_tree() -> void:
-	set_multiplayer_authority(name.to_int())
-	var Model := $Wizard
-	if is_multiplayer_authority():
-		add_to_group("local_player")
-		Model.visible = false
-	else:
-		Model.visible = true
-
-func _unhandled_input(event: InputEvent) -> void:
-	if not is_multiplayer_authority(): 
-		return
-	StateMachine.process_input(event)
-	MovementController.process_input(event)
-	CameraController.process_input(event)
-	if event is InputEventKey and event.pressed and not event.echo:
-		var input_index = event.keycode - KEY_1
-		
-		if input_index >= 0 and input_index < 9:
-			active_slot = input_index
-		
-		if event.is_action_pressed("slot_up"):
-			if active_slot < 8:
-				active_slot += 1
-			elif active_slot == 8:
-				active_slot = 0
-		elif event.is_action_pressed("slot_down"):
-			if active_slot > 0:
-				active_slot -= 1
-			elif active_slot == 0:
-				active_slot = 8
-			
-		if active_slot < current_cards.size():
-			print("Equipped: ", current_cards[active_slot], " (Slot ", active_slot + 1, ")")
-		else:
-			print("Equipped: Empty Slot (Slot ", active_slot + 1, ")")
+	var my_peer_id = name.to_int()
+	set_multiplayer_authority(1)
+	if has_node("StateSynchronizer"):
+		$StateSynchronizer.set_multiplayer_authority(1)
 	
-	if event.is_action_pressed("use"):
-		use_equipped_card()
+	$PlayerInput.set_multiplayer_authority(my_peer_id)
+	$InputSynchronizer.set_multiplayer_authority(my_peer_id)
+	
+	$Wizard.visible = true
+	if my_peer_id == multiplayer.get_unique_id():
+		add_to_group("local_player")
 
-func _process(_delta: float) -> void:
-	CurrentState = StateMachine.CurrentState.name
+	if multiplayer.is_server():
+		collision_layer = 1
+		collision_mask = 1
+	else:
+		if my_peer_id == multiplayer.get_unique_id():
+			collision_layer = 1
+			collision_mask = 1
+		else:
+			collision_layer = 0
+			collision_mask = 0
 
 func _physics_process(delta: float) -> void:
-	if is_multiplayer_authority():
+	if multiplayer.is_server():
+		if InputNode.get_multiplayer_authority() != multiplayer.get_unique_id():
+			rotation.y = InputNode.look_angle
+		
+		InputDir = Vector3(InputNode.direction.x, 0.0, InputNode.direction.y)
 		StateMachine.process_physics(delta)
 		MovementController.process_physics(delta)
-		sync_position = global_position 
+		
+		if InputNode.is_sliding and is_on_floor() and velocity.length() > 3.0:
+			if StateMachine.CurrentState.name != "Slide":
+				StateMachine.transition("Slide")
+		
+		elif not InputNode.is_sliding and StateMachine.CurrentState.name == "Slide":
+			StateMachine.transition("Idle")
+		
+		if not is_on_floor():
+			velocity.y += MovementController._get_gravity() * delta
+			
+		move_and_slide()
+		
+		sync_position = global_position
+		sync_rotation = rotation.y
+		CurrentState = StateMachine.CurrentState.name
+		
 	else:
 		global_position = global_position.lerp(sync_position, 15 * delta)
-#Card Pickup
-func pickup_card(card: String) -> void:
-	if current_cards.size() >=9:
-		print("Inventory is Full")
-		return
+		
+		if name.to_int() != multiplayer.get_unique_id():
+			rotation.y = lerp_angle(rotation.y, sync_rotation, 15 * delta)
 
-	var given_card := card
-	current_cards.append(given_card)
-	print("Inventory: ", current_cards)
+	_update_animations()
+
+func _update_animations() -> void:
+	if CurrentState != PreviousState:
+		if AnimPlayer and AnimPlayer.has_animation(CurrentState):
+			AnimPlayer.play(CurrentState)
+		PreviousState = CurrentState
+
+func pickup_card(card: String) -> void:
+	if current_cards.size() >= 9:
+		return
+	current_cards.append(card)
 
 func use_equipped_card() -> void:
 	if active_slot >= current_cards.size():
-		print("Slot is Empty")
 		return
+		
 	var targeted_ability: String = current_cards[active_slot]
 	var ability_triggered: bool = false
 	var num: int = 0
 	var slots: Array[int] = []
+	
 	match targeted_ability:
 		"Dash", "Stomp", "Updraft":
-			ability_triggered = \
-			StateMachine.transition(targeted_ability)
+			ability_triggered = StateMachine.transition(targeted_ability)
 		
 		"Arcane":
 			for c in range(current_cards.size()):
@@ -113,34 +109,20 @@ func use_equipped_card() -> void:
 					slots.append(c)
 			
 			if num >= 3:
-				if WIZIT:
-					ability_triggered = true
-				else:
-					ability_triggered = \
-					StateMachine.transition("Freeze")
+				ability_triggered = true if WIZIT else StateMachine.transition("Freeze")
 			
-			#Non State Transition Abilities
 		"Speed Boost":
 			ability_triggered = true
 			MovementController.speed_boost()
-	# Remove Card
+			
 	if ability_triggered:
-		if num:
+		if num >= 3:
 			current_cards.remove_at(slots[2])
 			current_cards.remove_at(slots[1])
 			current_cards.remove_at(slots[0])
 		else:
 			current_cards.remove_at(active_slot)
-		print("Used ", targeted_ability," Inventory: ", current_cards)
+			
 		if active_slot >= current_cards.size() and current_cards.size() > 0:
 			active_slot = current_cards.size() - 1
-	else:
-		print("Nothing Happened")
-		
-@rpc("any_peer", "call_local", "reliable")
-func apply_spawn_point(target_point: Vector3) -> void:
-	if multiplayer.get_remote_sender_id() == 1 or multiplayer.is_server():
-		global_position = target_point
-		sync_position = target_point
-		show()
 	

@@ -9,6 +9,7 @@ extends Control
 @onready var server_list := $ServerBrowser/ScrollContainer/ServerList
 
 var current_lobby_id: int = 0
+var is_offline_debug: bool = false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -17,6 +18,52 @@ func _ready() -> void:
 	
 	SteamNetworkManager.arena_list_updated.connect(on_arenas_found)
 	SteamNetworkManager.roster_updated.connect(refresh_roster_ui)
+	
+	var instance_id = OS.get_process_id()
+	DisplayServer.window_set_title("Player Instance: " + str(instance_id))
+	
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		# F1 for Local host
+		if event.keycode == KEY_F1:
+			print("Local Host Activated")
+			is_offline_debug = true
+			start_offline_host()
+			
+		# F2 For Local Join
+		if event.keycode == KEY_F2:
+			print("Local Join Activated")
+			is_offline_debug = true
+			start_offline_join()
+
+func start_offline_host() -> void:
+	host_button.hide()
+	join_button.hide()
+	
+	var peer = ENetMultiplayerPeer.new()
+	peer.create_server(8910, 5) 
+	multiplayer.multiplayer_peer = peer
+	
+	SteamNetworkManager.player_roster.clear()
+	SteamNetworkManager.player_roster[1] = "Debug_Host"
+	SteamNetworkManager.roster_updated.emit()
+	
+	enter_lobby(true)
+
+func start_offline_join() -> void:
+	host_button.hide()
+	join_button.hide()
+	server_browser.hide()
+	
+	var peer = ENetMultiplayerPeer.new()
+	peer.create_client("127.0.0.1", 8910)
+	multiplayer.multiplayer_peer = peer
+	
+	await multiplayer.connected_to_server
+	var my_id = multiplayer.get_unique_id()
+	SteamNetworkManager.rpc_id(1, "register_player", my_id, "Debug_Client_" + str(my_id))
+	
+	enter_lobby(false)
 	
 func on_host_arena_pressed() -> void:
 	host_button.disabled = true
