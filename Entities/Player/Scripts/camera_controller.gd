@@ -1,11 +1,12 @@
 extends Node3D
 
-@onready var parent := $".."
-
 @export var sensitivity: float
 
-@onready var camera: Camera3D = $Camera3D
+@onready var camera := $Camera3D
+@onready var ThirdPersonRaycast := $"Third Person Raycast"
+@onready var parent := $".."
 var mouseCaptured := true
+var isInFirstPerson := true
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -16,6 +17,18 @@ func _ready() -> void:
 		camera.queue_free()
 		
 		set_process_input(false)
+
+func _process(_delta: float) -> void:
+	if isInFirstPerson:
+		var tween := get_tree().create_tween()
+		tween.tween_property(camera, "position", Vector3.ZERO, 0.25)
+	else:
+		if ThirdPersonRaycast.is_colliding():
+			var tween := get_tree().create_tween()
+			tween.tween_property(camera, "global_position", ThirdPersonRaycast.get_collision_point(), 0.25)
+		else:
+			var tween := get_tree().create_tween()
+			tween.tween_property(camera, "position", Vector3(0.0, 0.0, 3.0), 0.25)
 
 func process_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouseCaptured:

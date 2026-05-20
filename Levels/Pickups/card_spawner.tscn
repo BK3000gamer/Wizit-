@@ -1,6 +1,17 @@
-[gd_scene format=3 uid="uid://clk2v12qauaoq"]
+[gd_scene format=3 uid="uid://ckl3l5jyh17fq"]
 
 [ext_resource type="Script" uid="uid://c0uqudg3kaiug" path="res://Levels/Pickups/card_spawner.gd" id="1_figby"]
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_8ur60"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.2
+
 [node name="CardSpawner" type="Node3D" unique_id=48530971]
 script = ExtResource("1_figby")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1551446244]
+mesh = SubResource("CylinderMesh_8ur60")
+
+[node name="CardSpawnPoint" type="Marker3D" parent="." unique_id=859860179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

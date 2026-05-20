@@ -42,3 +42,8 @@ func  _process(_delta: float) -> void:
 			sprite.modulate = Color("purple")
 		"Speed Boost":
 			sprite.modulate = Color("yellow")
+		"Arcane":
+			if player.WIZIT:
+				sprite.modulate = Color("red")
+			else:
+				sprite.modulate = Color("cyan")

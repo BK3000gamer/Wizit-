@@ -19,9 +19,6 @@ script = ExtResource("1_uxik1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1919363038]
 shape = SubResource("BoxShape3D_uxik1")
 
-[node name="Card" type="Node3D" parent="." unique_id=1778915840]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Card" unique_id=2077970843]
+[node name="Card" type="MeshInstance3D" parent="." unique_id=2077970843]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_ho1dc")
-skeleton = NodePath("../..")

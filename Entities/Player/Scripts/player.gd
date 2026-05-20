@@ -1,6 +1,9 @@
 extends CharacterBody3D
 class_name Player
 
+#WIZIT
+var WIZIT: bool = false
+
 #Card Abilities
 var card_id: Array[String] = \
 ["Dash", "Speed Boost", "Stomp", "Updraft"]
@@ -70,7 +73,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("use"):
 		use_equipped_card()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	CurrentState = StateMachine.CurrentState.name
 
 func _physics_process(delta: float) -> void:
@@ -81,12 +84,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		global_position = global_position.lerp(sync_position, 15 * delta)
 #Card Pickup
-func pickup_card() -> void:
+func pickup_card(card: String) -> void:
 	if current_cards.size() >=9:
 		print("Inventory is Full")
 		return
 
-	var given_card: String = card_id.pick_random()
+	var given_card := card
 	current_cards.append(given_card)
 	print("Inventory: ", current_cards)
 
@@ -96,10 +99,25 @@ func use_equipped_card() -> void:
 		return
 	var targeted_ability: String = current_cards[active_slot]
 	var ability_triggered: bool = false
+	var num: int = 0
+	var slots: Array[int] = []
 	match targeted_ability:
 		"Dash", "Stomp", "Updraft":
 			ability_triggered = \
 			StateMachine.transition(targeted_ability)
+		
+		"Arcane":
+			for c in range(current_cards.size()):
+				if current_cards[c] == "Arcane":
+					num += 1
+					slots.append(c)
+			
+			if num >= 3:
+				if WIZIT:
+					ability_triggered = true
+				else:
+					ability_triggered = \
+					StateMachine.transition("Freeze")
 			
 			#Non State Transition Abilities
 		"Speed Boost":
@@ -107,7 +125,12 @@ func use_equipped_card() -> void:
 			MovementController.speed_boost()
 	# Remove Card
 	if ability_triggered:
-		current_cards.remove_at(active_slot)
+		if num:
+			current_cards.remove_at(slots[2])
+			current_cards.remove_at(slots[1])
+			current_cards.remove_at(slots[0])
+		else:
+			current_cards.remove_at(active_slot)
 		print("Used ", targeted_ability," Inventory: ", current_cards)
 		if active_slot >= current_cards.size() and current_cards.size() > 0:
 			active_slot = current_cards.size() - 1

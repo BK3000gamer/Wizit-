@@ -25,8 +25,8 @@ func process_physics(_delta: float) -> State:
 	MovementController.stomp()
 	
 	if parent.is_on_floor():
-		if timeout:
-			return StunState
+		#if timeout:
+			#return StunState
 		
 		if parent.InputDir == Vector3.ZERO:
 			return IdleState
