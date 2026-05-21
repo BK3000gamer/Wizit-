@@ -17,6 +17,8 @@ func _ready() -> void:
 	
 	body_entered.connect(_on_body_entered)
 	chosen_card = card_id.pick_random()
+
+func _process(_delta: float) -> void:
 	var material = card.get_active_material(0)
 	if not material:
 		push_error("No active material found on card")
