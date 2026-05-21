@@ -28,7 +28,7 @@
 [ext_resource type="Animation" uid="uid://r2deon4m2stt" path="res://Entities/Player/Animations/Jump.res" id="17_v27kq"]
 [ext_resource type="ArrayMesh" uid="uid://ctv2t7b5xwjy5" path="res://Entities/Player/Model/Wizard_Cylinder_003.res" id="18_53w1c"]
 [ext_resource type="Animation" uid="uid://cidxvm06rkxlr" path="res://Entities/Player/Animations/Run Forward Left.res" id="18_avsg8"]
-[ext_resource type="Shader" uid="uid://c2ber8jo2yt2d" path="res://Addons/flexible_toon_shader/flexible_toon.gdshader" id="18_w51ui"]
+[ext_resource type="Shader" uid="uid://c2ber8jo2yt2d" path="res://addons/flexible_toon_shader/flexible_toon.gdshader" id="18_w51ui"]
 [ext_resource type="Animation" uid="uid://bv3gtr0q4n25u" path="res://Entities/Player/Animations/Run Forward Right.res" id="19_dv6dp"]
 [ext_resource type="Material" uid="uid://y1cfdwhkliyi" path="res://Assets/Shaders/x-ray.tres" id="21_c0fwy"]
 [ext_resource type="ArrayMesh" uid="uid://8jk4syattvtv" path="res://Entities/Player/Model/Wizard_Cylinder.res" id="21_siu7b"]
@@ -58,6 +58,9 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath(".:CurrentState")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath(".:is_grounded")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="Curve" id="Curve_lub02"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0]
@@ -72,6 +75,7 @@ _data = [Vector2(0, 1), 0.0, 0.25414708, 0, 0, Vector2(0.5105263, 0.6966293), -1
 point_count = 3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u86q5"]
+resource_local_to_scene = true
 radius = 0.4
 height = 1.5
 
@@ -320,7 +324,6 @@ bind/77/pose = Transform3D(-8.80167, -2.0984817e-06, 0, 0, 0, 8.80167, -2.098481
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fe32i"]
 render_priority = 0
-next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -360,7 +363,6 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l3oqu"]
 render_priority = 0
-next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -401,7 +403,6 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gds62"]
 render_priority = 0
-next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -441,7 +442,6 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1ii4q"]
 render_priority = 0
-next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -482,7 +482,6 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_520x1"]
 render_priority = 0
-next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -523,7 +522,6 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0bw0x"]
 render_priority = 0
-next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -543,7 +541,6 @@ shader_parameter/border_width = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d17g3"]
 render_priority = 0
-next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -584,7 +581,6 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_siu7b"]
 render_priority = 0
-next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -624,7 +620,6 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23o0h"]
 render_priority = 0
-next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -664,7 +659,6 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pagiw"]
 render_priority = 0
-next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -1064,11 +1058,13 @@ graph_offset = Vector2(91, -54.06689)
 
 [node name="Player" type="CharacterBody3D" unique_id=247065812]
 script = ExtResource("1_lu8i8")
+xray_shader_material = ExtResource("21_c0fwy")
 
 [node name="PlayerInput" type="Node" parent="." unique_id=234413146]
 script = ExtResource("36_siu7b")
 
 [node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1982473084]
+replication_interval = 0.033
 replication_config = SubResource("SceneReplicationConfig_c0fwy")
 
 [node name="StateSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=138476879]
@@ -1141,11 +1137,10 @@ IdleState = NodePath("../Idle")
 RunState = NodePath("../Run")
 JumpState = NodePath("../Jump")
 
-[node name="Freeze" type="Node" parent="State Machine" unique_id=1893080911 node_paths=PackedStringArray("IdleState", "RunState", "JumpState", "MovementController")]
+[node name="Freeze" type="Node" parent="State Machine" unique_id=1893080911 node_paths=PackedStringArray("IdleState", "RunState", "MovementController")]
 script = ExtResource("12_v27kq")
 IdleState = NodePath("../Idle")
 RunState = NodePath("../Run")
-JumpState = NodePath("../Jump")
 MovementController = NodePath("../../Movement Controller")
 
 [node name="Movement Controller" type="Node" parent="." unique_id=595677260]

@@ -1,10 +1,23 @@
 shader_type spatial;
+render_mode unshaded, depth_test_disabled;
 
-render_mode unshaded, depth_test_inverted, depth_draw_never;
-stencil_mode read, write, compare_not_equal, 1;
+uniform vec4 colour : source_color = vec4(0.0, 1.0, 1.0, 1.0);
+uniform sampler2D depth_texture : hint_depth_texture, repeat_disable, filter_nearest;
 
-uniform vec3 colour:source_color;
+uniform float thickness_margin : hint_range(0.0, 5.0) = 1.0;
 
 void fragment() {
-	ALBEDO = colour;
+	float depth = texture(depth_texture, SCREEN_UV).x;
+	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
+	vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+	view.xyz /= view.w;
+
+	float linear_depth = -view.z;
+	float frag_depth = -VERTEX.z;
+	if (frag_depth <= linear_depth + thickness_margin) {
+		discard;
+	}
+
+	ALBEDO = colour.rgb;
+	ALPHA = colour.a;
 }

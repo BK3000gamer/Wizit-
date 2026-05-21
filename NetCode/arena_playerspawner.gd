@@ -3,6 +3,7 @@ extends Node3D
 @export var player_scene: PackedScene 
 @onready var players_container = $Players 
 
+
 var spawn_index: int = 0
 
 func _ready() -> void:

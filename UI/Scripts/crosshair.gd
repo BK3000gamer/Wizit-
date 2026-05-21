@@ -22,7 +22,7 @@ func _ready() -> void:
 	outer = OuterPoint
 
 func _physics_process(delta: float) -> void:
-	if player and player.is_on_floor():
+	if player and player.is_grounded:
 		inner = lerpf(inner, InnerPoint, ease(delta * 30.0, curve))
 		outer = lerpf(outer, OuterPoint, ease(delta * 30.0, curve))
 	else:

@@ -2,31 +2,21 @@ extends Area3D
 class_name HurtBox
 
 @onready var collision := $CollisionShape3D
-@onready var FreezeState := $"../State Machine/Freeze"
-
-var player : Player
+@onready var player: Player = get_parent() 
 
 func _ready() -> void:
-	while player == null:
-		player = get_tree().get_first_node_in_group("local_player")
-		if player == null:
-			await get_tree().process_frame
+	body_entered.connect(_on_body_entered)
 
-func _process(_delta: float) -> void:
-	if player.WIZIT:
-		collision.set_deferred("disabled", true)
-	else:
-		collision.set_deferred("disabled", false)
+func _on_body_entered(body: Node3D) -> void:
+	if not multiplayer.is_server(): return
+	
+	if body is Player:
+		if body.WIZIT and not player.WIZIT:
+			tag_transfer(body)
 
-func tagged(tagged_by_wizit: bool) -> void:
-	if player.WIZIT:
-		return
-	else:
-		if player.CurrentState == "Freeze":
-			if tagged_by_wizit:
-				return
-			else:
-				FreezeState.timer_timeout()
-		else:
-			if tagged_by_wizit:
-				player.WIZIT = true
+func tag_transfer(tagger: Player) -> void:
+	tagger.WIZIT = false
+	
+	player.WIZIT = true
+	
+	player.rpc("force_freeze")
