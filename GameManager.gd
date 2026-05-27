@@ -56,7 +56,7 @@ func _on_tick() -> void:
 				
 				print(" Player ID: %s | Current Score: %s" % [p.name, str(current_score)])
 				
-	if pickup_timer >= 10:
+	if pickup_timer >= 20:
 		pickup_timer = 0
 		distribute_cards_to_all()
 		
