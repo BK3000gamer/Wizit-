@@ -23,15 +23,16 @@ func exit() -> void:
 		active_timer.queue_free()
 
 func process_physics(_delta: float) -> State:
-	parent.velocity.x = 0.0
-	parent.velocity.z = 0.0
-	
-	if timeout:
-		if parent.InputDir == Vector3.ZERO:
-			return IdleState
-		else:
-			return RunState
-			
+	if multiplayer.is_server():
+		parent.velocity.x = 0.0
+		parent.velocity.z = 0.0
+		
+		if timeout:
+			if parent.InputDir == Vector3.ZERO:
+				return IdleState
+			else:
+				return RunState
+				
 	return null
 
 func timer_timeout() -> void:

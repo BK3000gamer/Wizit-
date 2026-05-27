@@ -2,11 +2,11 @@ extends CharacterBody3D
 class_name Player
 
 var card_id: Array[String] = ["Dash", "Speed Boost", "Stomp", "Updraft"]
-var current_cards: Array[String] = []
-var active_slot: int = 0
+@export var current_cards: Array[String] = []
+@export var active_slot: int = 0
 var InputDir := Vector3.ZERO
 var PreviousState: String
-var slide_cooldown: float = 1
+var slide_cooldown: float = 0.5
 var tag_cooldown: bool = false
 
 @onready var InputNode := $PlayerInput
@@ -17,16 +17,7 @@ var tag_cooldown: bool = false
 
 @export var sync_position: Vector3
 @export var sync_rotation: float
-@export var CurrentState: String:
-	set(new_value):
-		if CurrentState == new_value or new_value == "": 
-			return
-		CurrentState = new_value
-		if not is_inside_tree() or multiplayer.is_server(): 
-			return
-		if StateMachine and is_instance_valid(StateMachine.CurrentState):
-			if StateMachine.CurrentState.name != new_value and StateMachine.has_node(new_value):
-				StateMachine.transition(new_value)
+@export var CurrentState: String
 @export var is_grounded: bool = true
 
 @export var xray_shader_material: ShaderMaterial
@@ -82,7 +73,7 @@ func _physics_process(delta: float) -> void:
 		if InputNode.is_sliding and is_on_floor() and velocity.length() > 3.0:
 			if StateMachine.CurrentState.name != "Slide" && slide_cooldown <= 0.0:
 				StateMachine.transition("Slide")
-				slide_cooldown = 1.0
+				slide_cooldown = 0.5
 		
 		elif not InputNode.is_sliding and StateMachine.CurrentState.name == "Slide":
 			StateMachine.transition("Idle")
@@ -110,17 +101,27 @@ func _physics_process(delta: float) -> void:
 
 func _update_animations() -> void:
 	if CurrentState != PreviousState:
+		
 		if AnimPlayer and AnimPlayer.has_animation(CurrentState):
 			AnimPlayer.play(CurrentState)
+			
 		if is_in_group("local_player"):
 			if CurrentState == "Freeze":
 				CameraController.isInFirstPerson = false
 				$Wizard.visible = true
-			elif PreviousState == "Freeze":
+			else:
 				CameraController.isInFirstPerson = true
 				$Wizard.visible = false
+				if CurrentState == "Slide":
+					CameraController.target_height = 0.0
+				else:
+					CameraController.target_height = 0.5
+		if not multiplayer.is_server():
+			if StateMachine and is_instance_valid(StateMachine.CurrentState):
+				if StateMachine.CurrentState.name != CurrentState and StateMachine.has_node(CurrentState):
+					StateMachine.transition(CurrentState)
+						
 		PreviousState = CurrentState
-
 func pickup_card(card: String) -> void:
 	if current_cards.size() >= 9:
 		return
@@ -239,5 +240,5 @@ func set_wizit(state: bool) -> void:
 func force_freeze() -> void:
 	if StateMachine.CurrentState.name != "Freeze":
 		StateMachine.transition("Freeze")
-			
+
 			

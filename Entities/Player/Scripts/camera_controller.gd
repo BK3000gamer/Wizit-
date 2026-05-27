@@ -5,28 +5,32 @@ extends Node3D
 @onready var camera := $Camera3D
 @onready var ThirdPersonRaycast := $"Third Person Raycast"
 @onready var parent := $".."
+
 var mouseCaptured := true
 var isInFirstPerson := true
+var target_height: float = 0.5 
 
 @onready var Model := $"../Wizard"
-
 
 func _ready() -> void:
 	if parent.is_in_group("local_player"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		if parent.name.to_int() == multiplayer.get_unique_id():
-			if is_instance_valid(camera):
-				camera.make_current()
-		else:
-			if is_instance_valid(camera):
-				camera.queue_free()
-			set_process_input(false)
+		if is_instance_valid(camera):
+			camera.make_current()
+	else:
+		if is_instance_valid(camera):
+			camera.queue_free()
+		set_process_input(false)
+		set_process(false)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if not is_instance_valid(camera):
 		return
+		
 	if isInFirstPerson and parent.is_in_group("local_player"):
 		camera.position = Vector3.ZERO
+		position.y = lerpf(position.y, target_height, delta * 10.0)
+		
 		Model.visible = false
 	else:
 		if parent.is_in_group("local_player"):
