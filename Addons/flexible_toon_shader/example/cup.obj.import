@@ -4,14 +4,14 @@ importer="wavefront_obj"
 importer_version=1
 type="Mesh"
 uid="uid://cliegaw5g2368"
-path="res://.godot/imported/cup.obj-573fe637ebf8c9287e6a16426ff7f16a.mesh"
+path="res://.godot/imported/cup.obj-e8ed591bf00788b3d4fe8298a0bc5f00.mesh"
 
 [deps]
 
-files=["res://.godot/imported/cup.obj-573fe637ebf8c9287e6a16426ff7f16a.mesh"]
+files=["res://.godot/imported/cup.obj-e8ed591bf00788b3d4fe8298a0bc5f00.mesh"]
 
-source_file="res://addons/flexible_toon_shader/example/cup.obj"
-dest_files=["res://.godot/imported/cup.obj-573fe637ebf8c9287e6a16426ff7f16a.mesh", "res://.godot/imported/cup.obj-573fe637ebf8c9287e6a16426ff7f16a.mesh"]
+source_file="res://Addons/flexible_toon_shader/example/cup.obj"
+dest_files=["res://.godot/imported/cup.obj-e8ed591bf00788b3d4fe8298a0bc5f00.mesh", "res://.godot/imported/cup.obj-e8ed591bf00788b3d4fe8298a0bc5f00.mesh"]
 
 [params]
 
