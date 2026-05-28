@@ -8,7 +8,13 @@ class_name CardSpawner
 var spawn_timer := Timer.new()
 var waiting_to_spawn := false
 
+var active_pickup: Node3D = null
+
 func _ready() -> void:
+	if not multiplayer.is_server():
+		set_process(false)
+		return
+		
 	_scatter_cards()
 	
 	add_child(spawn_timer)
@@ -17,8 +23,7 @@ func _ready() -> void:
 	spawn_timer.timeout.connect(_scatter_cards)
 
 func _process(_delta: float) -> void:
-	var item = get_node_or_null("PickupItem")
-	if item == null and !waiting_to_spawn:
+	if not is_instance_valid(active_pickup) and not waiting_to_spawn:
 		waiting_to_spawn = true
 		spawn_timer.start()
 
@@ -26,8 +31,11 @@ func _scatter_cards() -> void:
 	if not card_powerups:
 		push_error("No card powerup reference")
 		return
-
 	var new_powerup = card_powerups.instantiate()
 	waiting_to_spawn = false
-	add_child(new_powerup)
 	new_powerup.position = spawnpoints.position
+	active_pickup = new_powerup
+	add_child(new_powerup)
+		
+		
+		

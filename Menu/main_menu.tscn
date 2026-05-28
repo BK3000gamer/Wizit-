@@ -118,6 +118,16 @@ vertical_scroll_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="StatusLabel" type="Label" parent="ServerBrowser" unique_id=911376380]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -99.999985
+offset_right = 99.999985
+offset_bottom = 50.0
+grow_horizontal = 2
+
 [node name="Refresh" type="Button" parent="ServerBrowser" unique_id=29784004]
 layout_mode = 0
 offset_left = 854.5455

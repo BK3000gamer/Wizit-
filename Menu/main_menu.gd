@@ -1,5 +1,6 @@
 extends Control
 
+@onready var status_label := $ServerBrowser/StatusLabel
 @onready var host_button := $HostArena
 @onready var join_button := $JoinArena
 @onready var lobby_ui := $LobbyUI
@@ -18,6 +19,9 @@ func _ready() -> void:
 	
 	SteamNetworkManager.arena_list_updated.connect(on_arenas_found)
 	SteamNetworkManager.roster_updated.connect(refresh_roster_ui)
+	SteamNetworkManager.connection_status_changed.connect(on_status_changed)
+	
+	multiplayer.connected_to_server.connect(on_client_connection_success)
 	
 	var instance_id = OS.get_process_id()
 	DisplayServer.window_set_title("Player Instance: " + str(instance_id))
@@ -116,7 +120,10 @@ func connect_to_server(lobby_id: int) -> void:
 	
 	server_browser.hide()
 	SteamNetworkManager.enter_arena(lobby_id)
-	enter_lobby(false)
+
+func on_status_changed(message: String) -> void:
+	status_label.show()
+	status_label.text = message
 
 func enter_lobby(is_host: bool) -> void:
 	lobby_ui.show()
@@ -125,6 +132,10 @@ func enter_lobby(is_host: bool) -> void:
 		start_button.show()
 	else:
 		start_button.hide()
+		
+func on_client_connection_success() -> void:
+	status_label.hide()
+	enter_lobby(false)
 
 func refresh_roster_ui() -> void:
 	player_list.text = ""
@@ -143,6 +154,7 @@ func on_start_match_pressed() -> void:
 		
 func on_browser_back_pressed() -> void:
 	server_browser.hide()
+	status_label.hide()
 	host_button.show()
 	join_button.show()
 	host_button.disabled = false
@@ -151,6 +163,7 @@ func on_browser_back_pressed() -> void:
 func on_lobby_back_pressed() -> void:
 	SteamNetworkManager.leave_match()
 	lobby_ui.hide()
+	status_label.hide()
 	player_list.text = ""
 	host_button.show()
 	join_button.show()

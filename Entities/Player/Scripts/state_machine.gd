@@ -47,7 +47,7 @@ func process_input(event: InputEvent) -> void:
 func transition(target_state_name: String) -> bool:
 	if CurrentState and CurrentState.name == target_state_name:
 		return false
-	var fixed_states = ["Dash", "Stomp", "Updraft", "Freeze"]
+	var fixed_states = ["Dash", "Stomp", "Updraft", "Freeze", "Stasis"]
 	if CurrentState and CurrentState.name in fixed_states:
 		return false
 		

@@ -9,6 +9,9 @@ var PreviousState: String
 var slide_cooldown: float = 0.5
 var tag_cooldown: bool = false
 
+var arcane_vision_timer: float = 0.0
+@export var arcane_vision_active: bool = false
+
 @onready var InputNode := $PlayerInput
 @onready var StateMachine := $"State Machine"
 @onready var MovementController := $"Movement Controller"
@@ -63,8 +66,14 @@ func _physics_process(delta: float) -> void:
 	if multiplayer.is_server():
 		if InputNode.get_multiplayer_authority() != multiplayer.get_unique_id():
 			rotation.y = InputNode.look_angle
+			
 		if slide_cooldown > 0.0:
 			slide_cooldown -= delta
+		
+		if arcane_vision_timer > 0.0:
+			arcane_vision_timer -= delta
+			if arcane_vision_timer <= 0.0:
+				rpc("set_arcane_vision", false)
 			
 		InputDir = Vector3(InputNode.direction.x, 0.0, InputNode.direction.y)
 		StateMachine.process_physics(delta)
@@ -94,9 +103,6 @@ func _physics_process(delta: float) -> void:
 		if name.to_int() != multiplayer.get_unique_id():
 			rotation.y = lerp_angle(rotation.y, sync_rotation, 15 * delta)
 			
-		if CurrentState != "" and StateMachine.CurrentState.name != CurrentState:
-			StateMachine.transition(CurrentState)
-		
 	_update_animations()
 
 func _update_animations() -> void:
@@ -106,7 +112,7 @@ func _update_animations() -> void:
 			AnimPlayer.play(CurrentState)
 			
 		if is_in_group("local_player"):
-			if CurrentState == "Freeze":
+			if CurrentState == "Freeze" or CurrentState == "Stasis":
 				CameraController.isInFirstPerson = false
 				$Wizard.visible = true
 			else:
@@ -127,7 +133,9 @@ func _update_animations() -> void:
 func pickup_card(card: String) -> void:
 	if current_cards.size() >= 9:
 		return
-	current_cards.append(card)
+	var updated_cards = current_cards.duplicate()
+	updated_cards.append(card)
+	current_cards = updated_cards
 
 func use_equipped_card() -> void:
 	if active_slot >= current_cards.size():
@@ -149,23 +157,32 @@ func use_equipped_card() -> void:
 					slots.append(c)
 			
 			if num >= 3:
-				ability_triggered = true if WIZIT else StateMachine.transition("Freeze")
+				if WIZIT:
+					ability_triggered = true
+					rpc("set_arcane_vision", true)
+					arcane_vision_timer = 20.0
+				else:
+					ability_triggered = StateMachine.transition("Stasis")
 			
 		"Speed Boost":
 			ability_triggered = true
 			MovementController.speed_boost()
 			
 	if ability_triggered:
+		var updated_cards = current_cards.duplicate()
+		
 		if num >= 3:
-			current_cards.remove_at(slots[2])
-			current_cards.remove_at(slots[1])
-			current_cards.remove_at(slots[0])
+			updated_cards.remove_at(slots[2])
+			updated_cards.remove_at(slots[1])
+			updated_cards.remove_at(slots[0])
 		else:
-			current_cards.remove_at(active_slot)
+			updated_cards.remove_at(active_slot)
+			
+		current_cards = updated_cards
 			
 		if active_slot >= current_cards.size() and current_cards.size() > 0:
 			active_slot = current_cards.size() - 1
-
+			
 func _make_materials_unique() -> void:
 	var body_parts = ["Arm", "Beard", "Eyebrow", "Face", "Hand", "Hat", "Leg", "Robe", "Shoe", "Stash"]
 	for part in body_parts:
@@ -173,17 +190,20 @@ func _make_materials_unique() -> void:
 		if mesh:
 			var mat = mesh.get_active_material(0)
 			if mat:
-				var unique_mat = mat.duplicate(false) 
+				var unique_mat = mat.duplicate(false)
 				unique_mat.set_meta("original_next_pass", unique_mat.next_pass)
 				mesh.set_surface_override_material(0, unique_mat)
 
 func _on_wizit_state_changed(new_value: bool) -> void:
 	if new_value == false:
 		tag_cooldown = true
-		get_tree().create_timer(1.5).timeout.connect(func():
+		get_tree().create_timer(3.0).timeout.connect(func():
 			if is_instance_valid(self):
 				tag_cooldown = false
 		)
+		if multiplayer.is_server():
+			arcane_vision_timer = 0.0
+			rpc("set_arcane_vision", false)
 		
 	call_deferred("_refresh_all_visuals")
 
@@ -199,7 +219,7 @@ func update_xray_visuals() -> void:
 	var local_player = get_tree().get_first_node_in_group("local_player")
 	
 	var should_see_xray = false
-	if local_player and local_player.WIZIT and not self.WIZIT:
+	if local_player and local_player.WIZIT and local_player.arcane_vision_active and not self.WIZIT:
 		should_see_xray = true
 
 	for part in body_parts:
@@ -220,6 +240,11 @@ func update_xray_visuals() -> void:
 			mat.next_pass = xray
 		else:
 			mat.next_pass = null
+			
+@rpc("call_local", "reliable")
+func set_arcane_vision(state: bool) -> void:
+	arcane_vision_active = state
+	call_deferred("_refresh_all_visuals")
 			
 @rpc("any_peer", "call_local", "reliable")
 func request_active_tag(target_node_name: String) -> void:

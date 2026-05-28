@@ -10,6 +10,10 @@ height = 0.2
 [node name="CardSpawner" type="Node3D" unique_id=48530971]
 script = ExtResource("1_figby")
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=664982457]
+_spawnable_scenes = PackedStringArray("uid://bhakpy683ikgx")
+spawn_path = NodePath("..")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1551446244]
 mesh = SubResource("CylinderMesh_8ur60")
 

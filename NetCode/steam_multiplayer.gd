@@ -4,8 +4,9 @@ var player_roster: Dictionary = {}
 
 signal arena_list_updated(lobbies: Array)
 signal roster_updated
+signal connection_status_changed(message: String)
 
-var peer = SteamMultiplayerPeer.new()
+var peer = SteamMultiplayerPeer
 var current_lobby_id: int = 0
 
 func _ready() -> void:
@@ -22,6 +23,7 @@ func _ready() -> void:
 	
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.server_disconnected.connect(_on_host_disconnected)
+	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 
 func _process(_delta: float) -> void:
 	Steam.run_callbacks()
@@ -55,6 +57,7 @@ func _on_lobby_created(connect_status: int, lobby_id: int) -> void:
 		
 
 func enter_arena(lobby_id: int) -> void:
+	connection_status_changed.emit("Attempting to Join lobby...")
 	multiplayer.multiplayer_peer = null
 	Steam.joinLobby(lobby_id)
 
@@ -65,6 +68,7 @@ func _on_lobby_joined(lobby_id: int, permissions: int, locked: bool, response: i
 		var host_steam_id = Steam.getLobbyOwner(lobby_id)
 		if host_steam_id == Steam.getSteamID():
 			return
+		peer = SteamMultiplayerPeer.new() 
 		var error = peer.create_client(host_steam_id, 0)
 		if error != OK:
 			push_error("Failed to connect client peer.")
@@ -108,6 +112,9 @@ func leave_match() -> void:
 		current_lobby_id = 0
 	
 	multiplayer.multiplayer_peer = null
+	
+	player_roster.clear()
+	roster_updated.emit()
 
 func _on_connected_to_server() -> void:
 	var my_name = Steam.getPersonaName()
