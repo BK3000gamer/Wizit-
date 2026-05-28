@@ -116,6 +116,8 @@ func _update_animations() -> void:
 					CameraController.target_height = 0.0
 				else:
 					CameraController.target_height = 0.5
+		else:
+			$Wizard.visible = true
 		if not multiplayer.is_server():
 			if StateMachine and is_instance_valid(StateMachine.CurrentState):
 				if StateMachine.CurrentState.name != CurrentState and StateMachine.has_node(CurrentState):

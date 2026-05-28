@@ -330,6 +330,7 @@ bind/77/pose = Transform3D(-8.80167, -2.0984817e-06, 0, 0, 0, 8.80167, -2.098481
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fe32i"]
 render_priority = 0
+next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -369,6 +370,7 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l3oqu"]
 render_priority = 0
+next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -409,6 +411,7 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gds62"]
 render_priority = 0
+next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -448,6 +451,7 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1ii4q"]
 render_priority = 0
+next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -488,6 +492,7 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_520x1"]
 render_priority = 0
+next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -528,6 +533,7 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0bw0x"]
 render_priority = 0
+next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -547,6 +553,7 @@ shader_parameter/border_width = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d17g3"]
 render_priority = 0
+next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -587,6 +594,7 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_siu7b"]
 render_priority = 0
+next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -626,6 +634,7 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23o0h"]
 render_priority = 0
+next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -665,6 +674,7 @@ blend_shape_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pagiw"]
 render_priority = 0
+next_pass = ExtResource("21_c0fwy")
 shader = ExtResource("18_w51ui")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = false
@@ -932,7 +942,7 @@ states/Stomp/position = Vector2(881.1868, -157)
 "states/Stomp Landing/node" = SubResource("AnimationNodeAnimation_53w1c")
 "states/Stomp Landing/position" = Vector2(1150.1868, -95)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_fe32i"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_rkx17"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_d17g3"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_23o0h"), "Run", "Slide", SubResource("AnimationNodeStateMachineTransition_pagiw"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_fyltw"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_1birn"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_58aja"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_mr25g"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_vjwoo"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_bs7lp"), "Fall", "Run", SubResource("AnimationNodeStateMachineTransition_d3nw5"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_lqb8y"), "Slide", "Run", SubResource("AnimationNodeStateMachineTransition_718ys"), "Slide", "Idle", SubResource("AnimationNodeStateMachineTransition_8ogvp"), "Slide", "Jump", SubResource("AnimationNodeStateMachineTransition_keg2n"), "Slide", "Fall", SubResource("AnimationNodeStateMachineTransition_6bh03"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_v3uw3"), "Run", "Dash", SubResource("AnimationNodeStateMachineTransition_od5bw"), "Jump", "Dash", SubResource("AnimationNodeStateMachineTransition_fq4wi"), "Fall", "Dash", SubResource("AnimationNodeStateMachineTransition_u86q5"), "Slide", "Dash", SubResource("AnimationNodeStateMachineTransition_80ryp"), "Idle", "Stomp", SubResource("AnimationNodeStateMachineTransition_y1ns3"), "Jump", "Stomp", SubResource("AnimationNodeStateMachineTransition_ujhkw"), "Fall", "Stomp", SubResource("AnimationNodeStateMachineTransition_wqp1d"), "Stomp", "Stomp Landing", SubResource("AnimationNodeStateMachineTransition_vmpux"), "Dash", "Idle", SubResource("AnimationNodeStateMachineTransition_v27kq"), "Dash", "Run", SubResource("AnimationNodeStateMachineTransition_xf0r2"), "Dash", "Jump", SubResource("AnimationNodeStateMachineTransition_8ioaw"), "Dash", "Fall", SubResource("AnimationNodeStateMachineTransition_bmqjx"), "Run", "Stomp", SubResource("AnimationNodeStateMachineTransition_c2hx0"), "Slide", "Stomp", SubResource("AnimationNodeStateMachineTransition_ouk3m"), "Stomp Landing", "Idle", SubResource("AnimationNodeStateMachineTransition_vmo6k"), "Stomp Landing", "Run", SubResource("AnimationNodeStateMachineTransition_b2ufw"), "Stomp Landing", "Jump", SubResource("AnimationNodeStateMachineTransition_o5ua7"), "Fall", "Slide", SubResource("AnimationNodeStateMachineTransition_ltlml")]
-graph_offset = Vector2(118.333435, -206.26091)
+graph_offset = Vector2(301.33344, -4.26091)
 
 [sub_resource type="Animation" id="Animation_a8wow"]
 resource_name = "Fall"
