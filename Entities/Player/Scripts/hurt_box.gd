@@ -10,7 +10,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if not multiplayer.is_server(): return
 	
-	if body is Player and player.CurrentState != "Stasis":
+	if body is Player:
 		if body.WIZIT and not player.WIZIT:
 			tag_transfer(body)
 

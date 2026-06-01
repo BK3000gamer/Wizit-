@@ -253,7 +253,7 @@ func request_active_tag(target_node_name: String) -> void:
 	
 	var target_player = get_parent().get_node_or_null(target_node_name)
 	
-	if target_player and target_player is Player and not target_player.WIZIT and not target_player.tag_cooldown:
+	if target_player and target_player is Player and not target_player.WIZIT and not target_player.tag_cooldown and not target_player.CurrentState == "Stasis":
 		
 		rpc("set_wizit", false)
 		target_player.rpc("set_wizit", true)
