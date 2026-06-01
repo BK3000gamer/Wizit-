@@ -2,9 +2,9 @@
 
 [ext_resource type="Shader" uid="uid://c2ber8jo2yt2d" path="res://Addons/flexible_toon_shader/flexible_toon.gdshader" id="1_pym6w"]
 [ext_resource type="Texture2D" uid="uid://tnl5ucjv0pc" path="res://Assets/Textures/Textures_Placeholder_StoneTile.png" id="2_xpsf1"]
-[ext_resource type="Texture2D" uid="uid://c62qdsxwh4el0" path="res://Assets/Textures/Textures_Placeholder_StoneBrick.png" id="3_usa46"]
+[ext_resource type="Texture2D" uid="uid://syhkxod06b60" path="res://Assets/Textures/Textures_StoneBrick.png" id="3_pym6w"]
 [ext_resource type="Texture2D" uid="uid://iqs3237wb22x" path="res://Assets/Textures/Textures_Placeholder_CarpetCorner1.png" id="4_nkyt4"]
-[ext_resource type="Texture2D" uid="uid://dc1h8sop2yuji" path="res://Assets/Textures/Textures_Placeholder_WoodCrate.png" id="5_qlk7u"]
+[ext_resource type="Texture2D" uid="uid://b7m1hyc2xxbw1" path="res://Assets/Textures/Textures_WoodCrate.png" id="5_pym6w"]
 [ext_resource type="Texture2D" uid="uid://c2j4i7h45dnm2" path="res://Assets/Textures/Textures_Woodplanks.png" id="6_cs5p2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3e4l"]
@@ -63,7 +63,7 @@ shader_parameter/border_width = 0.01
 render_priority = 0
 shader = ExtResource("1_pym6w")
 shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("3_usa46")
+shader_parameter/albedo_texture = ExtResource("3_pym6w")
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 2
 shader_parameter/wrap = 0.0
@@ -103,7 +103,7 @@ shader_parameter/border_width = 0.01
 render_priority = 0
 shader = ExtResource("1_pym6w")
 shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("5_qlk7u")
+shader_parameter/albedo_texture = ExtResource("5_pym6w")
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 2
 shader_parameter/wrap = 0.0
@@ -158,6 +158,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_st6tr")
 
 [node name="Carpet Corner 1" type="Node3D" parent="." unique_id=1715173516]
+visible = false
 
 [node name="Carpet Corner 1" type="MeshInstance3D" parent="Carpet Corner 1" unique_id=1742532545]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
@@ -166,6 +167,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_gyju2")
 
 [node name="Wood Crate" type="Node3D" parent="." unique_id=1123450542]
+visible = false
 
 [node name="Wood Crate" type="MeshInstance3D" parent="Wood Crate" unique_id=1888372704]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
@@ -174,6 +176,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_61nqm")
 
 [node name="Wood Planks" type="Node3D" parent="." unique_id=1343308977]
+visible = false
 
 [node name="Wood Planks" type="MeshInstance3D" parent="Wood Planks" unique_id=1035229216]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
