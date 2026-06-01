@@ -214,7 +214,7 @@ func _refresh_all_visuals() -> void:
 
 func update_xray_visuals() -> void:
 	var body_parts = ["Arm", "Beard", "Eyebrow", "Face", "Hand", "Hat", "Leg", "Robe", "Shoe", "Stash"]
-	var target_color = Color.RED if WIZIT else Color.WHITE
+	var target_color = Color.RED if WIZIT else Color.LIGHT_SKY_BLUE
 	
 	var local_player = get_tree().get_first_node_in_group("local_player")
 	
