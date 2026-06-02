@@ -9,6 +9,10 @@ var PreviousState: String
 var slide_cooldown: float = 0.5
 var tag_cooldown: bool = false
 
+#Stasis Points
+var stasis_point_pool: float = 0.0
+var base_point_rate: float = 1.0
+
 var arcane_vision_timer: float = 0.0
 @export var arcane_vision_active: bool = false
 
@@ -37,8 +41,6 @@ func _ready() -> void:
 	StateMachine.init(self)
 	_make_materials_unique()
 	update_xray_visuals()
-	
-
 	
 func _enter_tree() -> void:
 	var my_peer_id = name.to_int()
@@ -78,6 +80,14 @@ func _physics_process(delta: float) -> void:
 		InputDir = Vector3(InputNode.direction.x, 0.0, InputNode.direction.y)
 		StateMachine.process_physics(delta)
 		MovementController.process_physics(delta)
+		
+		if CurrentState == "Stasis":
+			stasis_point_pool += (base_point_rate * 2.0) * delta
+		elif stasis_point_pool > 0.0:
+			var earned_points = int(stasis_point_pool)
+			stasis_point_pool = 0.0
+			
+			GlobalScoreBoard.add_points(name.to_int(), earned_points)
 		
 		if InputNode.is_sliding and is_on_floor() and velocity.length() > 3.0:
 			if StateMachine.CurrentState.name != "Slide" && slide_cooldown <= 0.0:
@@ -255,6 +265,9 @@ func request_active_tag(target_node_name: String) -> void:
 	
 	if target_player and target_player is Player and not target_player.WIZIT and not target_player.tag_cooldown and not target_player.CurrentState == "Stasis":
 		
+		if target_player.CurrentState == "Stasis":
+			return
+			
 		rpc("set_wizit", false)
 		target_player.rpc("set_wizit", true)
 		target_player.rpc("force_freeze")
@@ -267,3 +280,51 @@ func set_wizit(state: bool) -> void:
 func force_freeze() -> void:
 	if StateMachine.CurrentState.name != "Freeze":
 		StateMachine.transition("Freeze")
+		
+@rpc("any_peer", "call_local", "reliable")
+func request_stasis_steal(target_node_name: String) -> void:
+	if not multiplayer.is_server(): return
+	
+	if self.WIZIT: return 
+	if target_node_name == self.name: return
+
+	var target_player = get_parent().get_node_or_null(target_node_name)
+	
+	if target_player and target_player is Player and target_player.CurrentState == "Stasis":
+		
+		var stolen_points = int(target_player.stasis_point_pool)
+		target_player.stasis_point_pool = 0.0
+		GlobalScoreBoard.add_points(name.to_int(), stolen_points)
+		var stasis_state = target_player.StateMachine.get_node_or_null("Stasis")
+		
+		if stasis_state:
+			stasis_state.timeout = true
+			
+			if is_instance_valid(stasis_state.active_timer):
+				stasis_state.active_timer.stop()
+		
+
+
+#Debugging Cheats
+
+func _unhandled_input(event: InputEvent) -> void:
+	if OS.has_feature("editor") or OS.has_feature("debug"):
+		if is_in_group("local_player") and event is InputEventKey and event.pressed and event.keycode == KEY_F1:
+			rpc_id(1, "debug_grant_arcane")
+			
+@rpc("any_peer", "call_local", "reliable")
+func debug_grant_arcane() -> void:
+	if not multiplayer.is_server(): return
+	
+	if not OS.has_feature("editor") and not OS.has_feature("debug"):
+		return
+	
+	var updated_cards = current_cards.duplicate()
+	
+	updated_cards.clear()
+	updated_cards.append("Arcane")
+	updated_cards.append("Arcane")
+	updated_cards.append("Arcane")
+	
+	current_cards = updated_cards
+	active_slot = 0
