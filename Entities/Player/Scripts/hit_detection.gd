@@ -13,7 +13,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not player or str(player.name) != str(multiplayer.get_unique_id()): 
 		return
 
-	if event.is_action_pressed("tag") and taggable and player.WIZIT:
+	if event.is_action_pressed("tag") and taggable:
 		enabled = true
 		taggable = false
 		
@@ -35,8 +35,11 @@ func _process(_delta: float) -> void:
 			target_player = body
 			
 		if target_player and target_player != player:
-			enabled = false 
-			player.rpc_id(1, "request_active_tag", target_player.name)
+			enabled = false
+			if player.WIZIT:
+				player.rpc_id(1, "request_active_tag", target_player.name)
+			else:
+				player.rpc_id(1, "request_stasis_steal", target_player.name)
 
 func _on_active_timeout() -> void:
 	enabled = false

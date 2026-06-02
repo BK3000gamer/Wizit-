@@ -23,7 +23,6 @@ config/icon="res://icon.svg"
 
 SteamNetworkManager="*uid://4sv3jd73h8vb"
 GlobalScoreBoard="*uid://c2akeodu7a8k3"
-GlobalTimer="*uid://c2akeodu7a8k3"
 
 [display]
 
