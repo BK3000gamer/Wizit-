@@ -267,5 +267,3 @@ func set_wizit(state: bool) -> void:
 func force_freeze() -> void:
 	if StateMachine.CurrentState.name != "Freeze":
 		StateMachine.transition("Freeze")
-
-			
