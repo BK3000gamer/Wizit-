@@ -34,7 +34,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godotsteam/plugin.cfg")
+enabled=PackedStringArray("res://addons/gridmap-converter/plugin.cfg")
 
 [file_customization]
 
@@ -120,8 +120,14 @@ tag={
 
 [layer_names]
 
+3d_render/layer_1="Environment"
 3d_physics/layer_1="Environment"
 3d_physics/layer_2="Tag Detection"
+
+[physics]
+
+common/physics_jitter_fix=0.0
+common/physics_interpolation=true
 
 [steam]
 

@@ -1,43 +1,15 @@
-[gd_scene format=4 uid="uid://dviwqlmllwq5n"]
+[gd_scene format=3 uid="uid://dviwqlmllwq5n"]
 
 [ext_resource type="Shader" uid="uid://c2ber8jo2yt2d" path="res://Addons/flexible_toon_shader/flexible_toon.gdshader" id="1_pym6w"]
+[ext_resource type="ArrayMesh" uid="uid://bc8d64jlhkcie" path="res://Assets/Tiles/0_5x0_5_Cube_Cube.res" id="1_xpsf1"]
 [ext_resource type="Texture2D" uid="uid://b2b71ujcrt05n" path="res://Assets/Textures/Textures_StoneTile_.png" id="2_pym6w"]
 [ext_resource type="Texture2D" uid="uid://syhkxod06b60" path="res://Assets/Textures/Textures_StoneBrick.png" id="3_pym6w"]
 [ext_resource type="Texture2D" uid="uid://iqs3237wb22x" path="res://Assets/Textures/Textures_Placeholder_CarpetCorner1.png" id="4_nkyt4"]
 [ext_resource type="Texture2D" uid="uid://b7m1hyc2xxbw1" path="res://Assets/Textures/Textures_WoodCrate.png" id="5_pym6w"]
 [ext_resource type="Texture2D" uid="uid://c2j4i7h45dnm2" path="res://Assets/Textures/Textures_Woodplanks.png" id="6_cs5p2"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3e4l"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_fsqef"]
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"format": 34896613377,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAwACAAEAAAAEAAEAAwAFAAIABQAAAAIABgAEAAAABQAGAAAABwABAAQABwADAAEABgAHAAQABQADAAcABQAHAAYA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("/////wAAAAAAAP////8AAAAA//8AAAAAAAAAAP//AAD///////8AAAAAAAAAAAAA//8AAAAAAAD//wAA//8AAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_2pj57"]
-resource_name = "0_5x0_5_Cube_Cube"
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"attribute_data": PackedByteArray("///+//9//3/+//9//3///////v//f/9/////f/9//v////7//3//f////3//f/7////+//9//3/+//9//3/+/////v//f/9/////f/9//v////7//3//f////3//f/7/"),
-"format": 34896613399,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_w3e4l"),
-"primitive": 3,
-"uv_scale": Vector4(2, 2.0000002, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("/////wAAVNUAAP////9U1QAA//8AAFTV////////VNX//wAA//8AgAAA/////wCA////////AIAAAAAA//8AgAAAAAD///+/AAD//wAA/78AAP//////vwAAAAAAAP+/AAAAAAAAVNX//wAA//9U1f//AAAAAFTVAAAAAP//VNX//wAAAAD/v/////////+//////wAA/7///wAA////vwAAAAAAAP///////wAA//8AAP//AAD/////AAAAAP//VNWqKlTVqipU1aoqVNWqKv9/////f////3////9/////f////3////9/////f///VFVUVVRVVFVUVVRVVFVUVf9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_fsqef")
+[ext_resource type="ArrayMesh" uid="uid://cld64oqb2s2ms" path="res://Assets/Tiles/1x1_Cube_Cube.res" id="8_usa46"]
+[ext_resource type="ArrayMesh" uid="uid://b7volmfnhli0s" path="res://Assets/Tiles/0_5x1_Slope_Cube_001.res" id="9_nkyt4"]
+[ext_resource type="ArrayMesh" uid="uid://dgtgy5ekrjpts" path="res://Assets/Tiles/0_5x0_5_Slope_Slope_001.res" id="10_qlk7u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7mi8p"]
 render_priority = 0
@@ -139,39 +111,7 @@ shader_parameter/use_ramp = false
 shader_parameter/use_borders = false
 shader_parameter/border_width = 0.01
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qkx4"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_j4y6k"]
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"format": 34896613377,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAwACAAEAAAAEAAEAAwAFAAIABQAAAAIABgAEAAAABQAGAAAABwABAAQABwADAAEABgAHAAQABQADAAcABQAHAAYA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("/////wAAAAAAAP////8AAAAA//8AAAAAAAAAAP//AAD///////8AAAAAAAAAAAAA//8AAAAAAAD//wAA//8AAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_s1ms2"]
-resource_name = "1x1_Cube_Cube"
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"attribute_data": PackedByteArray("///+//9//3/+//9//3///////v//f/9/////f/9//v////7//3//f////3//f/7////+//9//3/+//9//3/+/////v//f/9/////f/9//v////7//3//f////3//f/7/"),
-"format": 34896613399,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_7qkx4"),
-"primitive": 3,
-"uv_scale": Vector4(2, 2.0000002, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("/////wAAVNUAAP////9U1QAA//8AAFTV////////VNX//wAA//8AgAAA/////wCA////////AIAAAAAA//8AgAAAAAD///+/AAD//wAA/78AAP//////vwAAAAAAAP+/AAAAAAAAVNX//wAA//9U1f//AAAAAFTVAAAAAP//VNX//wAAAAD/v/////////+//////wAA/7///wAA////vwAAAAAAAP///////wAA//8AAP//AAD/////AAAAAP//VNWqKlTVqipU1aoqVNWqKv9/////f////3////9/////f////3////9/////f///VFVUVVRVVFVUVVRVVFVUVf9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_j4y6k")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pym6w"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qlk7u"]
 render_priority = 0
 shader = ExtResource("1_pym6w")
 shader_parameter/albedo = Color(1, 1, 1, 1)
@@ -191,39 +131,7 @@ shader_parameter/use_ramp = false
 shader_parameter/use_borders = false
 shader_parameter/border_width = 0.01
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nl7ho"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_ymebr"]
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"format": 34896613377,
-"index_count": 48,
-"index_data": PackedByteArray("AAABAAIAAQADAAIAAgAEAAAAAgADAAQAAAAFAAEABQAAAAQAAQAGAAMABQAGAAEABgAHAAMAAwAHAAQABQAEAAgABQAIAAYACAAEAAcABgAJAAcACAAHAAkACAAJAAYA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 10,
-"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAA/3//f///AAD/fwAA//8AAAAAAAAAAAAA/3//fwAAAAD//wAA//8AAP9/AAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_yo3ts"]
-resource_name = "0_5x1_Slope_Cube_001"
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"attribute_data": PackedByteArray("AAD/////AAAAAAAA////////AAAAAP//AAAAAP////8AAP///////wAA/38AAP9//////wAA/////wAAAAD///////8AAAAA//8AAAAA//8AAAAA////////AAAAAP///////wAAAAAAAAAA/////wAA//////9/AAD//////38AAAAA/////w=="),
-"format": 34896613399,
-"index_count": 48,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACwAMAA0ADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAHgAhAB8A"),
-"material": SubResource("StandardMaterial3D_nl7ho"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 34,
-"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD/f/9/AAD8xf//AAD///zF/3//f////MX//wAAAAD8xf9/AAAAAAAA//8AAAAAAAD/f/9/AAAAAP9//3///wCA//8AAP//AID/fwAA//8AgP9/AAAAAKoq//8AAP//qir//wAAAACqKv9/AAD//6oqAAD//wAA/MX/f/9////8xQAA//////zF/3//fwAA/MUAAAAAAACqKv9/AAD//6oq/38AAAAAqioAAAAA//+qKgAA/////wCA/38AAP//AIAAAAAA//8AgP9//3///wCAAAAAAAAAAAD/f/9/AAAAAAAA//8AAAAA/38AAAAAAAD/P/9//z//f/8//3//P/9//bn/HP25/xz9uf8c/bn/HP///3////9/////f/9/////f////3///1RVVFVUVVRVVFVUVVRVVFX9uf8c/bn/HP25/xz9uf8cVFVUVVRVVFVUVVRVVFVUVf9/////f////3////9///////9/////f////3////9/")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_ymebr")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xpsf1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cs5p2"]
 render_priority = 0
 shader = ExtResource("1_pym6w")
 shader_parameter/albedo = Color(1, 1, 1, 1)
@@ -242,38 +150,6 @@ shader_parameter/rim_color = Color(1, 1, 1, 1)
 shader_parameter/use_ramp = false
 shader_parameter/use_borders = false
 shader_parameter/border_width = 0.01
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eba5e"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_5by84"]
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"format": 34896613377,
-"index_count": 24,
-"index_data": PackedByteArray("AAABAAIAAAADAAEAAgAEAAAAAwAAAAQAAQAEAAIAAwAEAAUAAQAFAAQAAwAFAAEA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 6,
-"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD//wAA//8AAP//AAAAAAAA")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_2w1sd"]
-resource_name = "0_5x0_5_Slope_Slope_001"
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"attribute_data": PackedByteArray("AAD/////AAAAAAAA////////AAAAAP//AAAAAP////8AAP///////wAAAAAAAAAA/////wAA//8AAP////8AAAAAAAD/////"),
-"format": 34896613399,
-"index_count": 24,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACwAMAA0ADgAPABAADgARAA8A"),
-"material": SubResource("StandardMaterial3D_eba5e"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 18,
-"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAAAAP//AAD8xf//AAD///zFAAD//////MX//wAAAAD8xQAAAAAAAAAA//8AAAAAAAAAAP//AAAAAAAA/////wCA//8AAP//AIAAAAAA//8AgAAAAAAAAKoq//8AAP//qir//wAAAACqKgAAAAD//6oq/z//f/8//3//P/9//z//f/25/xz9uf8c/bn/HP25/xz///9/////f////3//f////3////9///+qKlTVqipU1aoqVNWqKlTV")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_5by84")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_usa46"]
 render_priority = 0
@@ -295,38 +171,6 @@ shader_parameter/use_ramp = false
 shader_parameter/use_borders = false
 shader_parameter/border_width = 0.01
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pym6w"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_xpsf1"]
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"format": 34896613377,
-"index_count": 48,
-"index_data": PackedByteArray("AAABAAIAAQADAAIAAgAEAAAAAgADAAQAAAAFAAEABQAAAAQAAQAGAAMABQAGAAEABgAHAAMAAwAHAAQABQAEAAgABQAIAAYACAAEAAcABgAJAAcACAAHAAkACAAJAAYA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 10,
-"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAA/3//f///AAD/fwAA//8AAAAAAAAAAAAA/3//fwAAAAD//wAA//8AAP9/AAAAAAAA//8AAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_usa46"]
-resource_name = "0_5x1_Slope_Cube_001"
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"attribute_data": PackedByteArray("AAD/////AAAAAAAA////////AAAAAP//AAAAAP////8AAP///////wAA/38AAP9//////wAA/////wAAAAD///////8AAAAA//8AAAAA//8AAAAA////////AAAAAP///////wAAAAAAAAAA/////wAA//////9/AAD//////38AAAAA/////w=="),
-"format": 34896613399,
-"index_count": 48,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACwAMAA0ADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAHgAhAB8A"),
-"material": SubResource("StandardMaterial3D_pym6w"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 34,
-"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD/f/9/AAD8xf//AAD///zF/3//f////MX//wAAAAD8xf9/AAAAAAAA//8AAAAAAAD/f/9/AAAAAP9//3///wCA//8AAP//AID/fwAA//8AgP9/AAAAAKoq//8AAP//qir//wAAAACqKv9/AAD//6oqAAD//wAA/MX/f/9////8xQAA//////zF/3//fwAA/MUAAAAAAACqKv9/AAD//6oq/38AAAAAqioAAAAA//+qKgAA/////wCA/38AAP//AIAAAAAA//8AgP9//3///wCAAAAAAAAAAAD/f/9/AAAAAAAA//8AAAAA/38AAAAAAAD/P/9//z//f/8//3//P/9//bn/HP25/xz9uf8c/bn/HP///3////9/////f/9/////f////3///1RVVFVUVVRVVFVUVVRVVFX9uf8c/bn/HP25/xz9uf8cVFVUVVRVVFVUVVRVVFVUVf9/////f////3////9///////9/////f////3////9/")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_xpsf1")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nkyt4"]
 render_priority = 0
 shader = ExtResource("1_pym6w")
@@ -346,38 +190,6 @@ shader_parameter/rim_color = Color(1, 1, 1, 1)
 shader_parameter/use_ramp = false
 shader_parameter/use_borders = false
 shader_parameter/border_width = 0.01
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlk7u"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_cs5p2"]
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"format": 34896613377,
-"index_count": 24,
-"index_data": PackedByteArray("AAABAAIAAAADAAEAAgAEAAAAAwAAAAQAAQAEAAIAAwAEAAUAAQAFAAQAAwAFAAEA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 6,
-"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD//wAA//8AAP//AAAAAAAA")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_7mi8p"]
-resource_name = "0_5x0_5_Slope_Slope_001"
-_surfaces = [{
-"aabb": AABB(-1, -1, -1, 2, 2, 2),
-"attribute_data": PackedByteArray("AAD/////AAAAAAAA////////AAAAAP//AAAAAP////8AAP///////wAAAAAAAAAA/////wAA//8AAP////8AAAAAAAD/////"),
-"format": 34896613399,
-"index_count": 24,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACwAMAA0ADgAPABAADgARAA8A"),
-"material": SubResource("StandardMaterial3D_qlk7u"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 18,
-"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAAAAP//AAD8xf//AAD///zFAAD//////MX//wAAAAD8xQAAAAAAAAAA//8AAAAAAAAAAP//AAAAAAAA/////wCA//8AAP//AIAAAAAA//8AgAAAAAAAAKoq//8AAP//qir//wAAAACqKgAAAAD//6oq/z//f/8//3//P/9//z//f/25/xz9uf8c/bn/HP25/xz///9/////f////3//f////3////9///+qKlTVqipU1aoqVNWqKlTV")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_cs5p2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n30p1"]
 render_priority = 0
@@ -405,7 +217,7 @@ shader_parameter/border_width = 0.01
 
 [node name="Stone Tile" type="MeshInstance3D" parent="Stone Tile" unique_id=1907950132]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("ArrayMesh_2pj57")
+mesh = ExtResource("1_xpsf1")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_7mi8p")
 
@@ -413,7 +225,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_7mi8p")
 
 [node name="Stone Brick" type="MeshInstance3D" parent="Stone Brick" unique_id=573439843]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("ArrayMesh_2pj57")
+mesh = ExtResource("1_xpsf1")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_st6tr")
 
@@ -421,7 +233,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_st6tr")
 
 [node name="Carpet Corner" type="MeshInstance3D" parent="Carpet Corner" unique_id=1742532545]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("ArrayMesh_2pj57")
+mesh = ExtResource("1_xpsf1")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_gyju2")
 
@@ -429,7 +241,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_gyju2")
 
 [node name="Wood Crate Small" type="MeshInstance3D" parent="Wood Crate Small" unique_id=1888372704]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("ArrayMesh_2pj57")
+mesh = ExtResource("1_xpsf1")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_61nqm")
 
@@ -437,7 +249,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_61nqm")
 
 [node name="Wood Planks" type="MeshInstance3D" parent="Wood Planks" unique_id=1035229216]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("ArrayMesh_2pj57")
+mesh = ExtResource("1_xpsf1")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_o51pd")
 
@@ -445,23 +257,23 @@ surface_material_override/0 = SubResource("ShaderMaterial_o51pd")
 
 [node name="Wood Crate Big" type="MeshInstance3D" parent="Wood Crate Big" unique_id=1136067738]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-mesh = SubResource("ArrayMesh_s1ms2")
+mesh = ExtResource("8_usa46")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("ShaderMaterial_pym6w")
+surface_material_override/0 = SubResource("ShaderMaterial_qlk7u")
 
 [node name="Stone Slope 30" type="Node3D" parent="." unique_id=210652763]
 
 [node name="Stone Slope 30" type="MeshInstance3D" parent="Stone Slope 30" unique_id=5277486]
 transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("ArrayMesh_yo3ts")
+mesh = ExtResource("9_nkyt4")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("ShaderMaterial_xpsf1")
+surface_material_override/0 = SubResource("ShaderMaterial_cs5p2")
 
 [node name="Stone Slope 45" type="Node3D" parent="." unique_id=319022411]
 
 [node name="Stone Slope 45" type="MeshInstance3D" parent="Stone Slope 45" unique_id=1944417375]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("ArrayMesh_2w1sd")
+mesh = ExtResource("10_qlk7u")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_usa46")
 
@@ -469,7 +281,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_usa46")
 
 [node name="Wood Slope 30" type="MeshInstance3D" parent="Wood Slope 30" unique_id=890977057]
 transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("ArrayMesh_usa46")
+mesh = ExtResource("9_nkyt4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_nkyt4")
 
@@ -477,6 +289,6 @@ surface_material_override/0 = SubResource("ShaderMaterial_nkyt4")
 
 [node name="Wood Slope 45" type="MeshInstance3D" parent="Wood Slope 45" unique_id=1269978950]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-mesh = SubResource("ArrayMesh_7mi8p")
+mesh = ExtResource("10_qlk7u")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_n30p1")

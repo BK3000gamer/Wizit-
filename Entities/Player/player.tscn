@@ -88,7 +88,7 @@ height = 1.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mv1ah"]
 resource_local_to_scene = true
-radius = 0.25
+radius = 0.23
 height = 1.5
 
 [sub_resource type="Skin" id="Skin_5d48g"]
@@ -1223,7 +1223,6 @@ target_position = Vector3(0, 1, 0)
 
 [node name="Wizard" type="Node3D" parent="." unique_id=2120730835]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, -0.75, 0)
-visible = false
 
 [node name="Armature" type="Node3D" parent="Wizard" unique_id=205112003]
 transform = Transform3D(0.1136148, 0, 0, 0, 0.1136148, 0, 0, 0, 0.1136148, 0, 0, 0)
