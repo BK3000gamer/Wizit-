@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://dviwqlmllwq5n"]
 
 [ext_resource type="Shader" uid="uid://c2ber8jo2yt2d" path="res://Addons/flexible_toon_shader/flexible_toon.gdshader" id="1_pym6w"]
-[ext_resource type="ArrayMesh" uid="uid://bc8d64jlhkcie" path="res://Assets/Tiles/0_5x0_5_Cube_Cube.res" id="1_xpsf1"]
+[ext_resource type="ArrayMesh" uid="uid://cgm61gxitjerd" path="res://Assets/Tiles/0_5x0_5_Cube_Cube.res" id="1_xpsf1"]
 [ext_resource type="Texture2D" uid="uid://b2b71ujcrt05n" path="res://Assets/Textures/Textures_StoneTile_.png" id="2_pym6w"]
 [ext_resource type="Texture2D" uid="uid://syhkxod06b60" path="res://Assets/Textures/Textures_StoneBrick.png" id="3_pym6w"]
 [ext_resource type="Texture2D" uid="uid://iqs3237wb22x" path="res://Assets/Textures/Textures_Placeholder_CarpetCorner1.png" id="4_nkyt4"]
 [ext_resource type="Texture2D" uid="uid://b7m1hyc2xxbw1" path="res://Assets/Textures/Textures_WoodCrate.png" id="5_pym6w"]
 [ext_resource type="Texture2D" uid="uid://c2j4i7h45dnm2" path="res://Assets/Textures/Textures_Woodplanks.png" id="6_cs5p2"]
-[ext_resource type="ArrayMesh" uid="uid://cld64oqb2s2ms" path="res://Assets/Tiles/1x1_Cube_Cube.res" id="8_usa46"]
-[ext_resource type="ArrayMesh" uid="uid://b7volmfnhli0s" path="res://Assets/Tiles/0_5x1_Slope_Cube_001.res" id="9_nkyt4"]
-[ext_resource type="ArrayMesh" uid="uid://dgtgy5ekrjpts" path="res://Assets/Tiles/0_5x0_5_Slope_Slope_001.res" id="10_qlk7u"]
+[ext_resource type="ArrayMesh" uid="uid://bul4cb26kdu84" path="res://Assets/Tiles/1x1_Cube_Cube.res" id="8_usa46"]
+[ext_resource type="ArrayMesh" uid="uid://o00gwke780jd" path="res://Assets/Tiles/0_5x1_Slope_Cube_001.res" id="9_nkyt4"]
+[ext_resource type="ArrayMesh" uid="uid://bonghwmwauter" path="res://Assets/Tiles/0_5x0_5_Slope_Slope_001.res" id="10_qlk7u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7mi8p"]
 render_priority = 0

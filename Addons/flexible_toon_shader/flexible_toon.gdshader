@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode cull_back;
 
 stencil_mode write, compare_always, 1;
 
