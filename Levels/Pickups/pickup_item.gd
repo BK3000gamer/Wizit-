@@ -9,6 +9,13 @@ var chosen_card: String
 var player: Player
 var unique_material: Material
 
+const dash = preload("res://Assets/Textures/Cards/Dash.png")
+const updraft = preload("res://Assets/Textures/Cards/Updraft.png")
+const speed = preload("res://Assets/Textures/Cards/Speed.png")
+const stomp = preload("res://Assets/Textures/Cards/Stomp.png")
+const freeze = preload("res://Assets/Textures/Cards/Freeze.png")
+const scan = preload("res://Assets/Textures/Cards/Scan.png")
+
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	
@@ -21,9 +28,9 @@ func _process(_delta: float) -> void:
 	if chosen_card == "Arcane" and unique_material:
 		if is_instance_valid(player):
 			if player.WIZIT:
-				unique_material.albedo_color = Color("red")
+				unique_material.albedo_texture = scan
 			else:
-				unique_material.albedo_color = Color("cyan")
+				unique_material.albedo_texture = freeze
 		else:
 			player = get_tree().get_first_node_in_group("local_player")
 
@@ -51,9 +58,9 @@ func sync_card_data(server_chosen_card: String, server_pos: Vector3) -> void:
 		card.set_surface_override_material(0, unique_material)
 		
 		match chosen_card:
-			"Dash": unique_material.albedo_color = Color("blue")
-			"Stomp": unique_material.albedo_color = Color("green")
-			"Updraft": unique_material.albedo_color = Color("purple")
-			"Speed Boost": unique_material.albedo_color = Color("yellow")
+			"Dash": unique_material.albedo_texture = dash
+			"Stomp": unique_material.albedo_texture = stomp
+			"Updraft": unique_material.albedo_texture = updraft
+			"Speed Boost": unique_material.albedo_texture = speed
 	else:
 		push_error("No active material found on card")

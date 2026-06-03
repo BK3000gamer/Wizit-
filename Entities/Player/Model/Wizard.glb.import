@@ -128,6 +128,15 @@ _subresources={
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://Entities/Player/Model/Wizard_Plane_002.res",
 "save_to_file/path": "uid://b7uds82lylynx"
+},
+"Wizard_Plane_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Entities/Player/Model/Wizard_Plane_004.res",
+"save_to_file/path": "uid://bgwsn8vdcr72e"
 }
 }
 }

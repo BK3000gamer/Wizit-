@@ -2,12 +2,14 @@
 
 [ext_resource type="Material" uid="uid://y1cfdwhkliyi" path="res://Assets/Shaders/x-ray.tres" id="1_21qdp"]
 [ext_resource type="Shader" uid="uid://c2ber8jo2yt2d" path="res://Addons/flexible_toon_shader/flexible_toon.gdshader" id="2_1gjyq"]
+[ext_resource type="Texture2D" uid="uid://bkrjeqtln6k8x" path="res://Assets/Textures/Player/Blue_Robes.png" id="3_1gjyq"]
 
 [resource]
 render_priority = 0
 next_pass = ExtResource("1_21qdp")
 shader = ExtResource("2_1gjyq")
-shader_parameter/albedo = Color(1, 0, 0, 1)
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_1gjyq")
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 2
 shader_parameter/wrap = 0.0

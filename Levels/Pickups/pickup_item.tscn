@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://bhakpy683ikgx"]
 
 [ext_resource type="Script" uid="uid://ceuf6qkjglm0r" path="res://Levels/Pickups/pickup_item.gd" id="1_uxik1"]
-[ext_resource type="Texture2D" uid="uid://dgy1eg8floh5x" path="res://icon.svg" id="2_w46j2"]
+[ext_resource type="Texture2D" uid="uid://ddidhur4ypj4j" path="res://Assets/Textures/Cards/Scan.png" id="2_w46j2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uxik1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ocy2k"]
+transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("2_w46j2")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ho1dc"]
 material = SubResource("StandardMaterial3D_ocy2k")
-size = Vector2(0.7, 1)
+size = Vector2(0.73, 1)
 
 [node name="PickupItem" type="Area3D" unique_id=505550995]
 script = ExtResource("1_uxik1")

@@ -224,7 +224,7 @@ func _refresh_all_visuals() -> void:
 
 func update_xray_visuals() -> void:
 	var body_parts = ["Arm", "Beard", "Eyebrow", "Face", "Hand", "Hat", "Leg", "Robe", "Shoe", "Stash"]
-	var target_color = Color.RED if WIZIT else Color.LIGHT_SKY_BLUE
+	var target_texture = preload("res://Assets/Textures/Player/Red_Robes.png") if WIZIT else preload("res://Assets/Textures/Player/Blue_Robes.png")
 	
 	var local_player = get_tree().get_first_node_in_group("local_player")
 	
@@ -240,9 +240,9 @@ func update_xray_visuals() -> void:
 		if not mat: continue
 			
 		if mat is ShaderMaterial:
-			mat.set_shader_parameter("albedo", target_color)
+			mat.set_shader_parameter("albedo_texture", target_texture)
 		else:
-			mat.albedo_color = target_color
+			mat.albedo_texure = target_texture
 	
 		if should_see_xray and xray_shader_material:
 			var xray = xray_shader_material.duplicate(false)

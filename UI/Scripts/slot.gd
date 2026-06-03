@@ -4,6 +4,13 @@ extends Node2D
 
 @onready var sprite := $Sprite2D
 
+const dash = preload("res://Assets/Textures/Cards/Dash.png")
+const updraft = preload("res://Assets/Textures/Cards/Updraft.png")
+const speed = preload("res://Assets/Textures/Cards/Speed.png")
+const stomp = preload("res://Assets/Textures/Cards/Stomp.png")
+const freeze = preload("res://Assets/Textures/Cards/Freeze.png")
+const scan = preload("res://Assets/Textures/Cards/Scan.png")
+
 var player: Player
 
 func _ready() -> void:
@@ -20,14 +27,17 @@ func  _process(_delta: float) -> void:
 	sprite.visible = true
 		
 	if this_slot + 1 > player.current_cards.size():
-		sprite.modulate = Color(1.0, 1.0, 1.0, 0.25)
+		sprite.texture = scan
+		sprite.modulate = Color(0.0, 0.0, 0.0, 0.25)
+	else:
+		sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	
 	if this_slot == player.active_slot:
 		sprite.position.y = -40
-		sprite.scale = Vector2(0.875, 1.25)
+		sprite.scale = Vector2(0.05, 0.05)
 	else:
 		sprite.position.y = 0
-		sprite.scale = Vector2(0.7, 1.0)
+		sprite.scale = Vector2(0.04, 0.04)
 	
 	if this_slot >= player.current_cards.size():
 		return
@@ -35,15 +45,15 @@ func  _process(_delta: float) -> void:
 	var ability = player.current_cards[this_slot]
 	match ability:
 		"Dash":
-			sprite.modulate = Color("blue")
+			sprite.texture = dash
 		"Stomp":
-			sprite.modulate = Color("green")
+			sprite.texture = stomp
 		"Updraft":
-			sprite.modulate = Color("purple")
+			sprite.texture = updraft
 		"Speed Boost":
-			sprite.modulate = Color("yellow")
+			sprite.texture = speed
 		"Arcane":
 			if player.WIZIT:
-				sprite.modulate = Color("red")
+				sprite.texture = scan
 			else:
-				sprite.modulate = Color("cyan")
+				sprite.texture = freeze

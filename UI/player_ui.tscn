@@ -2,59 +2,386 @@
 
 [ext_resource type="PackedScene" uid="uid://b3qpd7glaj03p" path="res://UI/slot.tscn" id="1_4hlgy"]
 [ext_resource type="Script" uid="uid://bbs63c5fpjlds" path="res://UI/Scripts/crosshair.gd" id="1_nplvd"]
+[ext_resource type="Script" uid="uid://ctyvv1tgkd3gj" path="res://UI/player_ui.gd" id="1_xmsn8"]
 [ext_resource type="Script" uid="uid://dodnn7n3dkcl5" path="res://UI/Scripts/timer.gd" id="3_kwigr"]
 [ext_resource type="Script" uid="uid://kdpbmwalxehu" path="res://UI/score_display.gd" id="4_b8q8m"]
+[ext_resource type="Texture2D" uid="uid://bjq3yqyr73o4j" path="res://Entities/Player/Sprites/Blue.png" id="5_ccqt3"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xmsn8"]
+viewport_path = NodePath("2D Animation")
 
 [sub_resource type="LabelSettings" id="LabelSettings_kwigr"]
 font_size = 40
 
+[sub_resource type="Animation" id="Animation_8w2om"]
+resource_name = "Dash"
+length = 1.0000083
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2D Animation/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_a8wow"]
+resource_name = "Fall"
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2D Animation/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_avsg8"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2D Animation/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_dv6dp"]
+resource_name = "Jump"
+length = 0.3333417
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2D Animation/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_u86q5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2D Animation/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_01ng6"]
+resource_name = "Run"
+length = 0.66667503
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2D Animation/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.5, 0.5833334, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [13, 14, 15, 16, 17, 18, 19, 20, 23]
+}
+
+[sub_resource type="Animation" id="Animation_og23y"]
+resource_name = "Slide"
+length = 0.166675
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2D Animation/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [22, 24, 25]
+}
+
+[sub_resource type="Animation" id="Animation_ccqt3"]
+resource_name = "Stomp"
+length = 0.166675
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2D Animation/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [32, 33, 34]
+}
+
+[sub_resource type="Animation" id="Animation_xmsn8"]
+resource_name = "Stomp Landing"
+length = 0.166675
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2D Animation/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [35, 36]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b8q8m"]
+_data = {
+&"Dash": SubResource("Animation_8w2om"),
+&"Fall": SubResource("Animation_a8wow"),
+&"Idle": SubResource("Animation_avsg8"),
+&"Jump": SubResource("Animation_dv6dp"),
+&"RESET": SubResource("Animation_u86q5"),
+&"Run": SubResource("Animation_01ng6"),
+&"Slide ": SubResource("Animation_og23y"),
+&"Stomp": SubResource("Animation_ccqt3"),
+&"Stomp Landing": SubResource("Animation_xmsn8")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ccqt3"]
+animation = &"Dash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_avsg8"]
+animation = &"Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dv6dp"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01ng6"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ui1ln"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v27kq"]
+animation = &"Slide "
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xmsn8"]
+animation = &"Stomp Landing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8w2om"]
+animation = &"Stomp"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kx1i7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w51ui"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Run\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_slvv8"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Jump\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l3oqu"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Jump\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_53w1c"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Fall\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_siu7b"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Fall\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c0fwy"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Fall\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gds62"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qv8uv"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ii4q"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Run\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_520x1"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Run\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mycwr"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Fall\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0bw0x"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Jump\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_avsg8"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dv6dp"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Run\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_01ng6"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ui1ln"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Slide\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xmsn8"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Dash\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8w2om"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Dash\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qf5vc"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Dash\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_an3gc"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Dash\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_byocv"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "CurrentState == \"Idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fwocb"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "CurrentState == \"Jump\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rvkn8"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Run\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ixg0m"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s8lkg"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "CurrentState == \"Slide\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8hdo2"]
+advance_mode = 2
+advance_expression = "CurrentState != \"Stomp\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k3km2"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Stomp\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hdrb0"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Stomp\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qa2pn"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Stomp\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_350d7"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Stomp\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_01aj8"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Stomp\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hroa2"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "CurrentState == \"Idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ysum4"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "CurrentState == \"Jump\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8ac0m"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "CurrentState == \"Run\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2lj1m"]
+advance_mode = 2
+advance_expression = "CurrentState == \"Slide\""
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ccqt3"]
+states/Dash/node = SubResource("AnimationNodeAnimation_ccqt3")
+states/Dash/position = Vector2(452, -149.0669)
+states/Fall/node = SubResource("AnimationNodeAnimation_avsg8")
+states/Fall/position = Vector2(578, 262)
+states/Idle/node = SubResource("AnimationNodeAnimation_dv6dp")
+states/Idle/position = Vector2(358, 25)
+states/Jump/node = SubResource("AnimationNodeAnimation_01ng6")
+states/Jump/position = Vector2(403, 234)
+states/Run/node = SubResource("AnimationNodeAnimation_ui1ln")
+states/Run/position = Vector2(552, 5)
+states/Slide/node = SubResource("AnimationNodeAnimation_v27kq")
+states/Slide/position = Vector2(808, 132)
+states/Stomp/node = SubResource("AnimationNodeAnimation_8w2om")
+states/Stomp/position = Vector2(629, -163.0669)
+"states/Stomp Landing/node" = SubResource("AnimationNodeAnimation_xmsn8")
+"states/Stomp Landing/position" = Vector2(892, -97.066895)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_kx1i7"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_w51ui"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_slvv8"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_l3oqu"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_53w1c"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_siu7b"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_c0fwy"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_gds62"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_qv8uv"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_1ii4q"), "Fall", "Run", SubResource("AnimationNodeStateMachineTransition_520x1"), "Slide", "Fall", SubResource("AnimationNodeStateMachineTransition_mycwr"), "Slide", "Jump", SubResource("AnimationNodeStateMachineTransition_0bw0x"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_avsg8"), "Slide", "Run", SubResource("AnimationNodeStateMachineTransition_dv6dp"), "Slide", "Idle", SubResource("AnimationNodeStateMachineTransition_01ng6"), "Run", "Slide", SubResource("AnimationNodeStateMachineTransition_ui1ln"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_xmsn8"), "Run", "Dash", SubResource("AnimationNodeStateMachineTransition_8w2om"), "Fall", "Dash", SubResource("AnimationNodeStateMachineTransition_qf5vc"), "Jump", "Dash", SubResource("AnimationNodeStateMachineTransition_an3gc"), "Dash", "Idle", SubResource("AnimationNodeStateMachineTransition_byocv"), "Dash", "Jump", SubResource("AnimationNodeStateMachineTransition_fwocb"), "Dash", "Run", SubResource("AnimationNodeStateMachineTransition_rvkn8"), "Dash", "Fall", SubResource("AnimationNodeStateMachineTransition_ixg0m"), "Dash", "Slide", SubResource("AnimationNodeStateMachineTransition_s8lkg"), "Stomp", "Stomp Landing", SubResource("AnimationNodeStateMachineTransition_8hdo2"), "Idle", "Stomp", SubResource("AnimationNodeStateMachineTransition_k3km2"), "Run", "Stomp", SubResource("AnimationNodeStateMachineTransition_hdrb0"), "Jump", "Stomp", SubResource("AnimationNodeStateMachineTransition_qa2pn"), "Fall", "Stomp", SubResource("AnimationNodeStateMachineTransition_350d7"), "Slide", "Stomp", SubResource("AnimationNodeStateMachineTransition_01aj8"), "Stomp Landing", "Idle", SubResource("AnimationNodeStateMachineTransition_hroa2"), "Stomp Landing", "Jump", SubResource("AnimationNodeStateMachineTransition_ysum4"), "Stomp Landing", "Run", SubResource("AnimationNodeStateMachineTransition_8ac0m"), "Fall", "Slide", SubResource("AnimationNodeStateMachineTransition_2lj1m")]
+graph_offset = Vector2(150, -135.0669)
+
 [node name="Player UI" type="CanvasLayer" unique_id=1179422355]
+script = ExtResource("1_xmsn8")
 
-[node name="Crosshair" type="Node2D" parent="." unique_id=159221850]
-position = Vector2(960, 540)
-script = ExtResource("1_nplvd")
-InnerPoint = 2.999999999999904
-OuterPoint = 6.999999999999776
-MovementOffset = 29.99999999999904
-curve = -1.999999999999936
-colour = Color(0, 1, 1, 1)
-
-[node name="Inventory" type="Node2D" parent="." unique_id=2026855735]
-position = Vector2(960, 1016)
-
-[node name="Slot1" parent="Inventory" unique_id=18109451 instance=ExtResource("1_4hlgy")]
-position = Vector2(-360, 0)
-
-[node name="Slot2" parent="Inventory" unique_id=1844457918 instance=ExtResource("1_4hlgy")]
-position = Vector2(-270, 0)
-this_slot = 1
-
-[node name="Slot3" parent="Inventory" unique_id=2015449621 instance=ExtResource("1_4hlgy")]
-position = Vector2(-180, -1)
-this_slot = 2
-
-[node name="Slot4" parent="Inventory" unique_id=1720982786 instance=ExtResource("1_4hlgy")]
-position = Vector2(-90, 0)
-this_slot = 3
-
-[node name="Slot5" parent="Inventory" unique_id=1238694197 instance=ExtResource("1_4hlgy")]
-this_slot = 4
-
-[node name="Slot6" parent="Inventory" unique_id=2073162594 instance=ExtResource("1_4hlgy")]
-position = Vector2(90, 0)
-this_slot = 5
-
-[node name="Slot7" parent="Inventory" unique_id=407675127 instance=ExtResource("1_4hlgy")]
-position = Vector2(180, 0)
-this_slot = 6
-
-[node name="Slot8" parent="Inventory" unique_id=859743269 instance=ExtResource("1_4hlgy")]
-position = Vector2(270, 0)
-this_slot = 7
-
-[node name="Slot9" parent="Inventory" unique_id=2049743535 instance=ExtResource("1_4hlgy")]
-position = Vector2(360, -1)
-this_slot = 8
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1774269240]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("ViewportTexture_xmsn8")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=646567769]
 custom_minimum_size = Vector2(200, 100)
@@ -92,3 +419,68 @@ offset_left = -150.0
 offset_bottom = 100.0
 grow_horizontal = 0
 script = ExtResource("4_b8q8m")
+
+[node name="2D Animation Player" type="AnimationPlayer" parent="." unique_id=749477493]
+libraries/ = SubResource("AnimationLibrary_b8q8m")
+
+[node name="2D Animation Tree" type="AnimationTree" parent="." unique_id=1457098880]
+tree_root = SubResource("AnimationNodeStateMachine_ccqt3")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../2D Animation Player")
+
+[node name="2D Animation" type="SubViewport" parent="." unique_id=1644188581]
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="Sprite2D" type="Sprite2D" parent="2D Animation" unique_id=1186456734]
+position = Vector2(960, 540)
+texture = ExtResource("5_ccqt3")
+hframes = 7
+vframes = 6
+frame = 12
+
+[node name="Inventory" type="Node2D" parent="2D Animation" unique_id=2026855735]
+position = Vector2(960, 1016)
+
+[node name="Slot1" parent="2D Animation/Inventory" unique_id=18109451 instance=ExtResource("1_4hlgy")]
+position = Vector2(-360, 0)
+
+[node name="Slot2" parent="2D Animation/Inventory" unique_id=1844457918 instance=ExtResource("1_4hlgy")]
+position = Vector2(-270, 0)
+this_slot = 1
+
+[node name="Slot3" parent="2D Animation/Inventory" unique_id=2015449621 instance=ExtResource("1_4hlgy")]
+position = Vector2(-180, -1)
+this_slot = 2
+
+[node name="Slot4" parent="2D Animation/Inventory" unique_id=1720982786 instance=ExtResource("1_4hlgy")]
+position = Vector2(-90, 0)
+this_slot = 3
+
+[node name="Slot5" parent="2D Animation/Inventory" unique_id=1238694197 instance=ExtResource("1_4hlgy")]
+this_slot = 4
+
+[node name="Slot6" parent="2D Animation/Inventory" unique_id=2073162594 instance=ExtResource("1_4hlgy")]
+position = Vector2(90, 0)
+this_slot = 5
+
+[node name="Slot7" parent="2D Animation/Inventory" unique_id=407675127 instance=ExtResource("1_4hlgy")]
+position = Vector2(180, 0)
+this_slot = 6
+
+[node name="Slot8" parent="2D Animation/Inventory" unique_id=859743269 instance=ExtResource("1_4hlgy")]
+position = Vector2(270, 0)
+this_slot = 7
+
+[node name="Slot9" parent="2D Animation/Inventory" unique_id=2049743535 instance=ExtResource("1_4hlgy")]
+position = Vector2(360, -1)
+this_slot = 8
+
+[node name="Crosshair" type="Node2D" parent="2D Animation" unique_id=159221850]
+position = Vector2(960, 540)
+script = ExtResource("1_nplvd")
+InnerPoint = 2.999999999999904
+OuterPoint = 6.999999999999776
+MovementOffset = 29.99999999999904
+curve = -1.999999999999936
+colour = Color(0, 1, 1, 1)
