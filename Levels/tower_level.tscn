@@ -13,11 +13,10 @@ ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 sky_material = SubResource("ProceduralSkyMaterial_rh4hj")
 
 [sub_resource type="Environment" id="Environment_7xr0u"]
-background_energy_multiplier = 2.0
 sky = SubResource("Sky_hixus")
 ambient_light_source = 2
 ambient_light_color = Color(0.8392157, 0.972549, 1, 1)
-ambient_light_energy = 3.0
+ambient_light_energy = 0.25
 tonemap_mode = 2
 glow_enabled = true
 
@@ -497,7 +496,7 @@ size = Vector3(1.5, 3, 1.5)
 size = Vector3(1.5, 4, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_214i1"]
-size = Vector3(1.5, 6.5, 1.5)
+size = Vector3(1.5, 5, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fic25"]
 size = Vector3(5, 1, 1)
@@ -714,6 +713,12 @@ size = Vector3(8, 5, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2gab8"]
 size = Vector3(6.5, 5, 0.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_h7u46"]
+size = Vector3(5, 5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v11vh"]
+size = Vector3(5, 5.5, 0.5)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_x3ycj"]
 size = Vector3(6.5, 5, 0.5)
 
@@ -921,6 +926,9 @@ size = Vector3(27, 5.5, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xf27e"]
 size = Vector3(12, 5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hi1s1"]
+size = Vector3(5, 5, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rajge"]
 size = Vector3(23, 5, 0.5)
@@ -2214,6 +2222,12 @@ depth = 2.0
 polygon = PackedVector2Array(1.75, 2, 1.75, 1, -0.25, 1)
 debug_color = Color(0.8509804, 0.36862746, 0, 0.61960787)
 
+[node name="CollisionPolygon3D15" type="CollisionPolygon3D" parent="1st Floor/StaticBody3D" unique_id=1640802654]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -5.75, -1, -17.25)
+depth = 3.5
+polygon = PackedVector2Array(-0.25, 1, 0.25, 1.5, 0.25, 1)
+debug_color = Color(0.8509804, 0.36862746, 0, 0.61960787)
+
 [node name="CollisionPolygon3D8" type="CollisionPolygon3D" parent="1st Floor/StaticBody3D" unique_id=146516020]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -17.75, -1, -12)
 depth = 3.0
@@ -2261,86 +2275,60 @@ shape = SubResource("BoxShape3D_hogff")
 debug_color = Color(0.8500152, 0.36681023, 0, 0.61960787)
 
 [node name="Lights" type="Node3D" parent="1st Floor" unique_id=479270634]
-visible = false
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="1st Floor/Lights" unique_id=93562879]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 8.25)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D12" type="OmniLight3D" parent="1st Floor/Lights" unique_id=844976003]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 3.5, 5.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D14" type="OmniLight3D" parent="1st Floor/Lights" unique_id=1901548646]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 3.5, -8.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 3.5, -11)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
-omni_range = 30.0
-omni_attenuation = 0.25
-
-[node name="OmniLight3D15" type="OmniLight3D" parent="1st Floor/Lights" unique_id=1420169635]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 3.5, -11)
-light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
-light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D17" type="OmniLight3D" parent="1st Floor/Lights" unique_id=1566879768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -16.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D9" type="OmniLight3D" parent="1st Floor/Lights" unique_id=1103111672]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 3.5, 16.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="1st Floor/Lights" unique_id=1960594678]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 3.5, 5.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D18" type="OmniLight3D" parent="1st Floor/Lights" unique_id=1004828614]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3.5, -11)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
-omni_range = 30.0
-omni_attenuation = 0.25
-
-[node name="OmniLight3D19" type="OmniLight3D" parent="1st Floor/Lights" unique_id=702720235]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3.5, 0)
-light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
-light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
@@ -2354,86 +2342,60 @@ data = {
 metadata/_editor_floor_ = Vector3(-6, 9, 12)
 
 [node name="Lights" type="Node3D" parent="2nd Floor" unique_id=1876541433]
-visible = false
 
 [node name="OmniLight3D" type="OmniLight3D" parent="2nd Floor/Lights" unique_id=1467322002]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3.5, -2.75)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="2nd Floor/Lights" unique_id=1318595756]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3.5, -11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3.5, -11)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="2nd Floor/Lights" unique_id=1133103727]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 5.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D12" type="OmniLight3D" parent="2nd Floor/Lights" unique_id=1100340087]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 3.5, 5.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D15" type="OmniLight3D" parent="2nd Floor/Lights" unique_id=372524610]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3.5, -11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3.5, -11)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D17" type="OmniLight3D" parent="2nd Floor/Lights" unique_id=1652593502]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -16.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
-omni_range = 30.0
-omni_attenuation = 0.25
-
-[node name="OmniLight3D8" type="OmniLight3D" parent="2nd Floor/Lights" unique_id=1461961470]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3.5, 13.75)
-light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
-light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D9" type="OmniLight3D" parent="2nd Floor/Lights" unique_id=1804888019]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3.5, 11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 3.5, 11)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
-omni_range = 30.0
-omni_attenuation = 0.25
-
-[node name="OmniLight3D18" type="OmniLight3D" parent="2nd Floor/Lights" unique_id=1637418488]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 3.5, -5.5)
-light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
-light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
@@ -2660,7 +2622,7 @@ shape = SubResource("BoxShape3D_w11dx")
 debug_color = Color(0.8500152, 0.36681023, 0, 0.61960787)
 
 [node name="CollisionShape3D41" type="CollisionShape3D" parent="2nd Floor/StaticBody3D" unique_id=1020872160]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.75, 1.75, 5.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.75, 2.5, 5.75)
 shape = SubResource("BoxShape3D_214i1")
 debug_color = Color(0.8500152, 0.36681023, 0, 0.61960787)
 
@@ -2967,77 +2929,52 @@ data = {
 metadata/_editor_floor_ = Vector3(16, -2, -39)
 
 [node name="Lights" type="Node3D" parent="3rd Floor" unique_id=847068482]
-visible = false
 
 [node name="OmniLight3D" type="OmniLight3D" parent="3rd Floor/Lights" unique_id=1529564230]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2014214e-09, 3.5, -3.2014214e-09)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D6" type="OmniLight3D" parent="3rd Floor/Lights" unique_id=1158401431]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3.5, -11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 3.5, -11)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D13" type="OmniLight3D" parent="3rd Floor/Lights" unique_id=2021190830]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2014214e-09, 3.5, -16.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="3rd Floor/Lights" unique_id=72576312]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 3.5, 2)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D8" type="OmniLight3D" parent="3rd Floor/Lights" unique_id=1339722987]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 3.5, 11)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D9" type="OmniLight3D" parent="3rd Floor/Lights" unique_id=115438000]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3.5, 11)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
-omni_range = 30.0
-omni_attenuation = 0.25
-
-[node name="OmniLight3D11" type="OmniLight3D" parent="3rd Floor/Lights" unique_id=1573442073]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3.5, 16.5)
-light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
-light_bake_mode = 1
-shadow_enabled = true
-omni_range = 30.0
-omni_attenuation = 0.25
-
-[node name="OmniLight3D4" type="OmniLight3D" parent="3rd Floor/Lights" unique_id=1445674698]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 3.5, -5.5)
-light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
-light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
@@ -3166,6 +3103,16 @@ debug_color = Color(0.8500152, 0.36681023, 0, 0.61960787)
 [node name="CollisionShape3D89" type="CollisionShape3D" parent="3rd Floor/StaticBody3D" unique_id=1724973400]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.25, 2.5, -15.75)
 shape = SubResource("BoxShape3D_2gab8")
+debug_color = Color(0.8500152, 0.36681023, 0, 0.61960787)
+
+[node name="CollisionShape3D90" type="CollisionShape3D" parent="3rd Floor/StaticBody3D" unique_id=273063449]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.25, 2.5, -16.5)
+shape = SubResource("BoxShape3D_h7u46")
+debug_color = Color(0.8500152, 0.36681023, 0, 0.61960787)
+
+[node name="CollisionShape3D129" type="CollisionShape3D" parent="3rd Floor/StaticBody3D" unique_id=1335822014]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -13.75, 2.25, -16.5)
+shape = SubResource("BoxShape3D_v11vh")
 debug_color = Color(0.8500152, 0.36681023, 0, 0.61960787)
 
 [node name="CollisionShape3D88" type="CollisionShape3D" parent="3rd Floor/StaticBody3D" unique_id=1921941718]
@@ -3527,95 +3474,52 @@ data = {
 metadata/_editor_floor_ = Vector3(-37, -16, -17)
 
 [node name="Lights" type="Node3D" parent="4th Floor" unique_id=1402260914]
-visible = false
 
 [node name="OmniLight3D" type="OmniLight3D" parent="4th Floor/Lights" unique_id=830216800]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2014214e-09, 3.5, -3.2014214e-09)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D6" type="OmniLight3D" parent="4th Floor/Lights" unique_id=1628940381]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 3.5, -5.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 3.5, -5.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
-omni_range = 30.0
-omni_attenuation = 0.25
-
-[node name="OmniLight3D7" type="OmniLight3D" parent="4th Floor/Lights" unique_id=993028249]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3.5, -16.5)
-light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
-light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D13" type="OmniLight3D" parent="4th Floor/Lights" unique_id=397957759]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3.5, -11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3.5, -16.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
-omni_range = 30.0
-omni_attenuation = 0.25
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="4th Floor/Lights" unique_id=288770808]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3.5, -16.5)
-light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
-light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D8" type="OmniLight3D" parent="4th Floor/Lights" unique_id=1145323814]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 3.5, 11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 3.5, 0)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
-omni_range = 30.0
-omni_attenuation = 0.25
-
-[node name="OmniLight3D9" type="OmniLight3D" parent="4th Floor/Lights" unique_id=1551560922]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 3.5, 3)
-light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
-light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D12" type="OmniLight3D" parent="4th Floor/Lights" unique_id=292746799]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 3.5, 16.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
-omni_range = 30.0
-omni_attenuation = 0.25
-
-[node name="OmniLight3D11" type="OmniLight3D" parent="4th Floor/Lights" unique_id=653802559]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3.5, 5.5)
-light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
-light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="4th Floor/Lights" unique_id=1044210715]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 3.5, -5.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
@@ -3724,6 +3628,11 @@ debug_color = Color(0.8500152, 0.36681023, 0, 0.61960787)
 [node name="CollisionShape3D81" type="CollisionShape3D" parent="4th Floor/StaticBody3D" unique_id=1474205382]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.75, 2.5, 13)
 shape = SubResource("BoxShape3D_xf27e")
+debug_color = Color(0.8500152, 0.36681023, 0, 0.61960787)
+
+[node name="CollisionShape3D85" type="CollisionShape3D" parent="4th Floor/StaticBody3D" unique_id=1626049351]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -13.75, 2.5, 16.5)
+shape = SubResource("BoxShape3D_hi1s1")
 debug_color = Color(0.8500152, 0.36681023, 0, 0.61960787)
 
 [node name="CollisionShape3D82" type="CollisionShape3D" parent="4th Floor/StaticBody3D" unique_id=403256206]
@@ -4188,77 +4097,60 @@ data = {
 metadata/_editor_floor_ = Vector3(18, 4, 34)
 
 [node name="Lights" type="Node3D" parent="5th Floor" unique_id=668538711]
-visible = false
 
 [node name="OmniLight3D" type="OmniLight3D" parent="5th Floor/Lights" unique_id=1023524126]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024999857, 3.5, 2.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4750004, 3.5, 2.75)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D7" type="OmniLight3D" parent="5th Floor/Lights" unique_id=1404719101]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 3.5, -13.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3.5, -13.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D13" type="OmniLight3D" parent="5th Floor/Lights" unique_id=1626448015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 3.5, -13.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="5th Floor/Lights" unique_id=1876131740]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 3.5, -5.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3.5, -5.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D8" type="OmniLight3D" parent="5th Floor/Lights" unique_id=224785001]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.5, 14)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D9" type="OmniLight3D" parent="5th Floor/Lights" unique_id=1386817517]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3.5, -5.5)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
 [node name="OmniLight3D12" type="OmniLight3D" parent="5th Floor/Lights" unique_id=340305722]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3.5, 11)
 light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
+light_energy = 0.25
 light_bake_mode = 1
-shadow_enabled = true
-omni_range = 30.0
-omni_attenuation = 0.25
-
-[node name="OmniLight3D11" type="OmniLight3D" parent="5th Floor/Lights" unique_id=411612715]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 3.5, 5.5)
-light_color = Color(1, 0.931, 0.77, 1)
-light_energy = 0.5
-light_bake_mode = 1
-shadow_enabled = true
 omni_range = 30.0
 omni_attenuation = 0.25
 
